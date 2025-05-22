@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bpne6m8huvrr1" path="res://player_camera.gd" id="1_agiyq"]
 
 [node name="SpringArm3D" type="SpringArm3D"]
+transform = Transform3D(1, 0, 0, 0, 0.972031, 0.234854, 0, -0.234854, 0.972031, 0, 0, 0)
 collision_mask = 32
 spring_length = 10.0
 

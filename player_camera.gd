@@ -13,6 +13,7 @@ var spring_strength: float = 100.0
 var damping: float = 10.0
 
 func _ready() -> void:
+	DebugMenu.Register("Speed", func(): return pivot_speed)
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 
@@ -23,7 +24,8 @@ func _process(delta: float) -> void:
 	elif Input.is_action_just_released("zoom_out"):
 		pivot.spring_length = clamp(pivot.spring_length + .5, 2.0, 20.0)
 	
-	pivot.rotation.y += lerpf(pivot_speed, 0, pivot_damp * delta)
+	pivot_speed = lerpf(pivot_speed, 0, pivot_damp * delta)
+	pivot.rotation.y += pivot_speed
 
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("grab"):
@@ -54,7 +56,7 @@ func _input(event: InputEvent) -> void:
 	# Rotate camera pivot with mouse
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		pivot_speed += -event.relative.x * mouse_sensitivity
-		rotation.x += -event.relative.y * mouse_sensitivity
+		#rotation.x += -event.relative.y * mouse_sensitivity
 		#rotation.x = clamp(rotation.x, deg_to_rad(-89), deg_to_rad(89))
 
 
