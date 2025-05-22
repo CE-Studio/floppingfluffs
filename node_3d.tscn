@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bnrn1swk3ml1e"]
+[gd_scene load_steps=6 format=3 uid="uid://bnrn1swk3ml1e"]
 
 [ext_resource type="PackedScene" uid="uid://db3jswprqpd1k" path="res://player_camera.tscn" id="1_a202f"]
+[ext_resource type="PackedScene" uid="uid://btaghitysnvmv" path="res://rigid_body_3d.tscn" id="2_noarx"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_a202f"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -29,5 +30,7 @@ use_collision = true
 size = Vector3(10, 1, 10)
 
 [node name="PlayerCamera" parent="." instance=ExtResource("1_a202f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 7)
-mouse_sensitivty = 0.005
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.29377, 0)
+
+[node name="RigidBody3D" parent="." instance=ExtResource("2_noarx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2391, 0)

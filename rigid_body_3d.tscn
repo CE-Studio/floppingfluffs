@@ -1,11 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://btaghitysnvmv"]
+[gd_scene load_steps=4 format=3 uid="uid://btaghitysnvmv"]
 
 [ext_resource type="Script" uid="uid://dai5dki4hcmoi" path="res://collision.gd" id="1_mvxmr"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_n1c64"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_mvxmr"]
 
 [node name="RigidBody3D" type="RigidBody3D"]
 script = ExtResource("1_mvxmr")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_n1c64")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_mvxmr")
