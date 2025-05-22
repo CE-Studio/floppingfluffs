@@ -1,0 +1,54 @@
+[gd_scene load_steps=4 format=3 uid="uid://du88j3yswn7w7"]
+
+[ext_resource type="Script" uid="uid://ujc4fgefjt0l" path="res://pipe.gd" id="1_bepn3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_78010"]
+size = Vector3(3, 3, 0.3)
+
+[sub_resource type="Curve3D" id="Curve3D_bepn3"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, -0.357943, -0.185164, 0, 0, 0, 0, 0, 0, 0, -0.426822, -3.39953, 0, 0, 0, 0, 0, 0, 0, 3.08602, -3.16993, 0, 0, 0, 0, 0, 0, 0, 3.05154, -5.5517, 0, 0, 0, 0, 0, 0, 0, 8.14385, -4.85353, 0, 0, 0, 0, 0, 0, 0, 7.89085, 4.78458, 0, 0, 0, 0, 0, 0, 0, 3.52394, 4.78526),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 7
+
+[node name="Pipe" type="Node3D"]
+script = ExtResource("1_bepn3")
+
+[node name="Entrance" type="Area3D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Entrance"]
+shape = SubResource("BoxShape3D_78010")
+
+[node name="Exit" type="Area3D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Exit"]
+shape = SubResource("BoxShape3D_78010")
+
+[node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="."]
+
+[node name="Path3D" type="Path3D" parent="."]
+curve = SubResource("Curve3D_bepn3")
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="Path3D"]
+use_collision = true
+flip_faces = true
+polygon = PackedVector2Array(-1, -1, -1, 1, 1, 1, 1, -1)
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 1
+path_interval = 0.75
+path_simplify_angle = 5.0
+path_rotation = 2
+path_rotation_accurate = false
+path_local = true
+path_continuous_u = true
+path_u_distance = 4.77
+path_joined = false
+
+[node name="EntrancePlacer" type="PathFollow3D" parent="Path3D"]
+transform = Transform3D(1, 0, 0, 0, 0.999764, 0.0214235, 0, -0.0214235, 0.999764, 0, -0.357943, -0.185164)
