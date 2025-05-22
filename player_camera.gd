@@ -1,12 +1,14 @@
+class_name PlayerCam
 extends Camera3D
 
 @export var mouse_sensitivity: Vector2 = Vector2(0.002, 0.001)
 var pivot_speed: Vector2 = Vector2.ZERO;
 @export var pivot_damp: float = 6
-@export var grab_distance: float = 10.0
+@export var grab_distance: float = 100.0
 var grab_distance_dynamic: float;
 
 @onready var pivot: SpringArm3D = get_parent()
+@onready var linedraw:Node2D = $Node2D
 
 var grabbed_object: RigidBody3D = null
 var spring_strength: float = 100.0
@@ -77,14 +79,14 @@ func try_grab() -> void:
 		grab_distance_dynamic = (result["position"] - origin).length()
 
 
-func get_ray() -> Dictionary:
-	var mouse_pos = get_viewport().get_mouse_position()
-	var origin = project_ray_origin(mouse_pos)
-	var direction = project_ray_normal(mouse_pos)
+func get_ray() -> Dictionary[StringName, Vector3]:
+	var mouse_pos := get_viewport().get_mouse_position()
+	var origin := project_ray_origin(mouse_pos)
+	var direction := project_ray_normal(mouse_pos)
 	return {
-		"origin": origin,
-		"direction": direction
-	}
+		&"origin": origin,
+		&"direction": direction
+	} as Dictionary[StringName, Vector3]
 
 
 func get_ray_target_position() -> Vector3:

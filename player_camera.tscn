@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://db3jswprqpd1k"]
+[gd_scene load_steps=3 format=3 uid="uid://db3jswprqpd1k"]
 
 [ext_resource type="Script" uid="uid://bpne6m8huvrr1" path="res://player_camera.gd" id="1_agiyq"]
+[ext_resource type="Script" uid="uid://cteo1um7bghwy" path="res://linedraw.gd" id="2_1l5io"]
 
 [node name="SpringArm3D" type="SpringArm3D"]
 transform = Transform3D(1, 0, 0, 0, 0.972031, 0.234854, 0, -0.234854, 0.972031, 0, 0, 0)
@@ -9,3 +10,6 @@ spring_length = 10.0
 
 [node name="PlayerCamera" type="Camera3D" parent="."]
 script = ExtResource("1_agiyq")
+
+[node name="Node2D" type="Node2D" parent="PlayerCamera"]
+script = ExtResource("2_1l5io")

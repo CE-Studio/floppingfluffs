@@ -15,6 +15,12 @@ func _process(delta: float) -> void:
 		data.get("label_node").text = "%s: %s" % [label, text]
 
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("toggle_debug"):
+		visible = not visible
+		get_viewport().set_input_as_handled()
+
+
 func Register(label: String, getter: Callable) -> void:
 	if watchers.has(label):
 		return;
