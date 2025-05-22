@@ -1,0 +1,42 @@
+[gd_scene load_steps=8 format=3 uid="uid://y7pjq5topdi8"]
+
+[ext_resource type="PackedScene" uid="uid://0v523dv56p6t" path="res://models/kerfbody.glb" id="1_f4x5c"]
+[ext_resource type="PackedScene" uid="uid://cj1svhnhkp7e1" path="res://models/kerfhead.glb" id="2_cckqy"]
+[ext_resource type="PackedScene" uid="uid://bdqyuublq27bk" path="res://models/kerfpelvis.glb" id="3_rfjbg"]
+[ext_resource type="PackedScene" uid="uid://bogn7pfqo0w5v" path="res://models/kerftail.glb" id="4_6k8du"]
+[ext_resource type="PackedScene" uid="uid://dpwaough71aib" path="res://models/kerfear.glb" id="5_itrqo"]
+[ext_resource type="PackedScene" uid="uid://c3ih7h2y8c205" path="res://models/kerfarm.glb" id="6_ccpkw"]
+[ext_resource type="PackedScene" uid="uid://c08qyyc48d0vu" path="res://models/kerfleg.glb" id="7_aop6a"]
+
+[node name="Kerf" type="Node3D"]
+
+[node name="kerfbody" parent="." instance=ExtResource("1_f4x5c")]
+
+[node name="kerfhead" parent="." instance=ExtResource("2_cckqy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.152875, -0.441382)
+
+[node name="kerfpelvis" parent="." instance=ExtResource("3_rfjbg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0125103, 0.145432)
+
+[node name="kerftail" parent="." instance=ExtResource("4_6k8du")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00312756, 0.472265)
+
+[node name="kerfear" parent="." instance=ExtResource("5_itrqo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0671122, 0.355681, -0.57821)
+
+[node name="kerfbody2" parent="." instance=ExtResource("1_f4x5c")]
+
+[node name="kerfarm" parent="." instance=ExtResource("6_ccpkw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.122892, 0, -0.334651)
+
+[node name="kerfleg" parent="." instance=ExtResource("7_aop6a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.104052, 0.0148892, 0.317877)
+
+[editable path="kerfbody"]
+[editable path="kerfhead"]
+[editable path="kerfpelvis"]
+[editable path="kerftail"]
+[editable path="kerfear"]
+[editable path="kerfbody2"]
+[editable path="kerfarm"]
+[editable path="kerfleg"]
