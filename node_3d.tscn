@@ -30,7 +30,7 @@ use_collision = true
 size = Vector3(10, 1, 10)
 
 [node name="PlayerCamera" parent="." instance=ExtResource("1_a202f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.29377, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.867835, 0)
 
 [node name="RigidBody3D" parent="." instance=ExtResource("2_noarx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2391, 0)
