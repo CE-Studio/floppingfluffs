@@ -1,7 +1,8 @@
 extends Camera3D
 
 @export var mouse_sensitivity: float = 0.002
-@export var speed: float = 10.0
+var pivot_speed: float = 0;
+@export var pivot_damp: float = 6
 @export var grab_distance: float = 10.0
 var grab_distance_dynamic: float;
 
@@ -21,7 +22,8 @@ func _process(delta: float) -> void:
 		pivot.spring_length = clamp(pivot.spring_length - .5, 2.0, 20.0)
 	elif Input.is_action_just_released("zoom_out"):
 		pivot.spring_length = clamp(pivot.spring_length + .5, 2.0, 20.0)
-
+	
+	pivot.rotation.y += lerpf(pivot_speed, 0, pivot_damp * delta)
 
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("grab"):
@@ -51,7 +53,7 @@ func _input(event: InputEvent) -> void:
 
 	# Rotate camera pivot with mouse
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-		pivot.rotation.y += -event.relative.x * mouse_sensitivity
+		pivot_speed += -event.relative.x * mouse_sensitivity
 		rotation.x += -event.relative.y * mouse_sensitivity
 		#rotation.x = clamp(rotation.x, deg_to_rad(-89), deg_to_rad(89))
 
