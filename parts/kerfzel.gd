@@ -30,6 +30,7 @@ var newpos:
 
 
 func _ready() -> void:
+	$AudioStreamPlayer3D.pitch_scale = 1.2
 	_recur_mat(self)
 
 

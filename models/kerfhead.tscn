@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dgacr0smtpm3t"]
+[gd_scene load_steps=16 format=3 uid="uid://dgacr0smtpm3t"]
 
 [ext_resource type="PackedScene" uid="uid://cj1svhnhkp7e1" path="res://models/kerfhead.glb" id="1_uxhl0"]
 [ext_resource type="PackedScene" uid="uid://djv0wrsxa2d4g" path="res://models/kerfear.tscn" id="2_8x24u"]
@@ -7,6 +7,96 @@
 [ext_resource type="Texture2D" uid="uid://c4j817pfm82ps" path="res://textures/decals/eye1.png" id="5_kfeb6"]
 [ext_resource type="Texture2D" uid="uid://dwl6eoxjogm4i" path="res://textures/decals/nostril1.png" id="6_efi7u"]
 [ext_resource type="Texture2D" uid="uid://dhp8cyu7q18qk" path="res://textures/decals/mouth1.png" id="7_mme5b"]
+[ext_resource type="Texture2D" uid="uid://b6jb44knlrmio" path="res://textures/decals/mouth2.png" id="8_mme5b"]
+[ext_resource type="Texture2D" uid="uid://ceao1nwmje67a" path="res://textures/decals/eyeblink1.png" id="9_oy3uj"]
+
+[sub_resource type="Animation" id="Animation_oy3uj"]
+resource_name = "speak"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Armature_002/Skeleton3D/BoneAttachment3D/mouth:texture_albedo")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.28),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("8_mme5b"), ExtResource("7_mme5b")]
+}
+
+[sub_resource type="Animation" id="Animation_huidm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Armature_002/Skeleton3D/BoneAttachment3D/mouth:texture_albedo")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("7_mme5b")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dgkxw"]
+_data = {
+&"RESET": SubResource("Animation_huidm"),
+&"speak": SubResource("Animation_oy3uj")
+}
+
+[sub_resource type="Animation" id="Animation_dgkxw"]
+resource_name = "blink1"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Armature_002/Skeleton3D/BoneAttachment3D/eyes:texture_albedo")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.26),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("9_oy3uj"), ExtResource("5_kfeb6")]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_random_blink"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_nsdbv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Armature_002/Skeleton3D/BoneAttachment3D/eyes:texture_albedo")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_kfeb6")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7jdp0"]
+_data = {
+&"RESET": SubResource("Animation_nsdbv"),
+&"blink1": SubResource("Animation_dgkxw")
+}
 
 [node name="kerfhead" instance=ExtResource("1_uxhl0")]
 script = ExtResource("2_kjtxw")
@@ -101,3 +191,14 @@ texture_albedo = ExtResource("7_mme5b")
 upper_fade = 1e-05
 lower_fade = 1e-05
 cull_mask = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
+libraries = {
+&"": SubResource("AnimationLibrary_dgkxw")
+}
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="." index="2"]
+libraries = {
+&"": SubResource("AnimationLibrary_7jdp0")
+}
+autoplay = "blink1"

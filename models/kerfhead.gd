@@ -12,6 +12,10 @@ func _ready() -> void:
 	_upd()
 
 
+func _random_blink() -> void:
+	$AnimationPlayer2.speed_scale = randf_range(0.1, 3)
+
+
 func _upd() -> void:
 	match ears:
 		1:
