@@ -37,7 +37,7 @@ curve = SubResource("Curve3D_bepn3")
 [node name="CSGPolygon3D" type="CSGPolygon3D" parent="Path3D"]
 use_collision = true
 flip_faces = true
-polygon = PackedVector2Array(-1, -1, -1, 1, 1, 1, 1, -1)
+polygon = PackedVector2Array(-2, -2, -2, 2, 2, 2, 2, -2)
 mode = 2
 path_node = NodePath("..")
 path_interval_type = 1
@@ -51,4 +51,4 @@ path_u_distance = 4.77
 path_joined = false
 
 [node name="EntrancePlacer" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(1, 0, 0, 0, 0.999764, 0.0214234, 0, -0.0214234, 0.999764, 0, -0.357943, -0.185164)
+transform = Transform3D(1, 0, 0, 0, 0.999763, 0.0214234, 0, -0.0214234, 0.999763, 0, -0.357943, -0.185164)
