@@ -1,10 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://bnrn1swk3ml1e"]
+[gd_scene load_steps=9 format=3 uid="uid://bnrn1swk3ml1e"]
 
 [ext_resource type="PackedScene" uid="uid://db3jswprqpd1k" path="res://player_camera.tscn" id="1_a202f"]
 [ext_resource type="PackedScene" uid="uid://btaghitysnvmv" path="res://rigid_body_3d.tscn" id="2_noarx"]
 [ext_resource type="PackedScene" uid="uid://bsb008osxuluk" path="res://pipe.tscn" id="3_a0tk4"]
 [ext_resource type="PackedScene" uid="uid://y7pjq5topdi8" path="res://parts/kerf.tscn" id="4_r3fl7"]
-[ext_resource type="PackedScene" uid="uid://dgacr0smtpm3t" path="res://models/kerfhead.tscn" id="5_jka67"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_a202f"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -97,5 +96,32 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.41023, 1.34883, -0.338776)
 [node name="Kerf10" parent="." instance=ExtResource("4_r3fl7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.41023, 1.34883, -0.338776)
 
-[node name="kerfhead" parent="." instance=ExtResource("5_jka67")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.35376, 1.0304, -1.91595)
+[node name="Kerf11" parent="." instance=ExtResource("4_r3fl7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.41023, 1.34883, -0.338776)
+
+[node name="Kerf12" parent="." instance=ExtResource("4_r3fl7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.41023, 1.34883, -0.338776)
+
+[node name="Kerf13" parent="." instance=ExtResource("4_r3fl7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.41023, 1.34883, -0.338776)
+
+[node name="Kerf14" parent="." instance=ExtResource("4_r3fl7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.41023, 1.34883, -0.338776)
+
+[node name="Kerf15" parent="." instance=ExtResource("4_r3fl7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.41023, 1.34883, -0.338776)
+
+[node name="Kerf16" parent="." instance=ExtResource("4_r3fl7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.41023, 1.34883, -0.338776)
+
+[node name="Kerf17" parent="." instance=ExtResource("4_r3fl7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.41023, 1.34883, -0.338776)
+
+[node name="Kerf18" parent="." instance=ExtResource("4_r3fl7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.41023, 1.34883, -0.338776)
+
+[node name="Kerf19" parent="." instance=ExtResource("4_r3fl7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.41023, 1.34883, -0.338776)
+
+[node name="Kerf20" parent="." instance=ExtResource("4_r3fl7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.41023, 1.34883, -0.338776)

@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 DebugMenu="*res://debug_menu.tscn"
 
+[editor]
+
+movie_writer/movie_file="/home/clarence112/Documents/gdrenders/floppy/fluffs.avi"
+
 [input]
 
 forward={

@@ -18,6 +18,15 @@ enum FurPattern {
 @export_range(1, 2) var legs:int = 1
 @export_range(1, 3) var nostrils:int = 1
 @export_range(0.8, 2.0) var size:float = 1
+@export var happi := 0.0
+
+
+var newpos:
+	set(val):
+		if val is Vector3:
+			newpos = val
+		if val == null:
+			newpos = val
 
 
 func _ready() -> void:
@@ -29,3 +38,26 @@ func _recur_mat(n:Node) -> void:
 		n.material_override = mat
 	for i in n.get_children():
 		_recur_mat(i)
+
+
+func _physics_process(delta: float) -> void:
+	if position.y < -10:
+		newpos = Vector3(0, 10, 0)
+
+
+func _integrate_forces(state:PhysicsDirectBodyState3D) -> void:
+	if newpos != null:
+		state.linear_velocity = Vector3.ZERO
+		var t := state.get_transform()
+		t.origin = newpos
+		global_position = newpos
+		state.transform = t
+		newpos = null
+
+
+func _on_timer_timeout() -> void:
+	apply_central_impulse(Vector3.UP * 3)
+	if randf_range(0, 10) > 9:
+		$Timer.start(randf_range(20, 120))
+	else:
+		$Timer.start(randf_range(0.5, 2))
