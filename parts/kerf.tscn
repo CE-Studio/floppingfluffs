@@ -1,42 +1,221 @@
 [gd_scene load_steps=8 format=3 uid="uid://y7pjq5topdi8"]
 
-[ext_resource type="PackedScene" uid="uid://0v523dv56p6t" path="res://models/kerfbody.glb" id="1_f4x5c"]
-[ext_resource type="PackedScene" uid="uid://cj1svhnhkp7e1" path="res://models/kerfhead.glb" id="2_cckqy"]
-[ext_resource type="PackedScene" uid="uid://bdqyuublq27bk" path="res://models/kerfpelvis.glb" id="3_rfjbg"]
-[ext_resource type="PackedScene" uid="uid://bogn7pfqo0w5v" path="res://models/kerftail.glb" id="4_6k8du"]
-[ext_resource type="PackedScene" uid="uid://dpwaough71aib" path="res://models/kerfear.glb" id="5_itrqo"]
-[ext_resource type="PackedScene" uid="uid://c3ih7h2y8c205" path="res://models/kerfarm.glb" id="6_ccpkw"]
-[ext_resource type="PackedScene" uid="uid://c08qyyc48d0vu" path="res://models/kerfleg.glb" id="7_aop6a"]
+[ext_resource type="Script" uid="uid://dr5qpgp623vtn" path="res://parts/kerfzel.gd" id="1_j8y7j"]
+[ext_resource type="PackedScene" uid="uid://ta0q78l0u8yn" path="res://models/kerfbody.tscn" id="2_yvu7o"]
+[ext_resource type="PackedScene" uid="uid://bgsmpeum0ua8l" path="res://models/kerfpelvis.tscn" id="3_yvu7o"]
 
-[node name="Kerf" type="Node3D"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yvu7o"]
+radius = 0.155644
+height = 0.724674
 
-[node name="kerfbody" parent="." instance=ExtResource("1_f4x5c")]
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_yvu7o"]
+rough = true
 
-[node name="kerfhead" parent="." instance=ExtResource("2_cckqy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.152875, -0.441382)
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gf8oa"]
+radius = 0.113835
+height = 0.437217
 
-[node name="kerfpelvis" parent="." instance=ExtResource("3_rfjbg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0125103, 0.145432)
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_f4x5c"]
+radius = 0.0623731
+height = 0.437217
 
-[node name="kerftail" parent="." instance=ExtResource("4_6k8du")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00312756, 0.472265)
+[node name="Kerf" type="RigidBody3D"]
+script = ExtResource("1_j8y7j")
 
-[node name="kerfear" parent="." instance=ExtResource("5_itrqo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0671122, 0.355681, -0.57821)
+[node name="kerfbody" parent="." instance=ExtResource("2_yvu7o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.101046)
 
-[node name="kerfbody2" parent="." instance=ExtResource("1_f4x5c")]
+[node name="kerfpelvis" parent="." instance=ExtResource("3_yvu7o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0131068, 0.0538832)
 
-[node name="kerfarm" parent="." instance=ExtResource("6_ccpkw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.122892, 0, -0.334651)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.00291263, -0.0972004)
+shape = SubResource("CapsuleShape3D_yvu7o")
 
-[node name="kerfleg" parent="." instance=ExtResource("7_aop6a")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.104052, 0.0148892, 0.317877)
+[node name="HingeJoint3D" type="Generic6DOFJoint3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0771844, -0.479126)
+node_a = NodePath("..")
+node_b = NodePath("neck")
+linear_limit_x/enabled = false
+linear_limit_y/enabled = false
+linear_limit_z/enabled = false
+linear_spring_x/enabled = true
+linear_spring_x/stiffness = 50.0
+linear_spring_x/damping = 2.0
+linear_spring_y/enabled = true
+linear_spring_y/stiffness = 50.0
+linear_spring_y/damping = 2.0
+linear_spring_z/enabled = true
+linear_spring_z/stiffness = 50.0
+linear_spring_z/damping = 2.0
+angular_limit_x/enabled = false
+angular_limit_y/enabled = false
+angular_limit_z/enabled = false
+angular_spring_x/enabled = true
+angular_spring_x/stiffness = 8.0
+angular_spring_x/damping = 3.0
+angular_spring_y/enabled = true
+angular_spring_y/stiffness = 8.0
+angular_spring_y/damping = 3.0
+angular_spring_z/enabled = true
+angular_spring_z/stiffness = 8.0
+angular_spring_z/damping = 3.0
+
+[node name="neck" type="RigidBody3D" parent="HingeJoint3D"]
+mass = 0.1
+physics_material_override = SubResource("PhysicsMaterial_yvu7o")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HingeJoint3D/neck"]
+transform = Transform3D(1, 0, 0, 0, 0.773652, 0.63361, 0, -0.63361, 0.773652, 0, 0.121109, -0.0986355)
+shape = SubResource("CapsuleShape3D_gf8oa")
+
+[node name="HingeJoint3D3" type="Generic6DOFJoint3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.126539, -0.000953227, -0.283782)
+node_a = NodePath("..")
+node_b = NodePath("arml")
+linear_limit_x/enabled = false
+linear_limit_y/enabled = false
+linear_limit_z/enabled = false
+linear_spring_x/enabled = true
+linear_spring_x/stiffness = 50.0
+linear_spring_x/damping = 2.0
+linear_spring_y/enabled = true
+linear_spring_y/stiffness = 50.0
+linear_spring_y/damping = 2.0
+linear_spring_z/enabled = true
+linear_spring_z/stiffness = 50.0
+linear_spring_z/damping = 2.0
+angular_limit_x/enabled = false
+angular_limit_y/enabled = false
+angular_limit_z/enabled = false
+angular_spring_x/enabled = true
+angular_spring_x/stiffness = 8.0
+angular_spring_x/damping = 3.0
+angular_spring_y/enabled = true
+angular_spring_y/stiffness = 8.0
+angular_spring_y/damping = 3.0
+angular_spring_z/enabled = true
+angular_spring_z/stiffness = 8.0
+angular_spring_z/damping = 3.0
+
+[node name="arml" type="RigidBody3D" parent="HingeJoint3D3"]
+mass = 0.1
+physics_material_override = SubResource("PhysicsMaterial_yvu7o")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HingeJoint3D3/arml"]
+transform = Transform3D(0.965926, -0.258267, 0.016896, -0.258819, -0.963865, 0.0630567, 0, -0.0652811, -0.997867, 0, -0.164263, -0.0238951)
+shape = SubResource("CapsuleShape3D_f4x5c")
+
+[node name="HingeJoint3D4" type="Generic6DOFJoint3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.127, -0.001, -0.284)
+node_a = NodePath("..")
+node_b = NodePath("armr")
+linear_limit_x/enabled = false
+linear_limit_y/enabled = false
+linear_limit_z/enabled = false
+linear_spring_x/enabled = true
+linear_spring_x/stiffness = 50.0
+linear_spring_x/damping = 2.0
+linear_spring_y/enabled = true
+linear_spring_y/stiffness = 50.0
+linear_spring_y/damping = 2.0
+linear_spring_z/enabled = true
+linear_spring_z/stiffness = 50.0
+linear_spring_z/damping = 2.0
+angular_limit_x/enabled = false
+angular_limit_y/enabled = false
+angular_limit_z/enabled = false
+angular_spring_x/enabled = true
+angular_spring_x/stiffness = 8.0
+angular_spring_x/damping = 3.0
+angular_spring_y/enabled = true
+angular_spring_y/stiffness = 8.0
+angular_spring_y/damping = 3.0
+angular_spring_z/enabled = true
+angular_spring_z/stiffness = 8.0
+angular_spring_z/damping = 3.0
+
+[node name="armr" type="RigidBody3D" parent="HingeJoint3D4"]
+mass = 0.1
+physics_material_override = SubResource("PhysicsMaterial_yvu7o")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HingeJoint3D4/armr"]
+transform = Transform3D(0.965926, 0.258267, -0.016896, 0.258819, -0.963865, 0.0630567, 0, -0.0652811, -0.997867, 0, -0.164263, -0.0238951)
+shape = SubResource("CapsuleShape3D_f4x5c")
+
+[node name="HingeJoint3D5" type="Generic6DOFJoint3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.126539, -0.000953227, 0.210794)
+node_a = NodePath("..")
+node_b = NodePath("legl")
+linear_limit_x/enabled = false
+linear_limit_y/enabled = false
+linear_limit_z/enabled = false
+linear_spring_x/enabled = true
+linear_spring_x/stiffness = 50.0
+linear_spring_x/damping = 2.0
+linear_spring_y/enabled = true
+linear_spring_y/stiffness = 50.0
+linear_spring_y/damping = 2.0
+linear_spring_z/enabled = true
+linear_spring_z/stiffness = 50.0
+linear_spring_z/damping = 2.0
+angular_limit_x/enabled = false
+angular_limit_y/enabled = false
+angular_limit_z/enabled = false
+angular_spring_x/enabled = true
+angular_spring_x/stiffness = 8.0
+angular_spring_x/damping = 3.0
+angular_spring_y/enabled = true
+angular_spring_y/stiffness = 8.0
+angular_spring_y/damping = 3.0
+angular_spring_z/enabled = true
+angular_spring_z/stiffness = 8.0
+angular_spring_z/damping = 3.0
+
+[node name="legl" type="RigidBody3D" parent="HingeJoint3D5"]
+mass = 0.1
+physics_material_override = SubResource("PhysicsMaterial_yvu7o")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HingeJoint3D5/legl"]
+transform = Transform3D(0.965926, -0.258267, 0.016896, -0.255589, -0.962117, -0.0948975, 0.0407648, 0.0873455, -0.995344, 0, -0.164246, -0.0239002)
+shape = SubResource("CapsuleShape3D_f4x5c")
+
+[node name="HingeJoint3D6" type="Generic6DOFJoint3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.127, -0.001, 0.210575)
+node_a = NodePath("..")
+node_b = NodePath("legr")
+linear_limit_x/enabled = false
+linear_limit_y/enabled = false
+linear_limit_z/enabled = false
+linear_spring_x/enabled = true
+linear_spring_x/stiffness = 50.0
+linear_spring_x/damping = 2.0
+linear_spring_y/enabled = true
+linear_spring_y/stiffness = 50.0
+linear_spring_y/damping = 2.0
+linear_spring_z/enabled = true
+linear_spring_z/stiffness = 50.0
+linear_spring_z/damping = 2.0
+angular_limit_x/enabled = false
+angular_limit_y/enabled = false
+angular_limit_z/enabled = false
+angular_spring_x/enabled = true
+angular_spring_x/stiffness = 8.0
+angular_spring_x/damping = 3.0
+angular_spring_y/enabled = true
+angular_spring_y/stiffness = 8.0
+angular_spring_y/damping = 3.0
+angular_spring_z/enabled = true
+angular_spring_z/stiffness = 8.0
+angular_spring_z/damping = 3.0
+
+[node name="legr" type="RigidBody3D" parent="HingeJoint3D6"]
+mass = 0.1
+physics_material_override = SubResource("PhysicsMaterial_yvu7o")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HingeJoint3D6/legr"]
+transform = Transform3D(0.965926, 0.258267, -0.016896, 0.255589, -0.962117, -0.0948975, -0.0407648, 0.0873455, -0.995344, 0, -0.16428, -0.0238901)
+shape = SubResource("CapsuleShape3D_f4x5c")
 
 [editable path="kerfbody"]
-[editable path="kerfhead"]
 [editable path="kerfpelvis"]
-[editable path="kerftail"]
-[editable path="kerfear"]
-[editable path="kerfbody2"]
-[editable path="kerfarm"]
-[editable path="kerfleg"]

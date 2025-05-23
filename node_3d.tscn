@@ -1,7 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://bnrn1swk3ml1e"]
+[gd_scene load_steps=10 format=3 uid="uid://bnrn1swk3ml1e"]
 
 [ext_resource type="PackedScene" uid="uid://db3jswprqpd1k" path="res://player_camera.tscn" id="1_a202f"]
 [ext_resource type="PackedScene" uid="uid://btaghitysnvmv" path="res://rigid_body_3d.tscn" id="2_noarx"]
+[ext_resource type="PackedScene" uid="uid://bsb008osxuluk" path="res://pipe.tscn" id="3_a0tk4"]
+[ext_resource type="PackedScene" uid="uid://y7pjq5topdi8" path="res://parts/kerf.tscn" id="4_r3fl7"]
+[ext_resource type="PackedScene" uid="uid://dgacr0smtpm3t" path="res://models/kerfhead.tscn" id="5_jka67"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_a202f"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -15,6 +18,13 @@ background_mode = 2
 sky = SubResource("Sky_noarx")
 tonemap_mode = 2
 glow_enabled = true
+
+[sub_resource type="Curve3D" id="Curve3D_noarx"]
+_data = {
+"points": PackedVector3Array(-1.08942, 1.03579, 2.85152, 1.08942, -1.03579, -2.85152, -3.60246, 2.95514, 2.70541, 7.13214, 5.11461, 0.839485, -7.13214, -5.11461, -0.839485, 0.493826, -0.128611, -3.4278),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
 
 [node name="Node3D" type="Node3D"]
 
@@ -34,3 +44,30 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.867835, 0)
 
 [node name="RigidBody3D" parent="." instance=ExtResource("2_noarx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2391, 0)
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="."]
+polygon = PackedVector2Array(0.18464, -0.316371, -0.957125, 0.196236, -0.537479, 1.10796, 0.309317, 1.09424, 0.723858, 0.263503)
+mode = 2
+path_node = NodePath("../Path3D")
+path_interval_type = 0
+path_interval = 1.0
+path_simplify_angle = 0.0
+path_rotation = 2
+path_rotation_accurate = false
+path_local = false
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+smooth_faces = true
+
+[node name="Path3D" type="Path3D" parent="."]
+curve = SubResource("Curve3D_noarx")
+
+[node name="Pipe" parent="." instance=ExtResource("3_a0tk4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.58978, 1.96083, -3.79536)
+
+[node name="Kerf" parent="." instance=ExtResource("4_r3fl7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.41023, 1.34883, -0.338776)
+
+[node name="kerfhead" parent="." instance=ExtResource("5_jka67")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.35376, 1.0304, -1.91595)

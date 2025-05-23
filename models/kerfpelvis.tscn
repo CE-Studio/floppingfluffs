@@ -1,0 +1,65 @@
+[gd_scene load_steps=4 format=3 uid="uid://bgsmpeum0ua8l"]
+
+[ext_resource type="PackedScene" uid="uid://bdqyuublq27bk" path="res://models/kerfpelvis.glb" id="1_pahwj"]
+[ext_resource type="PackedScene" uid="uid://1rtcfgymrgb8" path="res://models/kerftail.tscn" id="2_jdpmd"]
+[ext_resource type="PackedScene" uid="uid://7fyqvutsa80k" path="res://models/kerfleg.tscn" id="3_dq1u3"]
+
+[node name="kerfpelvis" instance=ExtResource("1_pahwj")]
+
+[node name="Vert_001" parent="Armature_003/Skeleton3D" index="0"]
+layers = 3
+
+[node name="SpringBoneSimulator3D" type="SpringBoneSimulator3D" parent="Armature_003/Skeleton3D" index="1"]
+setting_count = 1
+settings/0/root_bone_name = "Bone"
+settings/0/root_bone = 0
+settings/0/end_bone_name = "Bone.001"
+settings/0/end_bone = 1
+settings/0/extend_end_bone = false
+settings/0/center_from = 0
+settings/0/individual_config = false
+settings/0/rotation_axis = 3
+settings/0/radius/value = 0.02
+settings/0/radius/damping_curve = null
+settings/0/stiffness/value = 1.0
+settings/0/stiffness/damping_curve = null
+settings/0/drag/value = 0.4
+settings/0/drag/damping_curve = null
+settings/0/gravity/value = 0.0
+settings/0/gravity/damping_curve = null
+settings/0/gravity/direction = Vector3(0, -1, 0)
+settings/0/enable_all_child_collisions = true
+settings/0/exclude_collision_count = 0
+
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Armature_003/Skeleton3D" index="2"]
+transform = Transform3D(1, -4.12393e-18, 4.44051e-16, 4.44051e-16, 0.0185725, -0.999827, -4.12393e-18, 0.999827, 0.0185725, 0, 0.00162143, 0)
+bone_name = "Bone.001"
+bone_idx = 1
+
+[node name="tails" type="Node3D" parent="Armature_003/Skeleton3D/BoneAttachment3D" index="0"]
+transform = Transform3D(1, 4.3969e-16, 4.59139e-16, -4.48141e-16, -0.0246939, 0.999695, 4.50894e-16, -0.999695, -0.0246939, -1.3259e-18, 0.321458, 0.00597132)
+
+[node name="kerftail" parent="Armature_003/Skeleton3D/BoneAttachment3D/tails" index="0" instance=ExtResource("2_jdpmd")]
+
+[node name="kerftail2" parent="Armature_003/Skeleton3D/BoneAttachment3D/tails" index="1" instance=ExtResource("2_jdpmd")]
+transform = Transform3D(0.990268, 0, 0.139173, 0, 1, 0, -0.139173, 0, 0.990268, 0.05, 0, 0)
+
+[node name="kerftail3" parent="Armature_003/Skeleton3D/BoneAttachment3D/tails" index="2" instance=ExtResource("2_jdpmd")]
+transform = Transform3D(0.990268, 0, -0.139173, 0, 1, 0, 0.139173, 0, 0.990268, -0.05, 0, 0)
+
+[node name="legs" type="Node3D" parent="Armature_003/Skeleton3D/BoneAttachment3D" index="1"]
+transform = Transform3D(1, 4.39898e-16, 4.37495e-16, -4.47947e-16, 0.0240484, 0.999711, 4.2925e-16, -0.999711, 0.0240484, 0, 0, 0)
+
+[node name="kerflegl1" parent="Armature_003/Skeleton3D/BoneAttachment3D/legs" index="0" instance=ExtResource("3_dq1u3")]
+transform = Transform3D(1, 8.27181e-25, -1.05879e-22, 2.06795e-25, 1, -4.65661e-10, 0, 4.65661e-10, 1, -0.1042, 0.000917273, 0.167473)
+
+[node name="kerflegl2" parent="Armature_003/Skeleton3D/BoneAttachment3D/legs" index="1" instance=ExtResource("3_dq1u3")]
+transform = Transform3D(1, 1.24077e-24, -1.58819e-22, 2.06795e-25, 1, -9.31323e-10, 0, 9.31323e-10, 1, -0.1042, -0.000174371, -0.031836)
+visible = false
+
+[node name="kerflegr1" parent="Armature_003/Skeleton3D/BoneAttachment3D/legs" index="2" instance=ExtResource("3_dq1u3")]
+transform = Transform3D(1, 8.27181e-25, -1.05879e-22, 2.06795e-25, 1, -4.65661e-10, 0, 4.65661e-10, 1, 0.104, 0.000917273, 0.167473)
+
+[node name="kerflegr2" parent="Armature_003/Skeleton3D/BoneAttachment3D/legs" index="3" instance=ExtResource("3_dq1u3")]
+transform = Transform3D(1, 1.24077e-24, -1.58819e-22, 2.06795e-25, 1, -9.31323e-10, 0, 9.31323e-10, 1, 0.104, -0.000174371, -0.031836)
+visible = false

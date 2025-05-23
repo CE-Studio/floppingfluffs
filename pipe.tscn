@@ -1,6 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://du88j3yswn7w7"]
+[gd_scene load_steps=4 format=3 uid="uid://bsb008osxuluk"]
 
-[ext_resource type="Script" uid="uid://ujc4fgefjt0l" path="res://pipe.gd" id="1_bepn3"]
+[ext_resource type="Script" path="res://pipe.gd" id="1_bepn3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_78010"]
 size = Vector3(3, 3, 0.3)
@@ -51,4 +51,4 @@ path_u_distance = 4.77
 path_joined = false
 
 [node name="EntrancePlacer" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(1, 0, 0, 0, 0.999764, 0.0214235, 0, -0.0214235, 0.999764, 0, -0.357943, -0.185164)
+transform = Transform3D(1, 0, 0, 0, 0.999764, 0.0214234, 0, -0.0214234, 0.999764, 0, -0.357943, -0.185164)

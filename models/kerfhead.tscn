@@ -1,0 +1,103 @@
+[gd_scene load_steps=8 format=3 uid="uid://dgacr0smtpm3t"]
+
+[ext_resource type="PackedScene" uid="uid://cj1svhnhkp7e1" path="res://models/kerfhead.glb" id="1_uxhl0"]
+[ext_resource type="PackedScene" uid="uid://djv0wrsxa2d4g" path="res://models/kerfear.tscn" id="2_8x24u"]
+[ext_resource type="Script" uid="uid://b6q0t3b4dj404" path="res://models/kerfhead.gd" id="2_kjtxw"]
+[ext_resource type="PackedScene" uid="uid://cdmrwndsjgnjq" path="res://models/kerfearmir.tscn" id="3_wt43b"]
+[ext_resource type="Texture2D" uid="uid://c4j817pfm82ps" path="res://textures/decals/eye1.png" id="5_kfeb6"]
+[ext_resource type="Texture2D" uid="uid://dwl6eoxjogm4i" path="res://textures/decals/nostril1.png" id="6_efi7u"]
+[ext_resource type="Texture2D" uid="uid://dhp8cyu7q18qk" path="res://textures/decals/mouth1.png" id="7_mme5b"]
+
+[node name="kerfhead" instance=ExtResource("1_uxhl0")]
+script = ExtResource("2_kjtxw")
+
+[node name="Armature_002" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00037914, -0.135399)
+
+[node name="Vert_002" parent="Armature_002/Skeleton3D" index="0"]
+layers = 3
+
+[node name="SpringBoneSimulator3D" type="SpringBoneSimulator3D" parent="Armature_002/Skeleton3D" index="1"]
+setting_count = 1
+settings/0/root_bone_name = "Bone.001"
+settings/0/root_bone = 1
+settings/0/end_bone_name = "Bone.003"
+settings/0/end_bone = 3
+settings/0/extend_end_bone = false
+settings/0/center_from = 0
+settings/0/individual_config = false
+settings/0/rotation_axis = 3
+settings/0/radius/value = 0.02
+settings/0/radius/damping_curve = null
+settings/0/stiffness/value = 4.0
+settings/0/stiffness/damping_curve = null
+settings/0/drag/value = 0.4
+settings/0/drag/damping_curve = null
+settings/0/gravity/value = 0.0
+settings/0/gravity/damping_curve = null
+settings/0/gravity/direction = Vector3(0, -1, 0)
+settings/0/enable_all_child_collisions = true
+settings/0/exclude_collision_count = 0
+
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Armature_002/Skeleton3D" index="2"]
+transform = Transform3D(1, -5.68434e-14, 2.38418e-07, -2.35528e-07, -0.155238, 0.987877, 3.70113e-08, -0.987877, -0.155237, -1.09872e-14, 0.132409, -0.151385)
+bone_name = "Bone.003"
+bone_idx = 3
+
+[node name="earsl" type="Node3D" parent="Armature_002/Skeleton3D/BoneAttachment3D" index="0"]
+
+[node name="ear1l" type="Node3D" parent="Armature_002/Skeleton3D/BoneAttachment3D/earsl" index="0"]
+transform = Transform3D(0.935608, 0.027347, -0.351981, -0.322704, -0.338099, -0.884054, -0.143181, 0.940713, -0.307503, -0.0822937, -0.00986254, 0.0627668)
+
+[node name="kerfear" parent="Armature_002/Skeleton3D/BoneAttachment3D/earsl/ear1l" index="0" instance=ExtResource("2_8x24u")]
+
+[node name="ear2l" type="Node3D" parent="Armature_002/Skeleton3D/BoneAttachment3D/earsl" index="1"]
+transform = Transform3D(0.572067, -0.177412, -0.41733, -0.449957, -0.305586, -0.486884, -0.0563718, 0.638782, -0.348826, -0.0965943, 0.0111662, 0.00855035)
+
+[node name="kerfear" parent="Armature_002/Skeleton3D/BoneAttachment3D/earsl/ear2l" index="0" instance=ExtResource("2_8x24u")]
+
+[node name="ear3l" type="Node3D" parent="Armature_002/Skeleton3D/BoneAttachment3D/earsl" index="2"]
+transform = Transform3D(0.935608, 0.0273471, -0.351981, -0.164308, -0.848707, -0.502691, -0.312476, 0.528155, -0.789564, -0.0822889, -0.0229212, 0.0289499)
+
+[node name="kerfear" parent="Armature_002/Skeleton3D/BoneAttachment3D/earsl/ear3l" index="0" instance=ExtResource("2_8x24u")]
+
+[node name="earsr" type="Node3D" parent="Armature_002/Skeleton3D/BoneAttachment3D" index="1"]
+
+[node name="ear1r" type="Node3D" parent="Armature_002/Skeleton3D/BoneAttachment3D/earsr" index="0"]
+transform = Transform3D(0.935706, -0.0270548, 0.351742, 0.322552, -0.338211, -0.884067, 0.142882, 0.940681, -0.30774, 0.082, -0.00999999, 0.063)
+
+[node name="kerfearmir" parent="Armature_002/Skeleton3D/BoneAttachment3D/earsr/ear1r" index="0" instance=ExtResource("3_wt43b")]
+
+[node name="ear2r" type="Node3D" parent="Armature_002/Skeleton3D/BoneAttachment3D/earsr" index="1"]
+transform = Transform3D(0.572448, 0.177105, 0.416938, 0.449488, -0.3055, -0.487371, 0.0562451, 0.638909, -0.348615, 0.097, 0.011, 0.009)
+
+[node name="kerfearmir" parent="Armature_002/Skeleton3D/BoneAttachment3D/earsr/ear2r" index="0" instance=ExtResource("3_wt43b")]
+
+[node name="ear3r" type="Node3D" parent="Armature_002/Skeleton3D/BoneAttachment3D/earsr" index="2"]
+transform = Transform3D(0.935723, -0.0270199, 0.3517, 0.164397, -0.848745, -0.502597, 0.312084, 0.52811, -0.789749, 0.082, -0.023, 0.029)
+
+[node name="kerfearmir" parent="Armature_002/Skeleton3D/BoneAttachment3D/earsr/ear3r" index="0" instance=ExtResource("3_wt43b")]
+
+[node name="eyes" type="Decal" parent="Armature_002/Skeleton3D/BoneAttachment3D" index="2"]
+transform = Transform3D(4.37068e-08, -1, 5.96105e-08, -1, -4.37114e-08, 1.49012e-08, 2.98023e-08, -2.98077e-08, -1, -3.82768e-09, 0.0759492, 0.0424191)
+size = Vector3(0.08, 0.22, 0.08)
+texture_albedo = ExtResource("5_kfeb6")
+upper_fade = 1e-05
+lower_fade = 1e-05
+cull_mask = 2
+
+[node name="nostrils" type="Decal" parent="Armature_002/Skeleton3D/BoneAttachment3D" index="3"]
+transform = Transform3D(4.37068e-08, -1, 5.96122e-08, -1, -4.37114e-08, 1.49012e-08, 2.98023e-08, -2.98077e-08, -1, -1.46045e-08, 0.265242, 0.0237516)
+size = Vector3(0.05, 0.15625, 0.05)
+texture_albedo = ExtResource("6_efi7u")
+upper_fade = 1e-05
+lower_fade = 1e-05
+cull_mask = 2
+
+[node name="mouth" type="Decal" parent="Armature_002/Skeleton3D/BoneAttachment3D" index="4"]
+transform = Transform3D(4.64702e-08, -1, 5.50918e-08, -0.994981, -4.37114e-08, 0.100067, -0.100066, -2.98077e-08, -0.994981, -3.16295e-08, 0.188835, -0.0209349)
+size = Vector3(0.266602, 0.210938, 0.125977)
+texture_albedo = ExtResource("7_mme5b")
+upper_fade = 1e-05
+lower_fade = 1e-05
+cull_mask = 2
