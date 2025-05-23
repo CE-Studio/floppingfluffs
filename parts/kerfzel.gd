@@ -20,7 +20,10 @@ enum FurPattern {
 
 @export var mat:Material = StandardMaterial3D.new()
 @export var fur_pattern:FurPattern = FurPattern.NONE
-@export_range(1, 2) var eyes:int = 1
+@export_range(1, 2) var eyes:int = 1:
+	set(val):
+		eyes = val
+		_upd()
 @export_range(1, 3) var ears:int = 2
 @export_range(1, 3) var tails:int = 2
 @export_range(1, 3) var heads:int = 1
@@ -42,6 +45,21 @@ var newpos:
 func _ready() -> void:
 	$AudioStreamPlayer3D.pitch_scale = 1.2
 	_recur_mat(self)
+	$kerfbody.heads = randi_range(1, 3)
+	$kerfbody.arms = randi_range(1, 2)
+	$kerfpelvis.legs = randi_range(1, 2)
+	$kerfpelvis.tails = randi_range(2, 3)
+	nostrils = randi_range(1, 3)
+	ears = randi_range(1, 3)
+	eyes = randi_range(1, 2)
+
+
+func _upd() -> void:
+	scale = Vector3.ONE * size
+	for i in headobjs:
+		i.eyes = eyes
+		i.ears = ears
+		i.nostrils = nostrils
 
 
 func _recur_mat(n:Node) -> void:
@@ -67,6 +85,7 @@ func _integrate_forces(state:PhysicsDirectBodyState3D) -> void:
 
 
 func _on_timer_timeout() -> void:
+	$AudioStreamPlayer3D.play()
 	apply_central_impulse(Vector3.UP * 3)
 	for i in headobjs:
 		i.speak()

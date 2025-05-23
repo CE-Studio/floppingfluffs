@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Flopping Fluffs"
-run/main_scene="uid://bnrn1swk3ml1e"
+run/main_scene="uid://cby4bemgbl7fu"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 

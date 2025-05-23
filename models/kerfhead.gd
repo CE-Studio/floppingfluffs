@@ -2,6 +2,13 @@ class_name KerfHead
 extends Node3D
 
 
+const NT = [
+	preload("res://textures/decals/nostril1.png"),
+	preload("res://textures/decals/nostril2.png"),
+	preload("res://textures/decals/nostril3.png")
+]
+
+
 @export var ears:int = 2:
 	set(value):
 		ears = value
@@ -9,6 +16,10 @@ extends Node3D
 @export var eyes:int = 1:
 	set(value):
 		eyes = value
+		_upd()
+@export var nostrils:int = 1:
+	set(value):
+		nostrils = value
 		_upd()
 
 func _ready() -> void:
@@ -37,6 +48,7 @@ func _upd() -> void:
 			$Armature_002/Skeleton3D/BoneAttachment3D/earsl/ear2l.show()
 			$Armature_002/Skeleton3D/BoneAttachment3D/earsr/ear2r.show()
 	$AnimationPlayer2.play("blink" + str(eyes))
+	$Armature_002/Skeleton3D/BoneAttachment3D/nostrils.texture_albedo = NT[nostrils - 1]
 
 
 func speak():

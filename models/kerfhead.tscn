@@ -12,6 +12,21 @@
 [ext_resource type="Texture2D" uid="uid://ct5e72d0f8w4f" path="res://textures/decals/eyeblink2.png" id="10_dgkxw"]
 [ext_resource type="Texture2D" uid="uid://wmfcxc7pb8xw" path="res://textures/decals/eye2.png" id="11_nsdbv"]
 
+[sub_resource type="Animation" id="Animation_huidm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Armature_002/Skeleton3D/BoneAttachment3D/mouth:texture_albedo")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("7_mme5b")]
+}
+
 [sub_resource type="Animation" id="Animation_oy3uj"]
 resource_name = "speak"
 length = 0.5
@@ -28,25 +43,25 @@ tracks/0/keys = {
 "values": [ExtResource("8_mme5b"), ExtResource("7_mme5b")]
 }
 
-[sub_resource type="Animation" id="Animation_huidm"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dgkxw"]
+_data = {
+&"RESET": SubResource("Animation_huidm"),
+&"speak": SubResource("Animation_oy3uj")
+}
+
+[sub_resource type="Animation" id="Animation_nsdbv"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Armature_002/Skeleton3D/BoneAttachment3D/mouth:texture_albedo")
+tracks/0/path = NodePath("Armature_002/Skeleton3D/BoneAttachment3D/eyes:texture_albedo")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("7_mme5b")]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_dgkxw"]
-_data = {
-&"RESET": SubResource("Animation_huidm"),
-&"speak": SubResource("Animation_oy3uj")
+"values": [ExtResource("5_kfeb6")]
 }
 
 [sub_resource type="Animation" id="Animation_dgkxw"]
@@ -77,21 +92,6 @@ tracks/1/keys = {
 "args": [],
 "method": &"_random_blink"
 }]
-}
-
-[sub_resource type="Animation" id="Animation_nsdbv"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Armature_002/Skeleton3D/BoneAttachment3D/eyes:texture_albedo")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("5_kfeb6")]
 }
 
 [sub_resource type="Animation" id="Animation_7jdp0"]

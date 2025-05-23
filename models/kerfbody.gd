@@ -5,6 +5,10 @@ extends Node3D
 	set(value):
 		heads = value
 		_upd()
+@export var arms := 1:
+	set(value):
+		arms = value
+		_upd()
 
 
 func _ready() -> void:
@@ -34,3 +38,9 @@ func _upd() -> void:
 			$Armature/Skeleton3D/BoneAttachment3D/heads/head3/kerfhead.enable()
 			$Armature/Skeleton3D/BoneAttachment3D/heads/head3/kerfhead2.enable()
 			$Armature/Skeleton3D/BoneAttachment3D/heads/head3/kerfhead3.enable()
+	if arms > 1:
+		$Armature/Skeleton3D/BoneAttachment3D/arms/kerfarml2.show()
+		$Armature/Skeleton3D/BoneAttachment3D/arms/kerfarmr2.show()
+	else:
+		$Armature/Skeleton3D/BoneAttachment3D/arms/kerfarml2.hide()
+		$Armature/Skeleton3D/BoneAttachment3D/arms/kerfarmr2.hide()
