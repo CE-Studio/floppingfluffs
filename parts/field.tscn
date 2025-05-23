@@ -1,21 +1,39 @@
-[gd_scene load_steps=15 format=4 uid="uid://cby4bemgbl7fu"]
+[gd_scene load_steps=19 format=4 uid="uid://cby4bemgbl7fu"]
 
 [ext_resource type="Shader" uid="uid://2byvdmrtgpge" path="res://parts/field.gdshader" id="1_let24"]
 [ext_resource type="ArrayMesh" uid="uid://bpr67efy6kuvg" path="res://grassblade.obj" id="1_mxcdc"]
+[ext_resource type="Shader" uid="uid://xe27wgri8mbt" path="res://parts/sky.gdshader" id="1_pqw6g"]
 [ext_resource type="PackedScene" uid="uid://y7pjq5topdi8" path="res://parts/kerf.tscn" id="3_0cqtn"]
 [ext_resource type="PackedScene" uid="uid://db3jswprqpd1k" path="res://player_camera.tscn" id="4_iyrfa"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_iyrfa"]
-sky_horizon_color = Color(0.747645, 0.86782, 0.931004, 1)
-ground_bottom_color = Color(1.15514e-06, 0.411701, 0.568437, 1)
-ground_horizon_color = Color(0.747645, 0.86782, 0.931004, 1)
+[sub_resource type="Gradient" id="Gradient_pqw6g"]
+offsets = PackedFloat32Array(0.292453, 1)
 
-[sub_resource type="Sky" id="Sky_pqw6g"]
-sky_material = SubResource("ProceduralSkyMaterial_iyrfa")
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_bmttb"]
+noise_type = 3
+frequency = 0.0241
+
+[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_3cspu"]
+width = 256
+height = 256
+depth = 256
+seamless = true
+seamless_blend_skirt = 0.149
+color_ramp = SubResource("Gradient_pqw6g")
+noise = SubResource("FastNoiseLite_bmttb")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bmttb"]
+shader = ExtResource("1_pqw6g")
+shader_parameter/sky_color = Color(0.117547, 0.519571, 0.785248, 1)
+shader_parameter/clouds = SubResource("NoiseTexture3D_3cspu")
+
+[sub_resource type="Sky" id="Sky_3cspu"]
+sky_material = SubResource("ShaderMaterial_bmttb")
 
 [sub_resource type="Environment" id="Environment_bmttb"]
 background_mode = 2
-sky = SubResource("Sky_pqw6g")
+sky = SubResource("Sky_3cspu")
+sky_rotation = Vector3(0.715585, 0, 0)
 tonemap_mode = 2
 ssao_enabled = true
 sdfgi_enabled = true
@@ -24,10 +42,10 @@ glow_enabled = true
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0cqtn"]
 render_priority = 0
 shader = ExtResource("1_let24")
-shader_parameter/wind_strength = 0.4
+shader_parameter/wind_strength = 0.7
 shader_parameter/wind_speed = 1.5
 shader_parameter/wind_direction = Vector3(0, 0, 1)
-shader_parameter/grass_bottom = Color(0.100637, 0.225749, 0.0700061, 1)
+shader_parameter/grass_bottom = Color(0.0309124, 0.362848, 0.387418, 1)
 shader_parameter/grass_top = Color(0.316547, 0.627217, 0.239829, 1)
 
 [sub_resource type="MultiMesh" id="MultiMesh_iyrfa"]
@@ -98,6 +116,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_0cqtn")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Plane"]
 transform = Transform3D(1, 1.88578e-11, -7.27596e-12, -1.52767e-12, 1, -2.91038e-11, 0, 2.91038e-11, 1, 0, 0, 0)
+collision_layer = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Plane/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_let24")
