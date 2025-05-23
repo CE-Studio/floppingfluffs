@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://y7pjq5topdi8"]
+[gd_scene load_steps=9 format=3 uid="uid://y7pjq5topdi8"]
 
 [ext_resource type="Script" uid="uid://dr5qpgp623vtn" path="res://parts/kerfzel.gd" id="1_j8y7j"]
 [ext_resource type="PackedScene" uid="uid://ta0q78l0u8yn" path="res://models/kerfbody.tscn" id="2_yvu7o"]
 [ext_resource type="PackedScene" uid="uid://bgsmpeum0ua8l" path="res://models/kerfpelvis.tscn" id="3_yvu7o"]
+[ext_resource type="Script" uid="uid://dlh823jfvksyx" path="res://parts/ray_cast_3d.gd" id="4_gf8oa"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yvu7o"]
 radius = 0.155644
@@ -25,8 +26,14 @@ script = ExtResource("1_j8y7j")
 [node name="kerfbody" parent="." instance=ExtResource("2_yvu7o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.101046)
 
+[node name="BoneAttachment3D" parent="kerfbody/Armature/Skeleton3D" index="2"]
+transform = Transform3D(1, 6.71603e-14, 1.1044e-13, -1.34136e-13, 0.347315, 0.937749, 4.48609e-14, -0.937749, 0.347315, 5.7019e-15, 0.00466477, -0.183997)
+
 [node name="kerfpelvis" parent="." instance=ExtResource("3_yvu7o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0131068, 0.0538832)
+
+[node name="BoneAttachment3D" parent="kerfpelvis/Armature_003/Skeleton3D" index="2"]
+transform = Transform3D(1, -4.12393e-18, 4.44051e-16, 4.44051e-16, 0.0185725, -0.999827, -4.12393e-18, 0.999827, 0.0185725, 0, 0.00162143, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.00291263, -0.0972004)
@@ -216,6 +223,12 @@ physics_material_override = SubResource("PhysicsMaterial_yvu7o")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HingeJoint3D6/legr"]
 transform = Transform3D(0.965926, 0.258267, -0.016896, 0.255589, -0.962117, -0.0948975, -0.0407648, 0.0873455, -0.995344, 0, -0.16428, -0.0238901)
 shape = SubResource("CapsuleShape3D_f4x5c")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+top_level = true
+target_position = Vector3(0, -0.5, 0)
+collision_mask = 4
+script = ExtResource("4_gf8oa")
 
 [editable path="kerfbody"]
 [editable path="kerfpelvis"]

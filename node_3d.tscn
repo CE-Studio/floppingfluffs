@@ -37,6 +37,7 @@ shadow_enabled = true
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 use_collision = true
+collision_layer = 5
 size = Vector3(10, 1, 10)
 
 [node name="PlayerCamera" parent="." instance=ExtResource("1_a202f")]
