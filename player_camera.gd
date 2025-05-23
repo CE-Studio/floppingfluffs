@@ -14,6 +14,12 @@ var grabbed_object: RigidBody3D = null
 var spring_strength: float = 100.0
 var damping: float = 10.0
 
+
+
+
+
+
+
 func _ready() -> void:
 	DebugMenu.Register("Speed", func(): return pivot_speed)
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
@@ -34,20 +40,35 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("grab"):
 		try_grab()
+		print("im eppy")
 	elif Input.is_action_just_released("grab"):
 		grabbed_object = null
 
 	if grabbed_object:
-		var target_pos = get_ray_target_position()
+		var ray = get_ray()
+		var origin = ray.origin
+		var direction = ray.direction
+		
+		
+		var target = origin + direction * grab_distance_dynamic
+
+		var space_state = get_world_3d().direct_space_state
+		var query = PhysicsRayQueryParameters3D.create(origin, target)
+		query.collision_mask = 4
+
+		var target_pos: Vector3
+		var result = space_state.intersect_ray(query)
+		if result and result.has("position"):
+			target_pos = result["position"]
+			print("hi")
+		else:
+			target_pos = target  # fallback
+
 		var to_target = target_pos - grabbed_object.global_position
-
-		var distance = to_target.length()
-		var direction = to_target.normalized()
-
-		var velocity = grabbed_object.linear_velocity
-		var force = direction * (spring_strength * distance) - velocity * damping
+		var force = to_target.normalized() * (spring_strength * to_target.length()) - grabbed_object.linear_velocity * damping
 
 		grabbed_object.apply_central_force(force)
+
 
 
 func _input(event: InputEvent) -> void:
@@ -89,6 +110,6 @@ func get_ray() -> Dictionary[StringName, Vector3]:
 	} as Dictionary[StringName, Vector3]
 
 
-func get_ray_target_position() -> Vector3:
-	var ray = get_ray()
-	return ray.origin + ray.direction * grab_distance_dynamic
+#func get_ray_target_position() -> Vector3:
+	#var ray = get_ray()
+	#return ray.origin + ray.direction * grab_distance_dynamic
