@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dgacr0smtpm3t"]
+[gd_scene load_steps=19 format=3 uid="uid://dgacr0smtpm3t"]
 
 [ext_resource type="PackedScene" uid="uid://cj1svhnhkp7e1" path="res://models/kerfhead.glb" id="1_uxhl0"]
 [ext_resource type="PackedScene" uid="uid://djv0wrsxa2d4g" path="res://models/kerfear.tscn" id="2_8x24u"]
@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://dhp8cyu7q18qk" path="res://textures/decals/mouth1.png" id="7_mme5b"]
 [ext_resource type="Texture2D" uid="uid://b6jb44knlrmio" path="res://textures/decals/mouth2.png" id="8_mme5b"]
 [ext_resource type="Texture2D" uid="uid://ceao1nwmje67a" path="res://textures/decals/eyeblink1.png" id="9_oy3uj"]
+[ext_resource type="Texture2D" uid="uid://ct5e72d0f8w4f" path="res://textures/decals/eyeblink2.png" id="10_dgkxw"]
+[ext_resource type="Texture2D" uid="uid://wmfcxc7pb8xw" path="res://textures/decals/eye2.png" id="11_nsdbv"]
 
 [sub_resource type="Animation" id="Animation_oy3uj"]
 resource_name = "speak"
@@ -20,7 +22,7 @@ tracks/0/path = NodePath("Armature_002/Skeleton3D/BoneAttachment3D/mouth:texture
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.28),
+"times": PackedFloat32Array(0, 0.466667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [ExtResource("8_mme5b"), ExtResource("7_mme5b")]
@@ -92,10 +94,41 @@ tracks/0/keys = {
 "values": [ExtResource("5_kfeb6")]
 }
 
+[sub_resource type="Animation" id="Animation_7jdp0"]
+resource_name = "blink2"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Armature_002/Skeleton3D/BoneAttachment3D/eyes:texture_albedo")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.26),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("10_dgkxw"), ExtResource("11_nsdbv")]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_random_blink"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7jdp0"]
 _data = {
 &"RESET": SubResource("Animation_nsdbv"),
-&"blink1": SubResource("Animation_dgkxw")
+&"blink1": SubResource("Animation_dgkxw"),
+&"blink2": SubResource("Animation_7jdp0")
 }
 
 [node name="kerfhead" instance=ExtResource("1_uxhl0")]
@@ -201,4 +234,3 @@ libraries = {
 libraries = {
 &"": SubResource("AnimationLibrary_7jdp0")
 }
-autoplay = "blink1"

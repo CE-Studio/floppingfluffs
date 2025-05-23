@@ -8,6 +8,16 @@ enum FurPattern {
 }
 
 
+@onready var headobjs:Array[KerfHead] = [
+	$kerfbody/Armature/Skeleton3D/BoneAttachment3D/heads/head1/kerfhead,
+	$kerfbody/Armature/Skeleton3D/BoneAttachment3D/heads/head2/kerfhead,
+	$kerfbody/Armature/Skeleton3D/BoneAttachment3D/heads/head2/kerfhead2,
+	$kerfbody/Armature/Skeleton3D/BoneAttachment3D/heads/head3/kerfhead,
+	$kerfbody/Armature/Skeleton3D/BoneAttachment3D/heads/head3/kerfhead2,
+	$kerfbody/Armature/Skeleton3D/BoneAttachment3D/heads/head3/kerfhead3
+]
+
+
 @export var mat:Material = StandardMaterial3D.new()
 @export var fur_pattern:FurPattern = FurPattern.NONE
 @export_range(1, 2) var eyes:int = 1
@@ -58,6 +68,8 @@ func _integrate_forces(state:PhysicsDirectBodyState3D) -> void:
 
 func _on_timer_timeout() -> void:
 	apply_central_impulse(Vector3.UP * 3)
+	for i in headobjs:
+		i.speak()
 	if randf_range(0, 10) > 9:
 		$Timer.start(randf_range(20, 120))
 	else:

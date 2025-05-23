@@ -6,7 +6,10 @@ extends Node3D
 	set(value):
 		ears = value
 		_upd()
-
+@export var eyes:int = 1:
+	set(value):
+		eyes = value
+		_upd()
 
 func _ready() -> void:
 	_upd()
@@ -33,6 +36,11 @@ func _upd() -> void:
 			$Armature_002/Skeleton3D/BoneAttachment3D/earsr/ear3r.show()
 			$Armature_002/Skeleton3D/BoneAttachment3D/earsl/ear2l.show()
 			$Armature_002/Skeleton3D/BoneAttachment3D/earsr/ear2r.show()
+	$AnimationPlayer2.play("blink" + str(eyes))
+
+
+func speak():
+	$AnimationPlayer.play("speak")
 
 
 func disable() -> void:
