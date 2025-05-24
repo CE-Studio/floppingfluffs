@@ -7,10 +7,12 @@
 [sub_resource type="BoxMesh" id="BoxMesh_mvxmr"]
 
 [node name="RigidBody3D" type="RigidBody3D"]
+collision_layer = 3
 script = ExtResource("1_mvxmr")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_n1c64")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+layers = 5
 mesh = SubResource("BoxMesh_mvxmr")

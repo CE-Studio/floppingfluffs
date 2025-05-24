@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://y7pjq5topdi8"]
+[gd_scene load_steps=14 format=3 uid="uid://y7pjq5topdi8"]
 
 [ext_resource type="Script" uid="uid://dr5qpgp623vtn" path="res://parts/kerfzel.gd" id="1_j8y7j"]
 [ext_resource type="PackedScene" uid="uid://ta0q78l0u8yn" path="res://models/kerfbody.tscn" id="2_yvu7o"]
@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://ctffv6j0v5e07" path="res://sound/kerfspeak-04.wav" id="8_aop6a"]
 [ext_resource type="AudioStream" uid="uid://b7wbbvh87a7k1" path="res://sound/kerfspeak-05.wav" id="9_xg16f"]
 [ext_resource type="AudioStream" uid="uid://x8250bouoymc" path="res://sound/kerfspeak-00.wav" id="10_ioipr"]
+[ext_resource type="Texture2D" uid="uid://b2pyt8m5yxxva" path="res://textures/decals/polar.png" id="11_itrqo"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gf8oa"]
 radius = 0.213022
@@ -27,8 +28,11 @@ stream_5/stream = ExtResource("10_ioipr")
 
 [node name="Kerf" type="RigidBody3D"]
 collision_layer = 3
+contact_monitor = true
+max_contacts_reported = 1
 angular_damp = 0.3
 script = ExtResource("1_j8y7j")
+rando = true
 
 [node name="kerfbody" parent="." instance=ExtResource("2_yvu7o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.101046)
@@ -61,6 +65,16 @@ autostart = true
 one_shot = true
 autostart = true
 
+[node name="Decal" type="Decal" parent="."]
+transform = Transform3D(1.91069e-15, -1, 4.37114e-08, -4.37114e-08, -4.37114e-08, -1, 1, 0, -4.37114e-08, 0, 0.0431286, 0)
+layers = 3
+size = Vector3(2, 1, 0.90625)
+texture_albedo = ExtResource("11_itrqo")
+upper_fade = 8.71003e-05
+lower_fade = 1e-05
+cull_mask = 2
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]
 

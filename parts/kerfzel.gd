@@ -2,10 +2,32 @@ class_name Kerfzel
 extends RigidBody3D
 
 
-enum FurPattern {
-	NONE,
-	SWIRLY,
+const FurPattern = [
+	preload("res://textures/decals/none.png"),
+	preload("res://textures/decals/swirly.png"),
+	preload("res://textures/decals/fuffy.png"),
+	preload("res://textures/decals/fyrfy.png"),
+	preload("res://textures/decals/polar.png"),
+	preload("res://textures/decals/stripes.png"),
+]
+
+
+const SAVE_BASE = {
+	"colo": [0.8, 0.8, 0.8],
+	"posi": [0, 10, 0],
+	"patt": 0,
+	"eyes": 1,
+	"ears": 2,
+	"tail": 2,
+	"head": 1,
+	"arms": 1,
+	"legs": 1,
+	"nost": 1,
+	"size": 1.0,
+	"happ": 0.0,
+	"name": "Name me!",
 }
+
 
 var direction:float
 enum State {
@@ -29,12 +51,9 @@ var targobj:Node3D
 ]
 
 
-@export var mat:Material = StandardMaterial3D.new()
-@export var fur_pattern:FurPattern = FurPattern.NONE
-@export_range(1, 2) var eyes:int = 1:
-	set(val):
-		eyes = val
-		_upd()
+@export var mat:StandardMaterial3D = StandardMaterial3D.new()
+@export var fur_pattern:int = 0
+@export_range(1, 2) var eyes:int = 1
 @export_range(1, 3) var ears:int = 2
 @export_range(1, 3) var tails:int = 2
 @export_range(1, 3) var heads:int = 1
@@ -43,6 +62,8 @@ var targobj:Node3D
 @export_range(1, 3) var nostrils:int = 1
 @export_range(0.8, 2.0) var size:float = 1
 @export var happi := 0.0
+@export var kname:String = "Name meeeee!"
+@export var rando := false
 
 
 var newpos:
@@ -53,20 +74,73 @@ var newpos:
 			newpos = val
 
 
+func get_save() -> Dictionary:
+	var col = mat.albedo_color
+	return {
+		"colo": [col.r, col.g, col.b],
+		"posi": [global_position.x, global_position.y, global_position.z],
+		"patt": fur_pattern,
+		"eyes": eyes,
+		"ears": ears,
+		"tail": tails,
+		"head": heads,
+		"arms": arms,
+		"legs": legs,
+		"nost": nostrils,
+		"size": size,
+		"happ": happi,
+		"name": kname,
+	}
+
+
+func set_save(dat:Dictionary) -> void:
+	dat = dat.duplicate(true)
+	dat.merge(SAVE_BASE)
+	var col = Color()
+	var pos := Vector3()
+	col.r = dat.colo[0]; col.g = dat.colo[1]; col.b = dat.colo[2]
+	pos.x = dat.posi[0]; pos.y = dat.posi[1]; pos.z = dat.posi[2]
+	newpos = pos
+	fur_pattern = dat.patt
+	ears = dat.ears
+	tails = dat.tail
+	heads = dat.head
+	arms = dat.arms
+	legs = dat.legs
+	nostrils = dat.nost
+	size = dat.size
+	happi = dat.happ
+	kname = dat.name
+	eyes = dat.eyes
+	upd()
+
+
 func _ready() -> void:
 	$AudioStreamPlayer3D.pitch_scale = 1.2
+	mat = StandardMaterial3D.new()
+	mat.roughness = 1
 	_recur_mat(self)
-	$kerfbody.heads = randi_range(1, 3)
-	$kerfbody.arms = randi_range(1, 2)
-	$kerfpelvis.legs = randi_range(1, 2)
-	$kerfpelvis.tails = randi_range(2, 3)
-	nostrils = randi_range(1, 3)
-	ears = randi_range(1, 3)
-	eyes = randi_range(1, 2)
+	if rando:
+		size = randf_range(0.8, 2.0)
+		mat.albedo_color = Color(randf_range(0, 1), randf_range(0, 1), randf_range(0, 1))
+		heads = randi_range(1, 3)
+		arms = randi_range(1, 2)
+		legs = randi_range(1, 2)
+		tails = randi_range(2, 3)
+		nostrils = randi_range(1, 3)
+		fur_pattern = randi_range(0, FurPattern.size() - 1)
+		ears = randi_range(1, 3)
+		eyes = randi_range(1, 2)
+	upd()
 
 
-func _upd() -> void:
+func upd() -> void:
+	$Decal.texture_albedo = FurPattern[fur_pattern]
 	scale = Vector3.ONE * size
+	$kerfbody.heads = heads
+	$kerfbody.arms = arms
+	$kerfpelvis.legs = legs
+	$kerfpelvis.tails = tails
 	for i in headobjs:
 		i.eyes = eyes
 		i.ears = ears
@@ -150,3 +224,15 @@ func _on_timer_2_timeout() -> void:
 		if state == State.SHMOOVIN:
 			$Timer2.start(randf_range(0.5, 10))
 		direction = randf_range(-PI, PI)
+
+
+func _on_body_entered(body: Node) -> void:
+	if body.is_in_group(&"toys"):
+		happi += 0.5
+		if body is RigidBody3D:
+			var push := transform.basis * Vector3.FORWARD
+			push.y += 1
+			body.apply_central_impulse(push * 3.0)
+	if body is Kerfzel:
+		_on_timer_timeout()
+		happi += 1

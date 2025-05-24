@@ -42,9 +42,6 @@ size = Vector3(40, 1, 40)
 [node name="PlayerCamera" parent="." instance=ExtResource("1_a202f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.867835, 0)
 
-[node name="RigidBody3D" parent="." instance=ExtResource("2_noarx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2391, 0)
-
 [node name="CSGPolygon3D" type="CSGPolygon3D" parent="."]
 polygon = PackedVector2Array(0.18464, -0.316371, -0.957125, 0.196236, -0.537479, 1.10796, 0.309317, 1.09424, 0.723858, 0.263503)
 mode = 2
@@ -66,62 +63,69 @@ curve = SubResource("Curve3D_noarx")
 [node name="Pipe" parent="." instance=ExtResource("3_a0tk4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.58978, 1.96083, -3.79536)
 
-[node name="Kerf" parent="." instance=ExtResource("4_r3fl7")]
+[node name="kerfs" type="Node3D" parent="."]
+
+[node name="Kerf" parent="kerfs" instance=ExtResource("4_r3fl7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.41023, 1.34883, -0.338776)
 
-[node name="Kerf2" parent="." instance=ExtResource("4_r3fl7")]
+[node name="Kerf2" parent="kerfs" instance=ExtResource("4_r3fl7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.41023, 1.34883, -0.338776)
 
-[node name="Kerf3" parent="." instance=ExtResource("4_r3fl7")]
+[node name="Kerf3" parent="kerfs" instance=ExtResource("4_r3fl7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.41023, 1.34883, -0.338776)
 
-[node name="Kerf4" parent="." instance=ExtResource("4_r3fl7")]
+[node name="Kerf4" parent="kerfs" instance=ExtResource("4_r3fl7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.41023, 1.34883, -0.338776)
 
-[node name="Kerf5" parent="." instance=ExtResource("4_r3fl7")]
+[node name="Kerf5" parent="kerfs" instance=ExtResource("4_r3fl7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.41023, 1.34883, -0.338776)
 
-[node name="Kerf6" parent="." instance=ExtResource("4_r3fl7")]
+[node name="Kerf6" parent="kerfs" instance=ExtResource("4_r3fl7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.41023, 1.34883, -0.338776)
 
-[node name="Kerf7" parent="." instance=ExtResource("4_r3fl7")]
+[node name="Kerf7" parent="kerfs" instance=ExtResource("4_r3fl7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.41023, 1.34883, -0.338776)
 
-[node name="Kerf8" parent="." instance=ExtResource("4_r3fl7")]
+[node name="Kerf8" parent="kerfs" instance=ExtResource("4_r3fl7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.41023, 1.34883, -0.338776)
 
-[node name="Kerf9" parent="." instance=ExtResource("4_r3fl7")]
+[node name="Kerf9" parent="kerfs" instance=ExtResource("4_r3fl7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.41023, 1.34883, -0.338776)
 
-[node name="Kerf10" parent="." instance=ExtResource("4_r3fl7")]
+[node name="Kerf10" parent="kerfs" instance=ExtResource("4_r3fl7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.41023, 1.34883, -0.338776)
 
-[node name="Kerf11" parent="." instance=ExtResource("4_r3fl7")]
+[node name="Kerf11" parent="kerfs" instance=ExtResource("4_r3fl7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.41023, 1.34883, -0.338776)
 
-[node name="Kerf12" parent="." instance=ExtResource("4_r3fl7")]
+[node name="Kerf12" parent="kerfs" instance=ExtResource("4_r3fl7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.41023, 1.34883, -0.338776)
 
-[node name="Kerf13" parent="." instance=ExtResource("4_r3fl7")]
+[node name="Kerf13" parent="kerfs" instance=ExtResource("4_r3fl7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.41023, 1.34883, -0.338776)
 
-[node name="Kerf14" parent="." instance=ExtResource("4_r3fl7")]
+[node name="Kerf14" parent="kerfs" instance=ExtResource("4_r3fl7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.41023, 1.34883, -0.338776)
 
-[node name="Kerf15" parent="." instance=ExtResource("4_r3fl7")]
+[node name="Kerf15" parent="kerfs" instance=ExtResource("4_r3fl7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.41023, 1.34883, -0.338776)
 
-[node name="Kerf16" parent="." instance=ExtResource("4_r3fl7")]
+[node name="Kerf16" parent="kerfs" instance=ExtResource("4_r3fl7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.41023, 1.34883, -0.338776)
 
-[node name="Kerf17" parent="." instance=ExtResource("4_r3fl7")]
+[node name="Kerf17" parent="kerfs" instance=ExtResource("4_r3fl7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.41023, 1.34883, -0.338776)
 
-[node name="Kerf18" parent="." instance=ExtResource("4_r3fl7")]
+[node name="Kerf18" parent="kerfs" instance=ExtResource("4_r3fl7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.41023, 1.34883, -0.338776)
 
-[node name="Kerf19" parent="." instance=ExtResource("4_r3fl7")]
+[node name="Kerf19" parent="kerfs" instance=ExtResource("4_r3fl7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.41023, 1.34883, -0.338776)
 
-[node name="Kerf20" parent="." instance=ExtResource("4_r3fl7")]
+[node name="Kerf20" parent="kerfs" instance=ExtResource("4_r3fl7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.41023, 1.34883, -0.338776)
+
+[node name="toys" type="Node3D" parent="."]
+
+[node name="RigidBody3D" parent="toys" groups=["toys"] instance=ExtResource("2_noarx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2391, 0)

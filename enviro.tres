@@ -1,0 +1,35 @@
+[gd_resource type="Environment" load_steps=7 format=3 uid="uid://cu513xdqydqtb"]
+
+[ext_resource type="Shader" uid="uid://xe27wgri8mbt" path="res://parts/sky.gdshader" id="1_vuwpi"]
+
+[sub_resource type="Gradient" id="Gradient_pqw6g"]
+offsets = PackedFloat32Array(0.292453, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_bmttb"]
+noise_type = 3
+frequency = 0.0241
+
+[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_3cspu"]
+width = 256
+height = 256
+depth = 256
+seamless = true
+seamless_blend_skirt = 0.149
+color_ramp = SubResource("Gradient_pqw6g")
+noise = SubResource("FastNoiseLite_bmttb")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bmttb"]
+shader = ExtResource("1_vuwpi")
+shader_parameter/sky_color = Color(0.117547, 0.519571, 0.785248, 1)
+shader_parameter/clouds = SubResource("NoiseTexture3D_3cspu")
+
+[sub_resource type="Sky" id="Sky_3cspu"]
+sky_material = SubResource("ShaderMaterial_bmttb")
+
+[resource]
+background_mode = 2
+sky = SubResource("Sky_3cspu")
+sky_rotation = Vector3(0.715585, 0, 0)
+tonemap_mode = 3
+ssao_enabled = true
+sdfgi_enabled = true

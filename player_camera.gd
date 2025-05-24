@@ -99,6 +99,7 @@ func try_grab() -> void:
 	if result and result.has("collider") and result["collider"] is RigidBody3D:
 		grabbed_object = result["collider"]
 		grab_distance_dynamic = (result["position"] - origin).length()
+		InfoHud.tracking = grabbed_object
 	if grabbed_object is Kerfzel:
 		grabbed_object._on_timer_timeout()
 
