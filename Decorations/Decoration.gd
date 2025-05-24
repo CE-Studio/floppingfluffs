@@ -40,7 +40,7 @@ func place():
 	ground.force_update_transform()
 	await get_tree().physics_frame
 	if ground.is_colliding():
-		static_body.global_position = ground.get_collision_point()
+		static_body.global_position = ground.get_collision_point() + Vector3.UP * 2
 
 	set_rigid_body_enabled(rigid_body, false, 1)
 	set_static_body_enabled(static_body, true)
@@ -55,10 +55,10 @@ func pickup():
 	rigid_body.global_transform = static_body.global_transform
 
 	set_rigid_body_enabled(rigid_body, true, 1)
-	
 	set_static_body_enabled(static_body, false)
 	for body in rigid_bodies:
-			set_rigid_body_enabled(body, true, 3)
+		set_rigid_body_enabled(body, false, 3)
+	rigid_body.apply_central_force(Vector3.UP * 20)
 func set_rigid_body_enabled(body: RigidBody3D, enabled: bool, layer: int) -> void:
 	body.sleeping = not enabled
 	body.freeze = not enabled
