@@ -1,6 +1,8 @@
-[gd_scene load_steps=15 format=4 uid="uid://jp8d2t7m4275"]
+[gd_scene load_steps=19 format=4 uid="uid://jp8d2t7m4275"]
 
 [ext_resource type="Script" uid="uid://dxivbbl28hphx" path="res://Decorations/Decoration.gd" id="1_sdcyx"]
+[ext_resource type="Shader" uid="uid://lpxlt58pyjky" path="res://addons/flexible_toon_shader/flexible_toon.gdshader" id="2_j5fnu"]
+[ext_resource type="Shader" uid="uid://bey67nmmawety" path="res://Decorations/DecorationBase.gdshader" id="3_uk6sm"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h3m3w"]
 size = Vector3(0.231445, 1, 5.99951)
@@ -43,6 +45,25 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_iri08")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_up7lg"]
+render_priority = 0
+shader = ExtResource("2_j5fnu")
+shader_parameter/albedo = Color(0.665501, 0.432854, 0.0970356, 1)
+shader_parameter/clamp_diffuse_to_max = false
+shader_parameter/cuts = 2
+shader_parameter/wrap = 0.0
+shader_parameter/steepness = 1.0
+shader_parameter/use_attenuation = true
+shader_parameter/use_specular = true
+shader_parameter/specular_strength = 1.0
+shader_parameter/specular_shininess = 16.0
+shader_parameter/use_rim = true
+shader_parameter/rim_width = 8.0
+shader_parameter/rim_color = Color(1, 1, 1, 1)
+shader_parameter/use_ramp = false
+shader_parameter/use_borders = false
+shader_parameter/border_width = 0.01
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ti2ho"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_iaroy"]
@@ -74,6 +95,10 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_iaroy")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u2gah"]
+render_priority = 0
+shader = ExtResource("3_uk6sm")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_la2gq"]
 
@@ -141,11 +166,13 @@ shape = SubResource("CylinderShape3D_phvoy")
 layers = 5
 mesh = SubResource("ArrayMesh_nfkek")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_up7lg")
 
 [node name="Cylinder" type="MeshInstance3D" parent="RigidBody3D"]
 layers = 5
 mesh = SubResource("ArrayMesh_g44h1")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_u2gah")
 
 [node name="StaticBody" type="StaticBody3D" parent="."]
 visible = false
