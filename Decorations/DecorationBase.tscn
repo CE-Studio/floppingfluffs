@@ -48,7 +48,7 @@ shadow_mesh = SubResource("ArrayMesh_iri08")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_up7lg"]
 render_priority = 0
 shader = ExtResource("2_j5fnu")
-shader_parameter/albedo = Color(0.665501, 0.432854, 0.0970356, 1)
+shader_parameter/albedo = Color(0, 0, 0, 1)
 shader_parameter/clamp_diffuse_to_max = false
 shader_parameter/cuts = 2
 shader_parameter/wrap = 0.0
@@ -182,6 +182,7 @@ collision_layer = 2
 layers = 5
 mesh = SubResource("ArrayMesh_aoj6x")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_up7lg")
 
 [node name="MerryGoRound2" type="Node3D" parent="StaticBody"]
 
@@ -212,15 +213,18 @@ shape = SubResource("BoxShape3D_j5fnu")
 layers = 5
 mesh = SubResource("ArrayMesh_g44h1")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_u2gah")
 
 [node name="Cube" type="MeshInstance3D" parent="Rigid/MerryGoRound"]
 layers = 5
 mesh = SubResource("ArrayMesh_nfkek")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_up7lg")
 
 [node name="Sphere" type="MeshInstance3D" parent="Rigid/MerryGoRound"]
 layers = 5
 mesh = SubResource("ArrayMesh_aoj6x")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_up7lg")
 
 [connection signal="visibility_changed" from="StaticBody" to="." method="_on_static_body_visibility_changed"]
