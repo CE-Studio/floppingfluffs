@@ -58,17 +58,28 @@ func pickup():
 	set_static_body_enabled(static_body, false)
 	for body in rigid_bodies:
 		set_rigid_body_enabled(body, false, 3)
+		
 	rigid_body.apply_central_force(Vector3.UP * 20)
 func set_rigid_body_enabled(body: RigidBody3D, enabled: bool, layer: int) -> void:
 	body.sleeping = not enabled
 	body.freeze = not enabled
-	body.visible = enabled
 	body.set_physics_process(enabled)
-	body.collision_layer = layer if enabled else 0
-	body.collision_mask = int(enabled)
+
+	if enabled:
+		body.collision_layer = layer
+		body.collision_mask = 1  # adjust this as needed for what it should collide with
+	else:
+		body.collision_layer = 0
+		body.collision_mask = 0
+
 
 func set_static_body_enabled(body: StaticBody3D, enabled: bool) -> void:
 	body.visible = enabled
 	body.set_physics_process(enabled)
-	body.collision_layer = 2 if enabled else 0
-	body.collision_mask = int(enabled)
+	if enabled:
+		body.collision_layer = 2  # or whatever layer static bodies go on
+		body.collision_mask = 1  # or mask of things it should interact with
+	else:
+		body.collision_layer = 0
+		body.collision_mask = 0
+	

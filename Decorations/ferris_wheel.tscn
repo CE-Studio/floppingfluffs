@@ -1,7 +1,8 @@
-[gd_scene load_steps=17 format=4 uid="uid://lgj583jockdy"]
+[gd_scene load_steps=18 format=4 uid="uid://lgj583jockdy"]
 
 [ext_resource type="Script" uid="uid://dxivbbl28hphx" path="res://Decorations/Decoration.gd" id="1_tq7m7"]
 [ext_resource type="PackedScene" uid="uid://drlgcxxlrclmb" path="res://Decorations/FerrisWheel.blend" id="2_hlf80"]
+[ext_resource type="Script" uid="uid://xy1brvqu4ahc" path="res://Decorations/rigid.gd" id="2_qk8s1"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_msah4"]
 
@@ -122,6 +123,7 @@ size = Vector3(12, 11.474, 5.37402)
 [node name="FerrisWheel" type="Node3D" node_paths=PackedStringArray("rigid_bodies")]
 script = ExtResource("1_tq7m7")
 rigid_bodies = [NodePath("RigidBody3D"), NodePath("RigidBody3D/Basket"), NodePath("RigidBody3D/Basket2"), NodePath("RigidBody3D/Basket3"), NodePath("RigidBody3D/Basket4")]
+rot_dir = Vector3(0, 0, 1)
 
 [node name="FerrisWheel3" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.98561, 0)
@@ -286,8 +288,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.016839, 2.49254, 1.31063)
 shape = SubResource("BoxShape3D_kon4k")
 
 [node name="Rigid" type="RigidBody3D" parent="."]
-visible = false
 collision_layer = 2
+script = ExtResource("2_qk8s1")
 
 [node name="Ground" type="RayCast3D" parent="Rigid"]
 enabled = false
