@@ -23,6 +23,10 @@ DebugMenu="*res://debug_menu.tscn"
 
 movie_writer/movie_file="/home/clarence112/Documents/gdrenders/floppy/fluffs.avi"
 
+[global_group]
+
+toys=""
+
 [input]
 
 forward={

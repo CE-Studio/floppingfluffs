@@ -7,6 +7,17 @@ enum FurPattern {
 	SWIRLY,
 }
 
+var direction:float
+enum State {
+	WALKIN,
+	WAITIN,
+	SHMOOVIN,
+	WALKIN2ZER0,
+	WALKIN2OTHER,
+}
+var state:State = State.WAITIN
+var targobj:Node3D
+
 
 @onready var headobjs:Array[KerfHead] = [
 	$kerfbody/Armature/Skeleton3D/BoneAttachment3D/heads/head1/kerfhead,
@@ -72,6 +83,37 @@ func _recur_mat(n:Node) -> void:
 func _physics_process(delta: float) -> void:
 	if position.y < -10:
 		newpos = Vector3(0, 10, 0)
+	match state:
+		State.WAITIN:
+			pass
+		State.WALKIN:
+			if linear_velocity.length() < 1.0:
+				apply_central_force(transform.basis * Vector3.FORWARD)
+			var diff = wrapf(direction - rotation.y, -PI, PI)
+			var dvel = diff * 2.0
+			var ty = (dvel - angular_velocity.y) / 10.0
+			apply_torque(Vector3(0, ty, 0))
+		State.SHMOOVIN:
+			apply_torque(Vector3(0, direction / 10.0, 0))
+		State.WALKIN2ZER0:
+			var posv2 = Vector2(global_position.x, -global_position.z)
+			direction = wrapf(Vector2.ZERO.angle_to_point(posv2) + deg_to_rad(90), -PI, PI)
+			if linear_velocity.length() < 1.0:
+				apply_central_force(transform.basis * Vector3.FORWARD)
+			var diff = wrapf(direction - rotation.y, -PI, PI)
+			var dvel = diff * 2.0
+			var ty = (dvel - angular_velocity.y) / 10.0
+			apply_torque(Vector3(0, ty, 0))
+		State.WALKIN2OTHER:
+			var posv2 = Vector2(global_position.x, -global_position.z)
+			var targv2 = Vector2(targobj.global_position.x, -targobj.global_position.z)
+			direction = wrapf(targv2.angle_to_point(posv2) + deg_to_rad(90), -PI, PI)
+			if linear_velocity.length() < 1.0:
+				apply_central_force(transform.basis * Vector3.FORWARD)
+			var diff = wrapf(direction - rotation.y, -PI, PI)
+			var dvel = diff * 2.0
+			var ty = (dvel - angular_velocity.y) / 10.0
+			apply_torque(Vector3(0, ty, 0))
 
 
 func _integrate_forces(state:PhysicsDirectBodyState3D) -> void:
@@ -93,3 +135,18 @@ func _on_timer_timeout() -> void:
 		$Timer.start(randf_range(20, 120))
 	else:
 		$Timer.start(randf_range(0.5, 2))
+
+
+func _on_timer_2_timeout() -> void:
+	$Timer2.start(randf_range(0.5, 120))
+	if PlayerCam.instance.grabbed_object == self:
+		state = State.WAITIN
+	else:
+		state = randi_range(0, State.size() - 1)
+		#state = State.WALKIN2OTHER
+		var ch = $"..".get_children()
+		ch.append_array($"../../toys".get_children())
+		targobj = ch.pick_random()
+		if state == State.SHMOOVIN:
+			$Timer2.start(randf_range(0.5, 10))
+		direction = randf_range(-PI, PI)

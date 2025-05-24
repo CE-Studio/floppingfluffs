@@ -15,12 +15,13 @@ var spring_strength: float = 100.0
 var damping: float = 10.0
 
 
-
+static var instance:PlayerCam
 
 
 
 
 func _ready() -> void:
+	instance = self
 	DebugMenu.Register("Speed", func(): return pivot_speed)
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
@@ -110,8 +111,3 @@ func get_ray() -> Dictionary[StringName, Vector3]:
 		&"origin": origin,
 		&"direction": direction
 	} as Dictionary[StringName, Vector3]
-
-
-#func get_ray_target_position() -> Vector3:
-	#var ray = get_ray()
-	#return ray.origin + ray.direction * grab_distance_dynamic

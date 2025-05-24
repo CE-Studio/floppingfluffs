@@ -9,6 +9,7 @@ extends RayCast3D
 var upright_strength = 1.0
 var offset: Vector3
 
+
 func _ready() -> void:
 	DebugMenu.Register("damp", func(): return kerf.angular_damp)
 
@@ -25,11 +26,5 @@ func _physics_process(delta: float) -> void:
 		var torque_axis = up_direction.cross(Vector3.UP)
 		var angle_difference = up_direction.angle_to(Vector3.UP)
 
-		#Apply torque scaled by the angle and upright strength
 		var corrective_torque = torque_axis.normalized() * angle_difference * upright_strength
 		kerf.apply_torque(corrective_torque) 
-			#Tune this value to control how fast the body corrects its orientation
-
-
-	
-	
