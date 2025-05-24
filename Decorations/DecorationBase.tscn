@@ -137,10 +137,12 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.0
 shape = SubResource("CylinderShape3D_phvoy")
 
 [node name="Cube" type="MeshInstance3D" parent="RigidBody3D"]
+layers = 5
 mesh = SubResource("ArrayMesh_nfkek")
 skeleton = NodePath("")
 
 [node name="Cylinder" type="MeshInstance3D" parent="RigidBody3D"]
+layers = 5
 mesh = SubResource("ArrayMesh_g44h1")
 skeleton = NodePath("")
 
@@ -148,6 +150,7 @@ skeleton = NodePath("")
 collision_layer = 2
 
 [node name="Sphere" type="MeshInstance3D" parent="StaticBody"]
+layers = 5
 mesh = SubResource("ArrayMesh_aoj6x")
 skeleton = NodePath("")
 
@@ -177,13 +180,16 @@ shape = SubResource("BoxShape3D_j5fnu")
 [node name="MerryGoRound" type="Node3D" parent="Rigid"]
 
 [node name="Cylinder" type="MeshInstance3D" parent="Rigid/MerryGoRound"]
+layers = 5
 mesh = SubResource("ArrayMesh_g44h1")
 skeleton = NodePath("")
 
 [node name="Cube" type="MeshInstance3D" parent="Rigid/MerryGoRound"]
+layers = 5
 mesh = SubResource("ArrayMesh_nfkek")
 skeleton = NodePath("")
 
 [node name="Sphere" type="MeshInstance3D" parent="Rigid/MerryGoRound"]
+layers = 5
 mesh = SubResource("ArrayMesh_aoj6x")
 skeleton = NodePath("")
