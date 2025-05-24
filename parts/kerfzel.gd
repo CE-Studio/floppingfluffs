@@ -249,4 +249,12 @@ func _process(delta: float) -> void:
 
 
 func pet() -> void:
+	PlayerCam.instance.hearts.emitting = true
 	petting = 3
+
+
+func _on_input_event(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
+	if PlayerCam.pettin:
+		if event is InputEventMouseMotion:
+			if Input.is_action_pressed("grab"):
+				pet()

@@ -7,12 +7,17 @@ class_name PlayerCam
 @export var spring_strength: float = 100.0
 @export var damping: float = 10.0
 
+static var pettin := false
 var pivot_speed: Vector2 = Vector2.ZERO
 var grab_distance_dynamic: float
 var grabbed_object: RigidBody3D = null
 
+
 @onready var pivot: SpringArm3D = get_parent()
 @onready var linedraw: Node2D = $Node2D
+@onready var grab:Button = $"../MarginContainer/PanelContainer/MarginContainer/HBoxContainer/grab"
+@onready var pet:Button = $"../MarginContainer/PanelContainer/MarginContainer/HBoxContainer/pet"
+@onready var hearts:GPUParticles2D = $GPUParticles2D
 
 static var instance: PlayerCam
 
@@ -22,6 +27,7 @@ func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 func _process(delta: float) -> void:
+	hearts.position = get_viewport().get_mouse_position()
 	if Input.is_action_just_released("zoom_in"):
 		pivot.spring_length = clamp(pivot.spring_length - 0.5, 2.0, 20.0)
 	elif Input.is_action_just_released("zoom_out"):
@@ -67,6 +73,8 @@ func _input(event: InputEvent) -> void:
 		pivot_speed.x += -event.relative.y * mouse_sensitivity.y
 
 func try_grab() -> bool:
+	if pettin:
+		return false
 	var ray = get_ray()
 	var origin = ray["origin"]
 	var direction = ray["direction"]
@@ -113,3 +121,15 @@ func get_ray() -> Dictionary[StringName, Vector3]:
 		&"origin": origin,
 		&"direction": direction
 	}
+
+
+func _on_grab_pressed() -> void:
+	pettin = false
+	grab.set_pressed_no_signal(true)
+	pet.set_pressed_no_signal(false)
+
+
+func _on_pet_pressed() -> void:
+	pettin = true
+	grab.set_pressed_no_signal(false)
+	pet.set_pressed_no_signal(true)
