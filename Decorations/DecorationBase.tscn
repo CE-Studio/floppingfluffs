@@ -119,6 +119,7 @@ size = Vector3(6, 1.73047, 6)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -9.53674e-07, 0)
 script = ExtResource("1_sdcyx")
 rigid_bodies = [NodePath("RigidBody3D")]
+rot_dir = Vector3(0, 1, 0)
 
 [node name="RigidBody3D" type="RigidBody3D" parent="."]
 collision_layer = 3
