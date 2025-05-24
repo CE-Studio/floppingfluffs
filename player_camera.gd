@@ -1,38 +1,32 @@
-class_name PlayerCam
 extends Camera3D
+class_name PlayerCam
 
 @export var mouse_sensitivity: Vector2 = Vector2(0.002, 0.001)
-var pivot_speed: Vector2 = Vector2.ZERO;
 @export var pivot_damp: float = 6
 @export var grab_distance: float = 100.0
-var grab_distance_dynamic: float;
+@export var spring_strength: float = 100.0
+@export var damping: float = 10.0
+
+var pivot_speed: Vector2 = Vector2.ZERO
+var grab_distance_dynamic: float
+var grabbed_object: RigidBody3D = null
 
 @onready var pivot: SpringArm3D = get_parent()
-@onready var linedraw:Node2D = $Node2D
+@onready var linedraw: Node2D = $Node2D
 
-var grabbed_object: RigidBody3D = null
-var spring_strength: float = 100.0
-var damping: float = 10.0
-
-
-static var instance:PlayerCam
-
-
-
+static var instance: PlayerCam
 
 func _ready() -> void:
 	instance = self
 	DebugMenu.Register("Speed", func(): return pivot_speed)
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
-
 func _process(delta: float) -> void:
-	# Mouse wheel zoom
 	if Input.is_action_just_released("zoom_in"):
-		pivot.spring_length = clamp(pivot.spring_length - .5, 2.0, 20.0)
+		pivot.spring_length = clamp(pivot.spring_length - 0.5, 2.0, 20.0)
 	elif Input.is_action_just_released("zoom_out"):
-		pivot.spring_length = clamp(pivot.spring_length + .5, 2.0, 20.0)
-	
+		pivot.spring_length = clamp(pivot.spring_length + 0.5, 2.0, 20.0)
+
 	pivot_speed.y = lerpf(pivot_speed.y, 0, pivot_damp * delta)
 	pivot_speed.x = lerpf(pivot_speed.x, 0, pivot_damp * delta)
 	pivot.rotation.y += pivot_speed.y
@@ -40,69 +34,76 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("grab"):
-		try_grab()
-		print("im eppy")
+		if not try_grab():
+			try_interact()
 	elif Input.is_action_just_released("grab"):
-		grabbed_object = null
+		if grabbed_object:
+			var parent_decoration := grabbed_object.get_parent_node_3d()
+			if parent_decoration and parent_decoration is StaticDecoration:
+				parent_decoration.place()
+			grabbed_object = null
 
 	if grabbed_object:
 		var ray = get_ray()
-		var origin = ray.origin
-		var direction = ray.direction
-		
-		
+		var origin = ray["origin"]
+		var direction = ray["direction"]
 		var target = origin + direction * grab_distance_dynamic
 
 		var space_state = get_world_3d().direct_space_state
 		var query = PhysicsRayQueryParameters3D.create(origin, target)
-		query.collision_mask = 4
+		query.collision_mask = 4  # Customizable for grab-while-held layer
 
-		var target_pos: Vector3
 		var result = space_state.intersect_ray(query)
-		if result and result.has("position"):
-			target_pos = result["position"]
-			print("hi")
-		else:
-			target_pos = target  # fallback
+		var target_pos: Vector3 = result.get("position", target)
 
 		var to_target = target_pos - grabbed_object.global_position
 		var force = to_target.normalized() * (spring_strength * to_target.length()) - grabbed_object.linear_velocity * damping
-
 		grabbed_object.apply_central_force(force)
 
-
-
 func _input(event: InputEvent) -> void:
-	# Toggle mouse mode
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	else:
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
-	# Rotate camera pivot with mouse
-	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+	if event is InputEventMouseMotion and Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
 		pivot_speed.y += -event.relative.x * mouse_sensitivity.x
 		pivot_speed.x += -event.relative.y * mouse_sensitivity.y
-		#rotation.x = clamp(rotation.x, deg_to_rad(-45), deg_to_rad(0))
 
-
-func try_grab() -> void:
-	var origin = get_ray().origin
-	var direction = get_ray().direction
+func try_grab() -> bool:
+	var ray = get_ray()
+	var origin = ray["origin"]
+	var direction = ray["direction"]
 	var target = origin + direction * grab_distance
 
 	var space_state = get_world_3d().direct_space_state
 	var query = PhysicsRayQueryParameters3D.create(origin, target)
-	query.collision_mask = 1  # TODO: Customize this as needed
+	query.collision_mask = 3  # Layer for grabbable RigidBody3D
 
 	var result = space_state.intersect_ray(query)
 	if result and result.has("collider") and result["collider"] is RigidBody3D:
 		grabbed_object = result["collider"]
 		grab_distance_dynamic = (result["position"] - origin).length()
 		InfoHud.tracking = grabbed_object
-	if grabbed_object is Kerfzel:
-		grabbed_object._on_timer_timeout()
 
+		if grabbed_object is Kerfzel:
+			grabbed_object._on_timer_timeout()
+
+		return true
+	return false
+	
+func try_interact() -> void:
+	var ray = get_ray()
+	var origin = ray["origin"]
+	var direction = ray["direction"]
+	var target = origin + direction * grab_distance
+
+	var space_state = get_world_3d().direct_space_state
+	var query = PhysicsRayQueryParameters3D.create(origin, target)
+	query.collision_mask = 2  # Layer for interactable StaticBodies
+
+	var result = space_state.intersect_ray(query)
+	if result:
+		var parent_decoration = result["collider"].get_parent_node_3d()
+		print(parent_decoration)
+		if parent_decoration and parent_decoration is StaticDecoration:
+			InfoHud.tracking = result["collider"]
 
 func get_ray() -> Dictionary[StringName, Vector3]:
 	var mouse_pos := get_viewport().get_mouse_position()
@@ -111,4 +112,4 @@ func get_ray() -> Dictionary[StringName, Vector3]:
 	return {
 		&"origin": origin,
 		&"direction": direction
-	} as Dictionary[StringName, Vector3]
+	}
