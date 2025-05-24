@@ -2,6 +2,10 @@ class_name Toy
 extends RigidBody3D
 
 
+@export var tname := "Toy..?"
+@export_multiline var tdesc := "What... What is this???"
+
+
 var newpos:
 	set(val):
 		if val is Vector3:

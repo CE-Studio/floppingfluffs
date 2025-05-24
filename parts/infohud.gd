@@ -13,6 +13,12 @@ var tracking:Node3D
 @onready var h_slider: HSlider = $PanelContainer/MarginContainer/HBoxContainer/VBoxContainer3/MarginContainer/HSlider
 @onready var button: Button = $PanelContainer/MarginContainer/HBoxContainer/VBoxContainer3/MarginContainer2/Button
 
+
+@onready var toything:VBoxContainer = $PanelContainer/MarginContainer/HBoxContainer/VBoxContainer4
+@onready var toyname:Label = $PanelContainer/MarginContainer/HBoxContainer/VBoxContainer4/objname
+@onready var toydesc:Label = $PanelContainer/MarginContainer/HBoxContainer/VBoxContainer4/MarginContainer/desc
+
+
 func _ready() -> void:
 	h_slider.value_changed.connect(set_dec_speed)
 	button.pressed.connect(pickup_dec)
@@ -45,6 +51,12 @@ func  _physics_process(delta: float) -> void:
 						kobj.text = "Walking to object"
 		else:
 			statlist.hide()
+		if tracking is Toy:
+			toything.show()
+			toyname.text = tracking.tname
+			toydesc.text = tracking.tdesc
+		else:
+			toything.hide()
 	else:
 		statlist.hide()
 
