@@ -66,6 +66,22 @@ theme_override_constants/margin_left = 20
 layout_mode = 2
 text = "aaaaaaaaa"
 
+[node name="VBoxContainer3" type="VBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="SPEED" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+text = "Speed:"
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+
+[node name="HSlider" type="HSlider" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer3/MarginContainer"]
+layout_mode = 2
+
 [node name="Infohud" type="SubViewport" parent="."]
 transparent_bg = true
 size = Vector2i(256, 256)
