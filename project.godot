@@ -13,6 +13,7 @@ config_version=5
 config/name="Flopping Fluffs"
 run/main_scene="uid://cby4bemgbl7fu"
 config/features=PackedStringArray("4.4", "Forward Plus")
+run/max_fps=60
 config/icon="res://icon.svg"
 
 [autoload]
