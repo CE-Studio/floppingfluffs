@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dxivbbl28hphx" path="res://Decorations/Decoration.gd" id="1_sdcyx"]
 [ext_resource type="Shader" uid="uid://lpxlt58pyjky" path="res://addons/flexible_toon_shader/flexible_toon.gdshader" id="2_j5fnu"]
-[ext_resource type="Shader" uid="uid://bey67nmmawety" path="res://Decorations/DecorationBase.gdshader" id="3_uk6sm"]
+[ext_resource type="Shader" uid="uid://beqp4da0hwqye" path="res://rainbow.gdshader" id="3_j5fnu"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h3m3w"]
 size = Vector3(0.231445, 1, 5.99951)
@@ -98,7 +98,7 @@ shadow_mesh = SubResource("ArrayMesh_iaroy")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_u2gah"]
 render_priority = 0
-shader = ExtResource("3_uk6sm")
+shader = ExtResource("3_j5fnu")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_la2gq"]
 
