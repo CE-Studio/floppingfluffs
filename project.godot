@@ -28,6 +28,11 @@ movie_writer/movie_file="/home/clarence112/Documents/gdrenders/floppy/fluffs.avi
 
 toys=""
 
+[gui]
+
+theme/custom="uid://d4kfmxheio7pd"
+theme/custom_font="uid://ds6owvi6sodq4"
+
 [input]
 
 forward={

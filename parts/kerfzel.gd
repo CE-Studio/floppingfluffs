@@ -51,6 +51,9 @@ var targobj:Node3D
 ]
 
 
+var petting := 0.0
+
+
 @export var mat:StandardMaterial3D = StandardMaterial3D.new()
 @export var fur_pattern:int = 0
 @export_range(1, 2) var eyes:int = 1
@@ -236,3 +239,14 @@ func _on_body_entered(body: Node) -> void:
 	if body is Kerfzel:
 		_on_timer_timeout()
 		happi += 1
+
+
+func _process(delta: float) -> void:
+	petting = move_toward(petting, 0, delta)
+	if petting > 0.5:
+		happi += delta / 2.0
+	$AudioStreamPlayer3D2.volume_db = remap(petting, 0, 3, -80, 0)
+
+
+func pet() -> void:
+	petting = 3

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://y7pjq5topdi8"]
+[gd_scene load_steps=15 format=3 uid="uid://y7pjq5topdi8"]
 
 [ext_resource type="Script" uid="uid://dr5qpgp623vtn" path="res://parts/kerfzel.gd" id="1_j8y7j"]
 [ext_resource type="PackedScene" uid="uid://ta0q78l0u8yn" path="res://models/kerfbody.tscn" id="2_yvu7o"]
@@ -11,6 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://b7wbbvh87a7k1" path="res://sound/kerfspeak-05.wav" id="9_xg16f"]
 [ext_resource type="AudioStream" uid="uid://x8250bouoymc" path="res://sound/kerfspeak-00.wav" id="10_ioipr"]
 [ext_resource type="Texture2D" uid="uid://b2pyt8m5yxxva" path="res://textures/decals/polar.png" id="11_itrqo"]
+[ext_resource type="AudioStream" uid="uid://b682rh67w0l4y" path="res://sound/purr.wav" id="12_ccpkw"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gf8oa"]
 radius = 0.213022
@@ -76,6 +77,10 @@ texture_albedo = ExtResource("11_itrqo")
 upper_fade = 8.71003e-05
 lower_fade = 1e-05
 cull_mask = 2
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("12_ccpkw")
+autoplay = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
