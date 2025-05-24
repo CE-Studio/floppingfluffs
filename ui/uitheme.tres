@@ -1,5 +1,23 @@
-[gd_resource type="Theme" format=3 uid="uid://d4kfmxheio7pd"]
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://d4kfmxheio7pd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gulyp"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0, 0.835294, 1, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
 
 [resource]
+MarginContainer/constants/margin_bottom = 4
+MarginContainer/constants/margin_left = 4
+MarginContainer/constants/margin_right = 4
+MarginContainer/constants/margin_top = 4
 h1/base_type = &"Label"
 h1/font_sizes/font_size = 20
+toolbutton/base_type = &"Button"
+toolbutton/styles/pressed = SubResource("StyleBoxFlat_gulyp")

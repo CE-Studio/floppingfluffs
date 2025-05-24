@@ -1,7 +1,24 @@
-[gd_scene load_steps=3 format=3 uid="uid://db3jswprqpd1k"]
+[gd_scene load_steps=7 format=3 uid="uid://db3jswprqpd1k"]
 
 [ext_resource type="Script" uid="uid://bpne6m8huvrr1" path="res://player_camera.gd" id="1_agiyq"]
 [ext_resource type="Script" uid="uid://cteo1um7bghwy" path="res://linedraw.gd" id="2_1l5io"]
+[ext_resource type="Texture2D" uid="uid://dswrhwiv25jhu" path="res://textures/heart.png" id="3_273u0"]
+
+[sub_resource type="Curve" id="Curve_002bh"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_08crb"]
+curve = SubResource("Curve_002bh")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wpqy0"]
+particle_flag_disable_z = true
+direction = Vector3(0, 1, 0)
+initial_velocity_max = 72.73
+angular_velocity_min = -26.34
+angular_velocity_max = 17.45
+gravity = Vector3(0, -98, 0)
+alpha_curve = SubResource("CurveTexture_08crb")
 
 [node name="SpringArm3D" type="SpringArm3D"]
 transform = Transform3D(1, 0, 0, 0, 0.972031, 0.234854, 0, -0.234854, 0.972031, 0, 0, 0)
@@ -13,3 +30,44 @@ script = ExtResource("1_agiyq")
 
 [node name="Node2D" type="Node2D" parent="PlayerCamera"]
 script = ExtResource("2_1l5io")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="PlayerCamera"]
+emitting = false
+amount = 4
+texture = ExtResource("3_273u0")
+lifetime = 2.0
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_wpqy0")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="grab" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"toolbutton"
+toggle_mode = true
+button_pressed = true
+text = "Grab"
+
+[node name="pet" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"toolbutton"
+toggle_mode = true
+text = "Pet"
+
+[connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/HBoxContainer/grab" to="PlayerCamera" method="_on_grab_pressed"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/HBoxContainer/pet" to="PlayerCamera" method="_on_pet_pressed"]
