@@ -148,6 +148,7 @@ mesh = SubResource("ArrayMesh_g44h1")
 skeleton = NodePath("")
 
 [node name="StaticBody" type="StaticBody3D" parent="."]
+visible = false
 collision_layer = 2
 
 [node name="Sphere" type="MeshInstance3D" parent="StaticBody"]
@@ -194,3 +195,5 @@ skeleton = NodePath("")
 layers = 5
 mesh = SubResource("ArrayMesh_aoj6x")
 skeleton = NodePath("")
+
+[connection signal="visibility_changed" from="StaticBody" to="." method="_on_static_body_visibility_changed"]

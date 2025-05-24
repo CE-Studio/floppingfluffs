@@ -25,8 +25,11 @@ func _ready() -> void:
 	
 	for body in rigid_bodies:
 		set_rigid_body_enabled(body, false, 3)
+
+
 func is_placed() -> bool:
 	return placed
+
 
 func place():
 	if placed:
@@ -60,14 +63,17 @@ func pickup():
 		set_rigid_body_enabled(body, false, 3)
 		
 	rigid_body.apply_central_force(Vector3.UP * 20)
+
+
+
 func set_rigid_body_enabled(body: RigidBody3D, enabled: bool, layer: int) -> void:
 	body.sleeping = not enabled
 	body.freeze = not enabled
 	body.set_physics_process(enabled)
-
+	body.visible = enabled
 	if enabled:
 		body.collision_layer = layer
-		body.collision_mask = 1  # adjust this as needed for what it should collide with
+		body.collision_mask = 1
 	else:
 		body.collision_layer = 0
 		body.collision_mask = 0
@@ -77,9 +83,13 @@ func set_static_body_enabled(body: StaticBody3D, enabled: bool) -> void:
 	body.visible = enabled
 	body.set_physics_process(enabled)
 	if enabled:
-		body.collision_layer = 2  # or whatever layer static bodies go on
-		body.collision_mask = 1  # or mask of things it should interact with
+		body.collision_layer = 2
+		body.collision_mask = 1
 	else:
 		body.collision_layer = 0
 		body.collision_mask = 0
 	
+
+
+func _on_static_body_visibility_changed() -> void:
+	print("aaa?")
