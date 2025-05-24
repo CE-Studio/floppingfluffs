@@ -11,15 +11,19 @@ var tracking:Node3D
 
 @onready var spinnerspeed: VBoxContainer = $PanelContainer/MarginContainer/HBoxContainer/VBoxContainer3
 @onready var h_slider: HSlider = $PanelContainer/MarginContainer/HBoxContainer/VBoxContainer3/MarginContainer/HSlider
+@onready var button: Button = $PanelContainer/MarginContainer/HBoxContainer/VBoxContainer3/MarginContainer2/Button
 
-func  _process(delta: float) -> void:
+func _ready() -> void:
+	h_slider.value_changed.connect(set_dec_speed)
+	button.pressed.connect(pickup_dec)
+	
+func  _physics_process(delta: float) -> void:
 	if is_instance_valid(tracking):
 		point.global_position = tracking.global_position
 		point.scale = tracking.scale
 		var parent_decoration := tracking.get_parent_node_3d()
 		if parent_decoration and parent_decoration is StaticDecoration:
 			spinnerspeed.show()
-			parent_decoration.set_speed(h_slider.value)
 		else:
 			spinnerspeed.hide()
 		if tracking is Kerfzel:
@@ -43,3 +47,14 @@ func  _process(delta: float) -> void:
 			statlist.hide()
 	else:
 		statlist.hide()
+
+
+func set_dec_speed(value: float):
+	var parent_decoration := tracking.get_parent_node_3d()
+	if parent_decoration and parent_decoration is StaticDecoration:
+		parent_decoration.set_speed(value)
+		
+func pickup_dec():
+	var parent_decoration := tracking.get_parent_node_3d()
+	if parent_decoration and parent_decoration is StaticDecoration:
+		parent_decoration.pickup()
