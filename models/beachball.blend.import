@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dmwmsxfdktwn5"
-path="res://.godot/imported/kerfger.blend-28495894910d0fd1fcf95530c7d5b05e.scn"
+uid="uid://ggb10rxygd3r"
+path="res://.godot/imported/beachball.blend-c89c2779d29adc7dd3ad7e3fdb7d300e.scn"
 
 [deps]
 
-source_file="res://kerfger.blend"
-dest_files=["res://.godot/imported/kerfger.blend-28495894910d0fd1fcf95530c7d5b05e.scn"]
+source_file="res://models/beachball.blend"
+dest_files=["res://.godot/imported/beachball.blend-c89c2779d29adc7dd3ad7e3fdb7d300e.scn"]
 
 [params]
 

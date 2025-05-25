@@ -1,14 +1,14 @@
 [gd_scene load_steps=17 format=4 uid="uid://cby4bemgbl7fu"]
 
 [ext_resource type="Shader" path="res://parts/field.gdshader" id="1_let24"]
-[ext_resource type="ArrayMesh" uid="uid://bpr67efy6kuvg" path="res://grassblade.obj" id="1_mxcdc"]
+[ext_resource type="ArrayMesh" uid="uid://bpr67efy6kuvg" path="res://models/grassblade.obj" id="1_mxcdc"]
 [ext_resource type="Environment" uid="uid://cu513xdqydqtb" path="res://enviro.tres" id="1_pqw6g"]
-[ext_resource type="PackedScene" uid="uid://db3jswprqpd1k" path="res://player_camera.tscn" id="4_iyrfa"]
+[ext_resource type="PackedScene" uid="uid://db3jswprqpd1k" path="res://parts/player_camera.tscn" id="4_iyrfa"]
 [ext_resource type="Script" uid="uid://cs4dnt5283av3" path="res://parts/kerflayer.gd" id="5_i8eao"]
 [ext_resource type="Script" uid="uid://tih0bm2uoj02" path="res://parts/toylayer.gd" id="6_orqye"]
-[ext_resource type="PackedScene" uid="uid://diyvpcrf4m382" path="res://parts/soulshpere.tscn" id="7_3cspu"]
+[ext_resource type="PackedScene" uid="uid://diyvpcrf4m382" path="res://spawnables/soulshpere.tscn" id="7_3cspu"]
 [ext_resource type="PackedScene" uid="uid://bfp82ly857nxj" path="res://parts/caul.tscn" id="8_orqye"]
-[ext_resource type="PackedScene" uid="uid://dtnwhcfyhaigp" path="res://parts/wackysoulshpere.tscn" id="9_i8eao"]
+[ext_resource type="PackedScene" uid="uid://dtnwhcfyhaigp" path="res://spawnables/wackysoulshpere.tscn" id="9_i8eao"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0cqtn"]
 render_priority = 0

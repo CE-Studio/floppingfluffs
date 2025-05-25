@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://dkr7qbkihmmjg"
-path="res://.godot/imported/grassblade.glb-e7b3f72dd009fc839f3e8ab3880c715e.scn"
+path="res://.godot/imported/grassblade.glb-9e896daca962349ebd87422a371bce47.scn"
 
 [deps]
 
-source_file="res://grassblade.glb"
-dest_files=["res://.godot/imported/grassblade.glb-e7b3f72dd009fc839f3e8ab3880c715e.scn"]
+source_file="res://models/grassblade.glb"
+dest_files=["res://.godot/imported/grassblade.glb-9e896daca962349ebd87422a371bce47.scn"]
 
 [params]
 

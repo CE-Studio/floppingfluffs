@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://c286v4cpocfpy"]
 
 [ext_resource type="Script" uid="uid://dai5dki4hcmoi" path="res://collision.gd" id="1_0sq4u"]
-[ext_resource type="PackedScene" uid="uid://drj0p23wss1a6" path="res://blahajs.blend" id="2_26niv"]
+[ext_resource type="PackedScene" uid="uid://drj0p23wss1a6" path="res://models/blahajs.blend" id="2_26niv"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0sq4u"]
 height = 2.87

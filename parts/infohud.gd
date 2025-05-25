@@ -45,7 +45,9 @@ func  _physics_process(delta: float) -> void:
 				Kerfzel.State.WALKIN2ZER0:
 					kobj.text = "Walking to the middle"
 				Kerfzel.State.WALKIN2OTHER:
-					if tracking.targobj is Kerfzel:
+					if not is_instance_valid(tracking.targobj):
+						kobj.text = "Walking to... something?"
+					elif tracking.targobj is Kerfzel:
 						kobj.text = "Walking to " + tracking.targobj.kname
 					else:
 						kobj.text = "Walking to object"

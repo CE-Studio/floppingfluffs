@@ -14,11 +14,11 @@ config/name="Flopping Fluffs"
 run/main_scene="uid://cby4bemgbl7fu"
 config/features=PackedStringArray("4.4", "Forward Plus")
 run/max_fps=60
-config/icon="res://icon.svg"
+config/icon="res://textures/icon.svg"
 
 [autoload]
 
-DebugMenu="*res://debug_menu.tscn"
+DebugMenu="*res://ui/debug_menu.tscn"
 InfoHud="*res://parts/infohud.tscn"
 
 [editor]

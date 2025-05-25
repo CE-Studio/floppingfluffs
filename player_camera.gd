@@ -11,7 +11,7 @@ static var pettin := false
 var pivot_speed: Vector2 = Vector2.ZERO
 var grab_distance_dynamic: float
 var grabbed_object: RigidBody3D = null
-static var monies:int = 0:
+static var monies:int = 3:
 	set(val):
 		monies = val
 		if is_instance_valid(instance):

@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://bnrn1swk3ml1e"]
 
-[ext_resource type="PackedScene" uid="uid://db3jswprqpd1k" path="res://player_camera.tscn" id="1_a202f"]
-[ext_resource type="PackedScene" uid="uid://btaghitysnvmv" path="res://cubething.tscn" id="2_noarx"]
+[ext_resource type="PackedScene" uid="uid://db3jswprqpd1k" path="res://parts/player_camera.tscn" id="1_a202f"]
+[ext_resource type="PackedScene" uid="uid://btaghitysnvmv" path="res://spawnables/cubething.tscn" id="2_noarx"]
 [ext_resource type="PackedScene" uid="uid://bsb008osxuluk" path="res://pipe.tscn" id="3_a0tk4"]
 [ext_resource type="PackedScene" uid="uid://y7pjq5topdi8" path="res://parts/kerf.tscn" id="4_r3fl7"]
 

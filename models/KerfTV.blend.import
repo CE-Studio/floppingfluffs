@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bdwjpfdds1buw"
-path="res://.godot/imported/field.blend-67233ea7c4e03313701c1afc718f32f3.scn"
+uid="uid://csuehqa30r21k"
+path="res://.godot/imported/KerfTV.blend-c76631c3db251b88d1a450f3c3d4cfdd.scn"
 
 [deps]
 
-source_file="res://field.blend"
-dest_files=["res://.godot/imported/field.blend-67233ea7c4e03313701c1afc718f32f3.scn"]
+source_file="res://models/KerfTV.blend"
+dest_files=["res://.godot/imported/KerfTV.blend-c76631c3db251b88d1a450f3c3d4cfdd.scn"]
 
 [params]
 

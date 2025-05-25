@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://ddgcy0t125ict"
-path="res://.godot/imported/MerryGoRound.blend-83e92f8e87535258ee13fc9ba41a3e7d.scn"
+uid="uid://dc0pcgykwnyco"
+path="res://.godot/imported/fidget.blend-cb4d7bd62697b588587c131c72cc95ae.scn"
 
 [deps]
 
-source_file="res://Decorations/MerryGoRound.blend"
-dest_files=["res://.godot/imported/MerryGoRound.blend-83e92f8e87535258ee13fc9ba41a3e7d.scn"]
+source_file="res://models/fidget.blend"
+dest_files=["res://.godot/imported/fidget.blend-cb4d7bd62697b588587c131c72cc95ae.scn"]
 
 [params]
 

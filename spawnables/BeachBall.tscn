@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://8crx2lo78cwm"]
 
 [ext_resource type="Script" uid="uid://dai5dki4hcmoi" path="res://collision.gd" id="1_dsjja"]
-[ext_resource type="PackedScene" uid="uid://ggb10rxygd3r" path="res://beachball.blend" id="2_inv8f"]
+[ext_resource type="PackedScene" uid="uid://ggb10rxygd3r" path="res://models/beachball.blend" id="2_inv8f"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_dsjja"]
 friction = 0.2

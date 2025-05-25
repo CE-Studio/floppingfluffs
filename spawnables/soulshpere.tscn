@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://diyvpcrf4m382"]
 
-[ext_resource type="Script" uid="uid://1db7ynd1b7n3" path="res://parts/soulshpere.gd" id="1_b14bx"]
-[ext_resource type="Texture2D" uid="uid://bbp6ly5qpgigl" path="res://textures/kerfine.png" id="2_fcmt3"]
+[ext_resource type="Script" uid="uid://1db7ynd1b7n3" path="res://parts/soulshpere.gd" id="1_eritw"]
+[ext_resource type="Texture2D" uid="uid://bbp6ly5qpgigl" path="res://textures/kerfine.png" id="2_aeg43"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_1tr3p"]
 
@@ -31,7 +31,7 @@ flip_faces = true
 [sub_resource type="SphereShape3D" id="SphereShape3D_bvfif"]
 
 [node name="soulsp" type="RigidBody3D" groups=["toys"]]
-script = ExtResource("1_b14bx")
+script = ExtResource("1_eritw")
 tname = "Soul Sphere"
 tdesc = "This magical capsule has captured a kerfine!
 Drop into the summoning cauldron to give the
@@ -49,7 +49,7 @@ transparency = 0.76
 pixel_size = 0.0025
 billboard = 1
 render_priority = 1
-texture = ExtResource("2_fcmt3")
+texture = ExtResource("2_aeg43")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D"]
 layers = 5
