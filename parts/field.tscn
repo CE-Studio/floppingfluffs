@@ -1,12 +1,13 @@
-[gd_scene load_steps=15 format=4 uid="uid://cby4bemgbl7fu"]
+[gd_scene load_steps=16 format=4 uid="uid://cby4bemgbl7fu"]
 
-[ext_resource type="Shader" uid="uid://2byvdmrtgpge" path="res://parts/field.gdshader" id="1_let24"]
+[ext_resource type="Shader" path="res://parts/field.gdshader" id="1_let24"]
 [ext_resource type="ArrayMesh" uid="uid://bpr67efy6kuvg" path="res://grassblade.obj" id="1_mxcdc"]
 [ext_resource type="Environment" uid="uid://cu513xdqydqtb" path="res://enviro.tres" id="1_pqw6g"]
 [ext_resource type="PackedScene" uid="uid://y7pjq5topdi8" path="res://parts/kerf.tscn" id="3_0cqtn"]
 [ext_resource type="PackedScene" uid="uid://db3jswprqpd1k" path="res://player_camera.tscn" id="4_iyrfa"]
 [ext_resource type="PackedScene" uid="uid://jp8d2t7m4275" path="res://Decorations/DecorationBase.tscn" id="6_bmttb"]
-[ext_resource type="PackedScene" uid="uid://dcy1cmbm5kxbw" path="res://burger.tscn" id="7_3cspu"]
+[ext_resource type="Script" uid="uid://tih0bm2uoj02" path="res://parts/toylayer.gd" id="6_orqye"]
+[ext_resource type="PackedScene" path="res://burger.tscn" id="7_3cspu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0cqtn"]
 render_priority = 0
@@ -129,6 +130,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.41023, 1.34883, -0.338776)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.41023, 1.34883, -0.338776)
 
 [node name="toys" type="Node3D" parent="."]
+script = ExtResource("6_orqye")
 
 [node name="Node3D" parent="toys" instance=ExtResource("6_bmttb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.518885, 0)

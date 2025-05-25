@@ -1,8 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://db3jswprqpd1k"]
+[gd_scene load_steps=16 format=3 uid="uid://db3jswprqpd1k"]
 
 [ext_resource type="Script" uid="uid://bpne6m8huvrr1" path="res://player_camera.gd" id="1_agiyq"]
 [ext_resource type="Script" uid="uid://cteo1um7bghwy" path="res://linedraw.gd" id="2_1l5io"]
 [ext_resource type="Texture2D" uid="uid://dswrhwiv25jhu" path="res://textures/heart.png" id="3_273u0"]
+[ext_resource type="Script" uid="uid://iqbnh1at37yk" path="res://addons/scene_texture/SceneTexture.gd" id="4_002bh"]
+[ext_resource type="PackedScene" path="res://burger.tscn" id="4_08crb"]
+[ext_resource type="Script" uid="uid://m8wpbii442n3" path="res://shop.gd" id="4_wpqy0"]
+[ext_resource type="Script" uid="uid://cshbsat8vvqf7" path="res://shopitem.gd" id="5_r335p"]
+[ext_resource type="PackedScene" uid="uid://btaghitysnvmv" path="res://cubething.tscn" id="8_xfehw"]
 
 [sub_resource type="Curve" id="Curve_002bh"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -19,6 +24,66 @@ angular_velocity_min = -26.34
 angular_velocity_max = 17.45
 gravity = Vector3(0, -98, 0)
 alpha_curve = SubResource("CurveTexture_08crb")
+
+[sub_resource type="Texture2D" id="Texture2D_08crb"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("4_002bh")
+size = Vector2i(64, 64)
+scene = ExtResource("4_08crb")
+scene_position = Vector3(0, 0, 0)
+scene_rotation = Vector3(0, 0, 0)
+scene_scale = Vector3(1, 1, 1)
+camera_distance = 3.0
+camera_position = Vector3(0.045, -0.09, 0)
+camera_rotation = Vector3(-0.698132, -0.436332, 0)
+light_color = Color(1, 1, 1, 1)
+light_energy = 2.5
+light_angular_distance = 0.0
+light_shadow = false
+light_rotation = Vector3(-1.0472, 1.0472, 0)
+render_transparent_bg = true
+render_auto_bake = true
+render_store_bake = false
+render_msaa_3d = 2
+render_screen_space_aa = 1
+metadata/_custom_type_script = "uid://iqbnh1at37yk"
+
+[sub_resource type="Resource" id="Resource_xfehw"]
+script = ExtResource("5_r335p")
+price = 0
+item = SubResource("Texture2D_08crb")
+metadata/_custom_type_script = "uid://cshbsat8vvqf7"
+
+[sub_resource type="Texture2D" id="Texture2D_wxhs0"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("4_002bh")
+size = Vector2i(64, 64)
+scene = ExtResource("8_xfehw")
+scene_position = Vector3(0, 0, 0)
+scene_rotation = Vector3(0, 0, 0)
+scene_scale = Vector3(1, 1, 1)
+camera_distance = 3.0
+camera_position = Vector3(-0.01, 0.045, 0.135)
+camera_rotation = Vector3(-0.698132, -0.436332, 0)
+light_color = Color(1, 1, 1, 1)
+light_energy = 2.5
+light_angular_distance = 0.0
+light_shadow = false
+light_rotation = Vector3(-1.0472, 1.0472, 0)
+render_transparent_bg = true
+render_auto_bake = true
+render_store_bake = false
+render_msaa_3d = 2
+render_screen_space_aa = 1
+metadata/_custom_type_script = "uid://iqbnh1at37yk"
+
+[sub_resource type="Resource" id="Resource_j7i7l"]
+script = ExtResource("5_r335p")
+price = 97
+item = SubResource("Texture2D_wxhs0")
+metadata/_custom_type_script = "uid://cshbsat8vvqf7"
 
 [node name="SpringArm3D" type="SpringArm3D"]
 transform = Transform3D(1, 0, 0, 0, 0.972031, 0.234854, 0, -0.234854, 0.972031, 0, 0, 0)
@@ -40,34 +105,85 @@ one_shot = true
 process_material = SubResource("ParticleProcessMaterial_wpqy0")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-anchors_preset = 2
+anchors_preset = 12
 anchor_top = 1.0
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -40.0
-offset_right = 40.0
+offset_top = -90.0
+grow_horizontal = 2
 grow_vertical = 0
 
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="grab" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/HBoxContainer"]
+[node name="grab" type="Button" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"toolbutton"
 toggle_mode = true
 button_pressed = true
 text = "Grab"
 
-[node name="pet" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/HBoxContainer"]
+[node name="pet" type="Button" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"toolbutton"
 toggle_mode = true
 text = "Pet"
 
-[connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/HBoxContainer/grab" to="PlayerCamera" method="_on_grab_pressed"]
-[connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/HBoxContainer/pet" to="PlayerCamera" method="_on_pet_pressed"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_type_variation = &"HeaderLarge"
+text = "$0"
+vertical_alignment = 2
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Moneys"
+vertical_alignment = 2
+
+[node name="PanelContainer2" type="PanelContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/PanelContainer2"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/PanelContainer2/MarginContainer"]
+layout_mode = 2
+vertical_scroll_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/PanelContainer2/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="shop" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/PanelContainer2/MarginContainer/ScrollContainer/MarginContainer"]
+layout_mode = 2
+script = ExtResource("4_wpqy0")
+items = Array[ExtResource("5_r335p")]([SubResource("Resource_xfehw"), SubResource("Resource_j7i7l")])
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/grab" to="PlayerCamera" method="_on_grab_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/pet" to="PlayerCamera" method="_on_pet_pressed"]

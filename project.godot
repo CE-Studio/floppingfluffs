@@ -25,6 +25,10 @@ InfoHud="*res://parts/infohud.tscn"
 
 movie_writer/movie_file="/home/clarence112/Documents/gdrenders/floppy/fluffs.avi"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/scene_texture/plugin.cfg")
+
 [global_group]
 
 toys=""

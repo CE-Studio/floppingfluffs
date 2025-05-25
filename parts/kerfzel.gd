@@ -12,6 +12,9 @@ const FurPattern = [
 ]
 
 
+const GEM:PackedScene = preload("res://parts/gem.tscn")
+
+
 const SAVE_BASE = {
 	"colo": [0.8, 0.8, 0.8],
 	"posi": [0, 10, 0],
@@ -123,6 +126,7 @@ func _ready() -> void:
 	mat = StandardMaterial3D.new()
 	mat.roughness = 1
 	_recur_mat(self)
+	kname = NameGen.gen()
 	if rando:
 		size = randf_range(0.8, 2.0)
 		mat.albedo_color = Color(randf_range(0, 1), randf_range(0, 1), randf_range(0, 1))
@@ -158,6 +162,11 @@ func _recur_mat(n:Node) -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if happi > 20:
+		happi -= 20
+		var a = GEM.instantiate()
+		$"../../toys".add_child(a)
+		a.global_position = global_position + Vector3(0, 10, 0)
 	if position.y < -10:
 		newpos = Vector3(0, 10, 0)
 	match state:
@@ -182,6 +191,12 @@ func _physics_process(delta: float) -> void:
 			var ty = (dvel - angular_velocity.y) / 10.0
 			apply_torque(Vector3(0, ty, 0))
 		State.WALKIN2OTHER:
+			if targobj == self:
+				_on_timer_2_timeout()
+				return
+			if not is_instance_valid(targobj):
+				_on_timer_2_timeout()
+				return
 			var posv2 = Vector2(global_position.x, -global_position.z)
 			var targv2 = Vector2(targobj.global_position.x, -targobj.global_position.z)
 			direction = wrapf(targv2.angle_to_point(posv2) + deg_to_rad(90), -PI, PI)

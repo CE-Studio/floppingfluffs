@@ -11,13 +11,19 @@ static var pettin := false
 var pivot_speed: Vector2 = Vector2.ZERO
 var grab_distance_dynamic: float
 var grabbed_object: RigidBody3D = null
+static var monies:int = 0:
+	set(val):
+		monies = val
+		if is_instance_valid(instance):
+			instance.monlbl.text = "$" + str(val)
 
 
 @onready var pivot: SpringArm3D = get_parent()
 @onready var linedraw: Node2D = $Node2D
-@onready var grab:Button = $"../MarginContainer/PanelContainer/MarginContainer/HBoxContainer/grab"
-@onready var pet:Button = $"../MarginContainer/PanelContainer/MarginContainer/HBoxContainer/pet"
+@onready var grab:Button = $"../MarginContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/grab"
+@onready var pet:Button = $"../MarginContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/pet"
 @onready var hearts:GPUParticles2D = $GPUParticles2D
+@onready var monlbl:Label = $"../MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/HBoxContainer/Label"
 
 static var instance: PlayerCam
 
@@ -86,6 +92,10 @@ func try_grab() -> bool:
 
 	var result = space_state.intersect_ray(query)
 	if result and result.has("collider") and result["collider"] is RigidBody3D:
+		if result["collider"] is Gem:
+			result["collider"].queue_free()
+			monies += 1
+			return false
 		grabbed_object = result["collider"]
 		grab_distance_dynamic = (result["position"] - origin).length()
 		InfoHud.tracking = grabbed_object
