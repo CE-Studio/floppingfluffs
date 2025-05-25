@@ -1,0 +1,60 @@
+[gd_scene load_steps=10 format=3 uid="uid://diyvpcrf4m382"]
+
+[ext_resource type="Script" uid="uid://1db7ynd1b7n3" path="res://parts/soulshpere.gd" id="1_b14bx"]
+[ext_resource type="Texture2D" uid="uid://bbp6ly5qpgigl" path="res://textures/kerfine.png" id="2_fcmt3"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_1tr3p"]
+
+[sub_resource type="Gradient" id="Gradient_v1tn4"]
+colors = PackedColorArray(0, 1, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_p1wn4"]
+gradient = SubResource("Gradient_v1tn4")
+fill_to = Vector2(0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l07u7"]
+transparency = 1
+albedo_color = Color(1, 0.360784, 1, 0.407843)
+albedo_texture = SubResource("GradientTexture2D_p1wn4")
+metallic = 0.8
+metallic_specular = 0.41
+roughness = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b14bx"]
+albedo_color = Color(0.27451, 1, 1, 1)
+metallic = 1.0
+roughness = 0.36
+
+[sub_resource type="SphereMesh" id="SphereMesh_fcmt3"]
+flip_faces = true
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_bvfif"]
+
+[node name="soulsp" type="RigidBody3D" groups=["toys"]]
+script = ExtResource("1_b14bx")
+tname = "Soul Sphere"
+tdesc = "This magical capsule has captured a kerfine!
+Drop into the summoning cauldron to give the
+spirit a body and create a kerfzel!"
+metadata/_custom_type_script = "uid://dai5dki4hcmoi"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+layers = 5
+mesh = SubResource("SphereMesh_1tr3p")
+surface_material_override/0 = SubResource("StandardMaterial3D_l07u7")
+
+[node name="Sprite3D" type="Sprite3D" parent="MeshInstance3D"]
+layers = 5
+transparency = 0.76
+pixel_size = 0.0025
+billboard = 1
+render_priority = 1
+texture = ExtResource("2_fcmt3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D"]
+layers = 5
+material_override = SubResource("StandardMaterial3D_b14bx")
+mesh = SubResource("SphereMesh_fcmt3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_bvfif")

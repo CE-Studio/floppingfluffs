@@ -1,0 +1,6 @@
+[gd_resource type="World3D" load_steps=2 format=3 uid="uid://c6twxr8sgmaty"]
+
+[ext_resource type="Environment" uid="uid://cu513xdqydqtb" path="res://enviro.tres" id="1_j5tpf"]
+
+[resource]
+environment = ExtResource("1_j5tpf")

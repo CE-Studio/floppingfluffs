@@ -40,6 +40,7 @@ layout_mode = 2
 texture = SubResource("ViewportTexture_5k7ct")
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="Label" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer2"]
@@ -67,6 +68,7 @@ layout_mode = 2
 text = "aaaaaaaaa"
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 
@@ -80,8 +82,7 @@ theme_override_constants/margin_left = 20
 
 [node name="HSlider" type="HSlider" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer3/MarginContainer"]
 layout_mode = 2
-max_value = 10000.0
-exp_edit = true
+step = 0.0
 
 [node name="MarginContainer2" type="MarginContainer" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer3"]
 layout_mode = 2

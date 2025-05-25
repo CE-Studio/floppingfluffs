@@ -162,10 +162,10 @@ func _recur_mat(n:Node) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if happi > 20:
-		happi -= 20
+	if happi > 10:
+		happi -= 10
 		var a = GEM.instantiate()
-		$"../../toys".add_child(a)
+		ToyLayer.instance.add_child(a)
 		a.global_position = global_position + Vector3(0, 10, 0)
 	if position.y < -10:
 		newpos = Vector3(0, 10, 0)
@@ -237,7 +237,7 @@ func _on_timer_2_timeout() -> void:
 		state = randi_range(0, State.size() - 1)
 		#state = State.WALKIN2OTHER
 		var ch = $"..".get_children()
-		ch.append_array($"../../toys".get_children())
+		ch.append_array(ToyLayer.instance.get_children())
 		targobj = ch.pick_random()
 		if state == State.SHMOOVIN:
 			$Timer2.start(randf_range(0.5, 10))

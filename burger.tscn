@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://dcy1cmbm5kxbw"]
+[gd_scene load_steps=18 format=4 uid="uid://77ksf384fi03"]
 
 [ext_resource type="Script" uid="uid://dai5dki4hcmoi" path="res://collision.gd" id="1_eu31t"]
 [ext_resource type="Material" uid="uid://bb43ngplsfis2" path="res://addons/flexible_toon_shader/FlexibleToonMaterial.tres" id="2_jvufg"]
@@ -190,6 +190,9 @@ shader_parameter/border_width = 0.01
 [node name="RigidBody3D" type="RigidBody3D"]
 collision_layer = 3
 script = ExtResource("1_eu31t")
+tname = "Burger"
+tdesc = "Probably not something a kerfzel should be eating.
+...Also why is it shiny?"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_1l10p")
@@ -198,24 +201,28 @@ shape = SubResource("SphereShape3D_1l10p")
 transform = Transform3D(0.632, 0, 0, 0, 0.632, 0, 0, 0, 0.632, 0, -0.091111, 0)
 
 [node name="Cube" type="MeshInstance3D" parent="kerfger2"]
+layers = 5
 mesh = SubResource("ArrayMesh_0l67y")
 skeleton = NodePath("")
 surface_material_override/0 = ExtResource("2_jvufg")
 
 [node name="Cube_001" type="MeshInstance3D" parent="kerfger2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.130496, 0)
+layers = 5
 mesh = SubResource("ArrayMesh_d72a0")
 skeleton = NodePath("")
 surface_material_override/0 = ExtResource("2_jvufg")
 
 [node name="Cube_002" type="MeshInstance3D" parent="kerfger2"]
 transform = Transform3D(1.15257, 0, 0, 0, 0.265826, 0, 0, 0, 1.15257, 0, -0.0915321, 0)
+layers = 5
 mesh = SubResource("ArrayMesh_4h21t")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_eu31t")
 
 [node name="Plane" type="MeshInstance3D" parent="kerfger2"]
 transform = Transform3D(1.06218, 0, 0, 0, 0.706763, 0, 0, 0, 1.06218, 0, 0.404425, 0)
+layers = 5
 mesh = SubResource("ArrayMesh_qec16")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_jvufg")

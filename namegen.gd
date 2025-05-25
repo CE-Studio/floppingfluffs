@@ -14,7 +14,8 @@ const NAMES:Array[String] = [
 	"Stronch", "a", "Josh", "Biggs", "Emma", "Gobbles", "Ant", "Webble", "spelliePOP™",
 	"Alexi", "Cheese", "Beans", "Melon", "Perchance", "Dash", "An Odd Fellow", "Eck",
 	"Bweh", "Bay", "Will", "Doll", "Leg", "Bep", "Pen", "Pin", "Book", "Solder", "Zapp",
-	"Xcited", "Yellow", "Umlaut", "Xorg", "Zak", "Woof", "Midi", "Lad", "Folder"
+	"Xcited", "Yellow", "Umlaut", "Xorg", "Zak", "Woof", "Midi", "Lad", "Folder",
+	"Boyrap Premium",
 ]
 
 
