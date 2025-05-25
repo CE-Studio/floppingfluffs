@@ -1,24 +1,16 @@
-[gd_scene load_steps=10 format=3 uid="uid://qccycilr1oi5"]
+[gd_scene load_steps=5 format=3 uid="uid://qccycilr1oi5"]
 
-[ext_resource type="Shader" uid="uid://cya0dl4lcj8x7" path="res://parts/gem.gdshader" id="1_hrlxe"]
 [ext_resource type="Script" uid="uid://ba2334k1nlvb0" path="res://parts/gem.gd" id="1_m343h"]
 [ext_resource type="ArrayMesh" uid="uid://dicv7sydew4hc" path="res://models/gem.obj" id="1_uvpct"]
 
-[sub_resource type="Gradient" id="Gradient_hrlxe"]
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_m343h"]
-gradient = SubResource("Gradient_hrlxe")
-
-[sub_resource type="Gradient" id="Gradient_2pm0u"]
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_owhgm"]
-gradient = SubResource("Gradient_2pm0u")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_m343h"]
-render_priority = 0
-shader = ExtResource("1_hrlxe")
-shader_parameter/colorGradient1 = SubResource("GradientTexture1D_m343h")
-shader_parameter/colorGradient2 = SubResource("GradientTexture1D_owhgm")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hrlxe"]
+albedo_color = Color(0, 1, 0.407843, 1)
+metallic = 0.66
+metallic_specular = 0.23
+roughness = 0.0
+emission_enabled = true
+emission = Color(0, 1, 0.407843, 1)
+emission_energy_multiplier = 0.12
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_uvpct"]
 points = PackedVector3Array(-7.67112e-05, 0.18349, -0.737449, -0.699469, 0.123587, -0.310181, -7.67112e-05, 0.566477, -0.50337, 0.503679, 0.565004, -0.275689, 0.844909, 0.225717, -0.253296, -7.67112e-05, -0.626674, 0.00303674, -0.375777, 0.228908, 0.683438, -0.257851, 0.569914, 0.552003, -0.345086, 0.627362, -0.129789, 0.38923, 0.566477, 0.401931, 0.594996, 0.137704, 0.651866)
@@ -31,7 +23,7 @@ metadata/_custom_type_script = "uid://dai5dki4hcmoi"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 layers = 5
-material_override = SubResource("ShaderMaterial_m343h")
+material_override = SubResource("StandardMaterial3D_hrlxe")
 mesh = ExtResource("1_uvpct")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

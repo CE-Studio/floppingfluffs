@@ -82,6 +82,7 @@ theme_override_constants/margin_left = 20
 
 [node name="HSlider" type="HSlider" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer3/MarginContainer"]
 layout_mode = 2
+max_value = 10.0
 step = 0.0
 
 [node name="MarginContainer2" type="MarginContainer" parent="PanelContainer/MarginContainer/HBoxContainer/VBoxContainer3"]

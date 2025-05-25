@@ -14,7 +14,7 @@ var placed: bool = false
 @export var rot_dir: Vector3
 func set_speed(speed: float):
 	print("im changin the speed")
-	rigid_body_3d.constant_torque = rot_dir * speed * 100
+	rigid_body_3d.constant_torque = rot_dir * speed * 10
 	rigid_body_3d.angular_damp = 30
 	await get_tree().create_timer(.3)
 	rigid_body_3d.angular_damp = 0
