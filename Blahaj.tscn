@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://c286v4cpocfpy"]
+
+[ext_resource type="Script" uid="uid://dai5dki4hcmoi" path="res://collision.gd" id="1_0sq4u"]
+[ext_resource type="PackedScene" uid="uid://drj0p23wss1a6" path="res://blahajs.blend" id="2_26niv"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0sq4u"]
+height = 2.87
+
+[node name="RigidBody3D" type="RigidBody3D"]
+collision_layer = 3
+script = ExtResource("1_0sq4u")
+tname = "Legally Destinct Shark"
+tdesc = "Kerf says Trans Rights! But is also in support of their wrongs >:3"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.0871558, -0.996195, 0, 0.996195, -0.0871558, 0, 0.101651, -0.261138)
+shape = SubResource("CapsuleShape3D_0sq4u")
+disabled = true
+
+[node name="blahajs" parent="." instance=ExtResource("2_26niv")]
+transform = Transform3D(1.978, 0, 0, 0, 1.978, 0, 0, 0, 1.978, 0, 0, 0)
