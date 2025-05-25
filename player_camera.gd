@@ -1,6 +1,11 @@
 extends Camera3D
 class_name PlayerCam
 
+const HAND_CLOSED = preload("res://hand_closed.svg")
+const HAND_OPEN = preload("res://hand_open.svg")
+const HAND_POINT = preload("res://hand_point.svg")
+
+
 @export var mouse_sensitivity: Vector2 = Vector2(0.002, 0.001)
 @export var pivot_damp: float = 6
 @export var grab_distance: float = 100.0
@@ -56,6 +61,7 @@ func _physics_process(delta: float) -> void:
 			grabbed_object = null
 
 	if grabbed_object:
+		Input.set_custom_mouse_cursor(HAND_CLOSED)
 		var ray = get_ray()
 		var origin = ray["origin"]
 		var direction = ray["direction"]
@@ -71,13 +77,14 @@ func _physics_process(delta: float) -> void:
 		var to_target = target_pos - grabbed_object.global_position
 		var force = to_target.normalized() * (spring_strength * to_target.length()) - grabbed_object.linear_velocity * damping
 		grabbed_object.apply_central_force(force)
-
+	else:
+		Input.set_custom_mouse_cursor(HAND_POINT)
 func _input(event: InputEvent) -> void:
-
+		
 	if event is InputEventMouseMotion and Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
 		pivot_speed.y += -event.relative.x * mouse_sensitivity.x
 		pivot_speed.x += -event.relative.y * mouse_sensitivity.y
-
+	
 func try_grab() -> bool:
 	if pettin:
 		return false
