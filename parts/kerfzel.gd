@@ -123,10 +123,9 @@ func set_save(dat:Dictionary) -> void:
 
 func _ready() -> void:
 	$AudioStreamPlayer3D.pitch_scale = 1.2
-	mat = StandardMaterial3D.new()
-	mat.roughness = 1
 	_recur_mat(self)
-	kname = NameGen.gen()
+	if kname == "Name meeeee!":
+		kname = NameGen.gen()
 	if rando:
 		size = randf_range(0.8, 2.0)
 		mat.albedo_color = Color(randf_range(0, 1), randf_range(0, 1), randf_range(0, 1))

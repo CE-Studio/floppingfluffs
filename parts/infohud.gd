@@ -59,6 +59,8 @@ func  _physics_process(delta: float) -> void:
 			toything.hide()
 	else:
 		statlist.hide()
+		toything.hide()
+		spinnerspeed.hide()
 
 
 func set_dec_speed(value: float):

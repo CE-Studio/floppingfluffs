@@ -1,12 +1,14 @@
-[gd_scene load_steps=15 format=4 uid="uid://cby4bemgbl7fu"]
+[gd_scene load_steps=17 format=4 uid="uid://cby4bemgbl7fu"]
 
 [ext_resource type="Shader" path="res://parts/field.gdshader" id="1_let24"]
 [ext_resource type="ArrayMesh" uid="uid://bpr67efy6kuvg" path="res://grassblade.obj" id="1_mxcdc"]
 [ext_resource type="Environment" uid="uid://cu513xdqydqtb" path="res://enviro.tres" id="1_pqw6g"]
-[ext_resource type="PackedScene" uid="uid://y7pjq5topdi8" path="res://parts/kerf.tscn" id="3_0cqtn"]
 [ext_resource type="PackedScene" uid="uid://db3jswprqpd1k" path="res://player_camera.tscn" id="4_iyrfa"]
+[ext_resource type="Script" uid="uid://cs4dnt5283av3" path="res://parts/kerflayer.gd" id="5_i8eao"]
 [ext_resource type="Script" uid="uid://tih0bm2uoj02" path="res://parts/toylayer.gd" id="6_orqye"]
 [ext_resource type="PackedScene" uid="uid://diyvpcrf4m382" path="res://parts/soulshpere.tscn" id="7_3cspu"]
+[ext_resource type="PackedScene" uid="uid://bfp82ly857nxj" path="res://parts/caul.tscn" id="8_orqye"]
+[ext_resource type="PackedScene" uid="uid://dtnwhcfyhaigp" path="res://parts/wackysoulshpere.tscn" id="9_i8eao"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0cqtn"]
 render_priority = 0
@@ -97,36 +99,7 @@ mesh = ExtResource("1_mxcdc")
 [node name="SpringArm3D" parent="." instance=ExtResource("4_iyrfa")]
 
 [node name="kerfs" type="Node3D" parent="."]
-
-[node name="Kerf" parent="kerfs" instance=ExtResource("3_0cqtn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.41023, 1.34883, -0.338776)
-
-[node name="Kerf2" parent="kerfs" instance=ExtResource("3_0cqtn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.41023, 1.34883, -0.338776)
-
-[node name="Kerf3" parent="kerfs" instance=ExtResource("3_0cqtn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.41023, 1.34883, -0.338776)
-
-[node name="Kerf4" parent="kerfs" instance=ExtResource("3_0cqtn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.41023, 1.34883, -0.338776)
-
-[node name="Kerf5" parent="kerfs" instance=ExtResource("3_0cqtn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.41023, 1.34883, -0.338776)
-
-[node name="Kerf6" parent="kerfs" instance=ExtResource("3_0cqtn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.41023, 1.34883, -0.338776)
-
-[node name="Kerf7" parent="kerfs" instance=ExtResource("3_0cqtn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.41023, 1.34883, -0.338776)
-
-[node name="Kerf8" parent="kerfs" instance=ExtResource("3_0cqtn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.41023, 1.34883, -0.338776)
-
-[node name="Kerf9" parent="kerfs" instance=ExtResource("3_0cqtn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.41023, 1.34883, -0.338776)
-
-[node name="Kerf10" parent="kerfs" instance=ExtResource("3_0cqtn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.41023, 1.34883, -0.338776)
+script = ExtResource("5_i8eao")
 
 [node name="toys" type="Node3D" parent="."]
 script = ExtResource("6_orqye")
@@ -139,3 +112,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.63992, 1.19209e-07, -3.7793
 
 [node name="soulsp2" parent="toys" instance=ExtResource("7_3cspu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.80669, 0, -4.57372)
+
+[node name="Caul" parent="toys" instance=ExtResource("8_orqye")]
+transform = Transform3D(0.998989, 0.0446473, 0.00521261, -0.0448431, 0.997891, 0.0469224, -0.00310666, -0.0471087, 0.998885, -8.87411, 1.42557, 8.33231)
+
+[node name="soulsp3" parent="toys" instance=ExtResource("9_i8eao")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.88249, 0, -2.72628)
