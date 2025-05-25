@@ -132,7 +132,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.41023, 1.34883, -0.338776)
 
 [node name="Node3D" parent="toys" instance=ExtResource("6_bmttb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.518885, 0)
-rot_dir = Vector3(0, 0, 0)
 
 [node name="RigidBody3D" parent="toys" instance=ExtResource("7_3cspu")]
 

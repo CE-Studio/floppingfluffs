@@ -44,9 +44,6 @@ transform = Transform3D(1, 6.71603e-14, 1.1044e-13, -1.34136e-13, 0.347315, 0.93
 [node name="kerfpelvis" parent="." instance=ExtResource("3_yvu7o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0131068, 0.0538832)
 
-[node name="BoneAttachment3D" parent="kerfpelvis/Armature_003/Skeleton3D" index="2"]
-transform = Transform3D(1, -4.12393e-18, 4.44051e-16, 4.44051e-16, 0.0185725, -0.999827, -4.12393e-18, 0.999827, 0.0185725, 0, 0.00162143, 0)
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.00291263, -0.0972004)
 shape = SubResource("CapsuleShape3D_gf8oa")
