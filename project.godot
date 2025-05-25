@@ -21,6 +21,10 @@ config/icon="res://textures/icon.svg"
 DebugMenu="*res://ui/debug_menu.tscn"
 InfoHud="*res://parts/infohud.tscn"
 
+[display]
+
+mouse_cursor/custom_image="uid://dble18dsx8k6g"
+
 [editor]
 
 movie_writer/movie_file="/home/clarence112/Documents/gdrenders/floppy/fluffs.avi"
