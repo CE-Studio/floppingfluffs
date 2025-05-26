@@ -99,7 +99,8 @@ shape = SubResource("ConcavePolygonShape3D_let24")
 visible = false
 mesh = ExtResource("1_mxcdc")
 
-[node name="SpringArm3D" parent="." instance=ExtResource("4_iyrfa")]
+[node name="cam" parent="." instance=ExtResource("4_iyrfa")]
+transform = Transform3D(-0.804687, 0.486331, -0.340532, 0, 0.573577, 0.819152, 0.5937, 0.659161, -0.461549, 0, 0, 0)
 
 [node name="kerfs" type="Node3D" parent="."]
 script = ExtResource("5_i8eao")

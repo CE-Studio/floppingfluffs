@@ -500,7 +500,7 @@ metadata/_custom_type_script = "uid://cshbsat8vvqf7"
 [node name="SpringArm3D" type="SpringArm3D"]
 transform = Transform3D(1, 0, 0, 0, 0.972031, 0.234854, 0, -0.234854, 0.972031, 0, 0, 0)
 collision_mask = 32
-spring_length = 10.0
+spring_length = 2.0
 
 [node name="PlayerCamera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, -1.49012e-08, 0, 1.49012e-08, 1, 0, 0, 0)

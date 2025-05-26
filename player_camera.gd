@@ -23,6 +23,7 @@ static var monies:int = 3:
 		if is_instance_valid(instance):
 			instance.monlbl.text = "$" + str(val)
 var movement := Vector2.ZERO
+var spring_length := 2.0
 
 @onready var pivot: SpringArm3D = get_parent()
 @onready var linedraw: Node2D = $Node2D
@@ -44,9 +45,12 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	hearts.position = get_viewport().get_mouse_position()
 	if Input.is_action_just_released("zoom_in"):
-		pivot.spring_length = clamp(pivot.spring_length - 0.5, 2.0, 20.0)
+		spring_length = clamp(spring_length - 0.5, 2.0, 20.0)
 	elif Input.is_action_just_released("zoom_out"):
-		pivot.spring_length = clamp(pivot.spring_length + 0.5, 2.0, 20.0)
+		spring_length = clamp(spring_length + 0.5, 2.0, 20.0)
+	var minn := minf(pivot.spring_length, spring_length)
+	var maxx := maxf(pivot.spring_length, spring_length)
+	pivot.spring_length = clamp(lerpf(pivot.spring_length, spring_length, delta * 8.0), minn, maxx)
 	pivot_speed.y = lerpf(pivot_speed.y, 0, pivot_damp * delta)
 	pivot_speed.x = lerpf(pivot_speed.x, 0, pivot_damp * delta)
 	pivot.rotation.y += pivot_speed.y
