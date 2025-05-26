@@ -45,6 +45,7 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	$GPUParticles2D/Sprite2D.modulate.a = move_toward($GPUParticles2D/Sprite2D.modulate.a, 0, delta * 0.5)
 	hearts.position = get_viewport().get_mouse_position()
 	if not in_menu:
 		if Input.is_action_just_released("zoom_in"):
@@ -132,6 +133,8 @@ func try_grab() -> bool:
 
 		if grabbed_object is Kerfzel:
 			grabbed_object._on_timer_timeout()
+		
+		$GPUParticles2D/Sprite2D.modulate.a = 1
 
 		return true
 	return false
