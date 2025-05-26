@@ -94,6 +94,7 @@ collision_layer = 5
 shape = SubResource("ConcavePolygonShape3D_let24")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
 mesh = ExtResource("1_mxcdc")
 
 [node name="SpringArm3D" parent="." instance=ExtResource("4_iyrfa")]

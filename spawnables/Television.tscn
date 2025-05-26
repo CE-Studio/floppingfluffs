@@ -832,35 +832,42 @@ disabled = true
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, -0.693846)
 
 [node name="Cube" type="MeshInstance3D" parent="KerfTV"]
+layers = 5
 mesh = SubResource("ArrayMesh_5x58f")
 skeleton = NodePath("")
 surface_material_override/1 = SubResource("StandardMaterial3D_ertb7")
 
 [node name="Cylinder" type="MeshInstance3D" parent="KerfTV"]
 transform = Transform3D(0.945822, 0, -0.457048, -0.457048, 0, -0.945822, 0, 1.05046, 0, 2.46631, 1.74346, 3.25133)
+layers = 5
 mesh = SubResource("ArrayMesh_elpul")
 skeleton = NodePath("")
 
 [node name="Cylinder_001" type="MeshInstance3D" parent="KerfTV"]
 transform = Transform3D(0.804864, -8.14248e-08, 0.675031, 0.675032, 1.45803e-07, -0.804864, -3.13062e-08, 1.05046, 1.64038e-07, 2.46631, 0.606608, 3.25133)
+layers = 5
 mesh = SubResource("ArrayMesh_11b5j")
 skeleton = NodePath("")
 
 [node name="Cylinder_002" type="MeshInstance3D" parent="KerfTV"]
+layers = 5
 mesh = SubResource("ArrayMesh_6kmm3")
 skeleton = NodePath("")
 
 [node name="Cylinder_003" type="MeshInstance3D" parent="KerfTV"]
+layers = 5
 mesh = SubResource("ArrayMesh_knecm")
 skeleton = NodePath("")
 
 [node name="Plane" type="MeshInstance3D" parent="KerfTV"]
 transform = Transform3D(0.766427, -1.13138, 0, 0.642332, 1.34996, 0, 0, 0, 1, -1.54146, 3.59991, 2.07161)
+layers = 5
 mesh = SubResource("ArrayMesh_ejff2")
 skeleton = NodePath("")
 
 [node name="Plane_001" type="MeshInstance3D" parent="KerfTV"]
 transform = Transform3D(0.774697, 1.11377, 0, -0.632332, 1.36452, 0, 0, 0, 1, 0.635639, 3.5744, 2.07161)
+layers = 5
 mesh = SubResource("ArrayMesh_yu32q")
 skeleton = NodePath("")
 
@@ -875,4 +882,4 @@ visibility_layer = 5
 position = Vector2(212, 248)
 rotation = 1.5708
 sprite_frames = SubResource("SpriteFrames_cbixi")
-frame_progress = 0.761722
+frame_progress = 0.100077
