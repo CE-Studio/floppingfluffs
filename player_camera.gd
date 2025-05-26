@@ -4,6 +4,7 @@ class_name PlayerCam
 const HAND_CLOSED = preload("res://hand_closed.svg")
 const HAND_OPEN = preload("res://hand_open.svg")
 const HAND_POINT = preload("res://hand_point.svg")
+const HAND_SPIN = preload("res://ui/rotate_ccw.svg")
 const HAND_OFFSET = Vector2(8, 6)
 
 
@@ -90,6 +91,8 @@ func _physics_process(delta: float) -> void:
 			Input.set_custom_mouse_cursor(HAND_OPEN, 0, HAND_OFFSET)
 		else:
 			Input.set_custom_mouse_cursor(HAND_POINT, 0, HAND_OFFSET)
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
+		Input.set_custom_mouse_cursor(HAND_SPIN, 0, HAND_OFFSET)
 
 
 func _input(event: InputEvent) -> void:
@@ -185,4 +188,7 @@ func movearound(delta:float) -> void:
 
 func _on_timer_timeout() -> void:
 	if is_instance_valid(grabbed_object):
+		$GPUParticles2D/Sprite2D.show()
 		$AudioStreamPlayer.play()
+	else:
+		$GPUParticles2D/Sprite2D.hide()
