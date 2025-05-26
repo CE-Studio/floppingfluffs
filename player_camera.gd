@@ -181,3 +181,8 @@ func movearound(delta:float) -> void:
 	d -= 20.0
 	if d > 0:
 		pivot.global_position = pivot.global_position.move_toward(Vector3.ZERO, d)
+
+
+func _on_timer_timeout() -> void:
+	if is_instance_valid(grabbed_object):
+		$AudioStreamPlayer.play()

@@ -1,3 +1,8 @@
-[gd_resource type="AudioStreamRandomizer" format=3 uid="uid://dly2xtwiopxt1"]
+[gd_resource type="AudioStreamRandomizer" load_steps=2 format=3 uid="uid://dly2xtwiopxt1"]
+
+[ext_resource type="AudioStream" uid="uid://bca47ht0rlmel" path="res://sound/GRAB.ogg" id="1_f1xka"]
 
 [resource]
+random_pitch = 2.04
+streams_count = 1
+stream_0/stream = ExtResource("1_f1xka")

@@ -1,10 +1,11 @@
-[gd_scene load_steps=55 format=4 uid="uid://db3jswprqpd1k"]
+[gd_scene load_steps=56 format=4 uid="uid://db3jswprqpd1k"]
 
 [ext_resource type="Script" uid="uid://bpne6m8huvrr1" path="res://player_camera.gd" id="1_agiyq"]
 [ext_resource type="Script" uid="uid://cteo1um7bghwy" path="res://linedraw.gd" id="2_1l5io"]
 [ext_resource type="Texture2D" uid="uid://dswrhwiv25jhu" path="res://textures/heart.png" id="3_273u0"]
 [ext_resource type="Script" uid="uid://iqbnh1at37yk" path="res://addons/scene_texture/SceneTexture.gd" id="4_002bh"]
 [ext_resource type="PackedScene" uid="uid://77ksf384fi03" path="res://spawnables/burger.tscn" id="4_08crb"]
+[ext_resource type="AudioStream" uid="uid://dly2xtwiopxt1" path="res://sound/grabrandom.tres" id="4_u4h8j"]
 [ext_resource type="Script" uid="uid://m8wpbii442n3" path="res://shop.gd" id="4_wpqy0"]
 [ext_resource type="Script" uid="uid://cshbsat8vvqf7" path="res://shopitem.gd" id="5_r335p"]
 [ext_resource type="World3D" uid="uid://c6twxr8sgmaty" path="res://worl.tres" id="6_b8g8k"]
@@ -517,6 +518,16 @@ lifetime = 2.0
 one_shot = true
 process_material = SubResource("ParticleProcessMaterial_wpqy0")
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="PlayerCamera"]
+stream = ExtResource("4_u4h8j")
+volume_db = -18.909
+max_polyphony = 20
+bus = &"Sfx"
+
+[node name="Timer" type="Timer" parent="PlayerCamera"]
+wait_time = 0.05
+autostart = true
+
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 12
 anchor_top = 1.0
@@ -598,5 +609,6 @@ layout_mode = 2
 script = ExtResource("4_wpqy0")
 items = Array[ExtResource("5_r335p")]([SubResource("Resource_cm1u5"), SubResource("Resource_xfehw"), SubResource("Resource_37rmd"), SubResource("Resource_a86s1"), SubResource("Resource_ho4lo"), SubResource("Resource_81mni"), SubResource("Resource_qrrlm"), SubResource("Resource_k3fug"), SubResource("Resource_b8g8k"), SubResource("Resource_cx5sy"), SubResource("Resource_j7i7l")])
 
+[connection signal="timeout" from="PlayerCamera/Timer" to="PlayerCamera" method="_on_timer_timeout"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/grab" to="PlayerCamera" method="_on_grab_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/pet" to="PlayerCamera" method="_on_pet_pressed"]
