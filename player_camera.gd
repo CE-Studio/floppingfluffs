@@ -4,6 +4,7 @@ class_name PlayerCam
 const HAND_CLOSED = preload("res://hand_closed.svg")
 const HAND_OPEN = preload("res://hand_open.svg")
 const HAND_POINT = preload("res://hand_point.svg")
+const HAND_OFFSET = Vector2(8, 6)
 
 
 @export var mouse_sensitivity: Vector2 = Vector2(0.002, 0.001)
@@ -21,7 +22,7 @@ static var monies:int = 3:
 		monies = val
 		if is_instance_valid(instance):
 			instance.monlbl.text = "$" + str(val)
-
+var movement := Vector2.ZERO
 
 @onready var pivot: SpringArm3D = get_parent()
 @onready var linedraw: Node2D = $Node2D
@@ -30,12 +31,15 @@ static var monies:int = 3:
 @onready var hearts:GPUParticles2D = $GPUParticles2D
 @onready var monlbl:Label = $"../MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/HBoxContainer/Label"
 
+
 static var instance: PlayerCam
+
 
 func _ready() -> void:
 	instance = self
 	DebugMenu.Register("Speed", func(): return pivot_speed)
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+
 
 func _process(delta: float) -> void:
 	hearts.position = get_viewport().get_mouse_position()
@@ -43,11 +47,12 @@ func _process(delta: float) -> void:
 		pivot.spring_length = clamp(pivot.spring_length - 0.5, 2.0, 20.0)
 	elif Input.is_action_just_released("zoom_out"):
 		pivot.spring_length = clamp(pivot.spring_length + 0.5, 2.0, 20.0)
-
 	pivot_speed.y = lerpf(pivot_speed.y, 0, pivot_damp * delta)
 	pivot_speed.x = lerpf(pivot_speed.x, 0, pivot_damp * delta)
 	pivot.rotation.y += pivot_speed.y
 	pivot.rotation.x = clampf(pivot.rotation.x - pivot_speed.x, deg_to_rad(-55), deg_to_rad(-5))
+	movearound(delta)
+
 
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("grab"):
@@ -59,9 +64,8 @@ func _physics_process(delta: float) -> void:
 			if parent_decoration and parent_decoration is StaticDecoration:
 				parent_decoration.place()
 			grabbed_object = null
-
 	if grabbed_object:
-		Input.set_custom_mouse_cursor(HAND_CLOSED)
+		Input.set_custom_mouse_cursor(HAND_CLOSED, 0, HAND_OFFSET)
 		var ray = get_ray()
 		var origin = ray["origin"]
 		var direction = ray["direction"]
@@ -78,13 +82,18 @@ func _physics_process(delta: float) -> void:
 		var force = to_target.normalized() * (spring_strength * to_target.length()) - grabbed_object.linear_velocity * damping
 		grabbed_object.apply_central_force(force)
 	else:
-		Input.set_custom_mouse_cursor(HAND_POINT)
+		if pettin:
+			Input.set_custom_mouse_cursor(HAND_OPEN, 0, HAND_OFFSET)
+		else:
+			Input.set_custom_mouse_cursor(HAND_POINT, 0, HAND_OFFSET)
+
+
 func _input(event: InputEvent) -> void:
-		
 	if event is InputEventMouseMotion and Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
 		pivot_speed.y += -event.relative.x * mouse_sensitivity.x
 		pivot_speed.x += -event.relative.y * mouse_sensitivity.y
-	
+
+
 func try_grab() -> bool:
 	if pettin:
 		return false
@@ -130,6 +139,7 @@ func try_interact() -> void:
 		if parent_decoration and parent_decoration is StaticDecoration:
 			InfoHud.tracking = result["collider"]
 
+
 func get_ray() -> Dictionary[StringName, Vector3]:
 	var mouse_pos := get_viewport().get_mouse_position()
 	var origin := project_ray_origin(mouse_pos)
@@ -150,3 +160,21 @@ func _on_pet_pressed() -> void:
 	pettin = true
 	grab.set_pressed_no_signal(false)
 	pet.set_pressed_no_signal(true)
+
+
+func movearound(delta:float) -> void:
+	var dist := Input.get_axis("closer", "further")
+	dist *= delta
+	dist *= 6.0
+	grab_distance_dynamic += dist
+	var wasd := Input.get_vector("left", "right", "forward", "backward")
+	wasd = wasd.normalized() * 11.0
+	movement = movement.move_toward(wasd, delta * 20)
+	var acc := Vector3(movement.x, 0, movement.y)
+	acc = pivot.global_basis * acc
+	acc.y = 0
+	pivot.global_position += acc * delta
+	var d := pivot.global_position.length()
+	d -= 20.0
+	if d > 0:
+		pivot.global_position = pivot.global_position.move_toward(Vector3.ZERO, d)

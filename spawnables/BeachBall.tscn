@@ -5,7 +5,7 @@
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_dsjja"]
 friction = 0.2
-bounce = 1.0
+bounce = 0.87
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_5xbj5"]
 radius = 1.0
@@ -21,6 +21,10 @@ tdesc = "Are there even beaches on this field? "
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_5xbj5")
-disabled = true
 
 [node name="beachball" parent="." instance=ExtResource("2_inv8f")]
+
+[node name="Sphere" parent="beachball" index="0"]
+layers = 5
+
+[editable path="beachball"]

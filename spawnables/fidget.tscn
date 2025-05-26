@@ -75,6 +75,7 @@ disabled = true
 transform = Transform3D(0.373, 0, 0, 0, 0.373, 0, 0, 0, 0.373, 0, 0, 0)
 
 [node name="Cube" type="MeshInstance3D" parent="fidget"]
+layers = 5
 mesh = SubResource("ArrayMesh_abfpo")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_6381e")

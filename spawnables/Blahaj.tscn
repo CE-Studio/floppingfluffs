@@ -19,3 +19,8 @@ disabled = true
 
 [node name="blahajs" parent="." instance=ExtResource("2_26niv")]
 transform = Transform3D(1.978, 0, 0, 0, 1.978, 0, 0, 0, 1.978, 0, 0, 0)
+
+[node name="Cube" parent="blahajs" index="0"]
+layers = 5
+
+[editable path="blahajs"]
