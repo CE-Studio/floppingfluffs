@@ -6,6 +6,9 @@ extends RigidBody3D
 @export_multiline var tdesc := "What... What is this???"
 
 
+@onready var bonk:AudioStreamPlayer3D = AudioStreamPlayer3D.new()
+
+
 var newpos:
 	set(val):
 		if val is Vector3:
@@ -16,6 +19,16 @@ var newpos:
 
 func _ready() -> void:
 	add_to_group("toys")
+	add_child(bonk)
+	bonk.stream = preload("res://sound/impactrandom.tres")
+	bonk.bus = &"Sfx"
+	contact_monitor = true
+	max_contacts_reported = 1
+	body_entered.connect(bonksound)
+
+
+func bonksound(_b:Node) -> void:
+	bonk.play()
 
 
 func _integrate_forces(state:PhysicsDirectBodyState3D) -> void:
