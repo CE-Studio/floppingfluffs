@@ -2,8 +2,8 @@
 
 [sub_resource type="Gradient" id="Gradient_bsmsy"]
 interpolation_mode = 1
-offsets = PackedFloat32Array(0, 0.450704, 0.704225)
-colors = PackedColorArray(0, 0, 0, 1, 0.169245, 0.169245, 0.169245, 1, 1, 1, 1, 1)
+offsets = PackedFloat32Array(0, 0.671053)
+colors = PackedColorArray(0.00348687, 0.110148, 0.119392, 1, 1, 1, 1, 1)
 
 [resource]
 gradient = SubResource("Gradient_bsmsy")

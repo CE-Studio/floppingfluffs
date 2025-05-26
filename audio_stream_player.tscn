@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://do74nn36msid5"]
+
+[ext_resource type="AudioStream" uid="uid://dkm5154u1hn3v" path="res://sound/Kerf Blues.wav" id="1_g84o6"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer"]
+stream = ExtResource("1_g84o6")
