@@ -6,9 +6,10 @@
 
 [sub_resource type="BoxMesh" id="BoxMesh_mvxmr"]
 
-[node name="RigidBody3D" type="RigidBody3D" groups=["toys"]]
+[node name="cube" type="RigidBody3D" groups=["toys"]]
 collision_layer = 3
 script = ExtResource("1_mvxmr")
+is_cube = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_n1c64")

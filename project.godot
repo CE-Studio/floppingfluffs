@@ -18,12 +18,17 @@ config/icon="res://textures/icon.svg"
 
 [autoload]
 
+Winner="*res://winner.tscn"
 DebugMenu="*res://ui/debug_menu.tscn"
 InfoHud="*res://parts/infohud.tscn"
 
 [display]
 
 mouse_cursor/custom_image="uid://dble18dsx8k6g"
+
+[dotnet]
+
+project/assembly_name="Flopping Fluffs"
 
 [editor]
 
