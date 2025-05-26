@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=4 uid="uid://db3jswprqpd1k"]
+[gd_scene load_steps=60 format=4 uid="uid://db3jswprqpd1k"]
 
 [ext_resource type="Script" uid="uid://bpne6m8huvrr1" path="res://player_camera.gd" id="1_agiyq"]
 [ext_resource type="Script" uid="uid://cteo1um7bghwy" path="res://linedraw.gd" id="2_1l5io"]
@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://dtnwhcfyhaigp" path="res://spawnables/wackysoulshpere.tscn" id="12_a86s1"]
 [ext_resource type="PackedScene" uid="uid://cjsjgqb47lw2u" path="res://spawnables/fidget.tscn" id="12_ofoi1"]
 [ext_resource type="PackedScene" uid="uid://gpt5lihynnd3" path="res://spawnables/Television.tscn" id="14_u4h8j"]
+[ext_resource type="Texture2D" uid="uid://bgi0mawy7xjpv" path="res://textures/logo.png" id="23_37rmd"]
 
 [sub_resource type="Curve" id="Curve_002bh"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -595,6 +596,7 @@ wait_time = 0.05
 autostart = true
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
+visible = false
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
@@ -675,6 +677,86 @@ layout_mode = 2
 script = ExtResource("4_wpqy0")
 items = Array[ExtResource("5_r335p")]([SubResource("Resource_cm1u5"), SubResource("Resource_xfehw"), SubResource("Resource_37rmd"), SubResource("Resource_a86s1"), SubResource("Resource_ho4lo"), SubResource("Resource_81mni"), SubResource("Resource_qrrlm"), SubResource("Resource_k3fug"), SubResource("Resource_b8g8k"), SubResource("Resource_cx5sy"), SubResource("Resource_j7i7l")])
 
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("23_37rmd")
+
+[node name="playButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"titlebutton"
+text = "Play!!!"
+
+[node name="Control" type="Control" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Master Volume"
+
+[node name="mastvol" type="HSlider" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.0
+value = 1.0
+
+[node name="Label3" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Music Volume"
+
+[node name="musvol" type="HSlider" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.0
+value = 1.0
+
+[node name="Label4" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "SFX Volume"
+
+[node name="sfxvol" type="HSlider" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.0
+value = 1.0
+
+[node name="Control2" type="Control" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.525101, 0.525101, 0.525101, 1)
+theme_override_font_sizes/font_size = 10
+text = "AGPL v3 2025
+By CE-Studio and Lasagna Bones, with a few UI textures from Kenney.nl"
+
 [connection signal="timeout" from="PlayerCamera/Timer" to="PlayerCamera" method="_on_timer_timeout"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/grab" to="PlayerCamera" method="_on_grab_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/pet" to="PlayerCamera" method="_on_pet_pressed"]
+[connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/playButton" to="PlayerCamera" method="pause_unpause"]
+[connection signal="value_changed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/mastvol" to="PlayerCamera" method="_on_mastvol_value_changed"]
+[connection signal="value_changed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/musvol" to="PlayerCamera" method="_on_musvol_value_changed"]
+[connection signal="value_changed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/sfxvol" to="PlayerCamera" method="_on_sfxvol_value_changed"]

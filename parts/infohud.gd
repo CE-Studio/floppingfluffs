@@ -69,7 +69,8 @@ func set_dec_speed(value: float):
 	var parent_decoration := tracking.get_parent_node_3d()
 	if parent_decoration and parent_decoration is StaticDecoration:
 		parent_decoration.set_speed(value)
-		
+
+
 func pickup_dec():
 	var parent_decoration := tracking.get_parent_node_3d()
 	if parent_decoration and parent_decoration is StaticDecoration:

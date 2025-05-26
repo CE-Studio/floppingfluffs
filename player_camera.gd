@@ -25,6 +25,7 @@ static var monies:int = 3:
 			instance.monlbl.text = "$" + str(val)
 var movement := Vector2.ZERO
 var spring_length := 2.0
+var in_menu := true
 
 @onready var pivot: SpringArm3D = get_parent()
 @onready var linedraw: Node2D = $Node2D
@@ -45,10 +46,11 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	hearts.position = get_viewport().get_mouse_position()
-	if Input.is_action_just_released("zoom_in"):
-		spring_length = clamp(spring_length - 0.5, 2.0, 20.0)
-	elif Input.is_action_just_released("zoom_out"):
-		spring_length = clamp(spring_length + 0.5, 2.0, 20.0)
+	if not in_menu:
+		if Input.is_action_just_released("zoom_in"):
+			spring_length = clamp(spring_length - 0.5, 2.0, 20.0)
+		elif Input.is_action_just_released("zoom_out"):
+			spring_length = clamp(spring_length + 0.5, 2.0, 20.0)
 	var minn := minf(pivot.spring_length, spring_length)
 	var maxx := maxf(pivot.spring_length, spring_length)
 	pivot.spring_length = clamp(lerpf(pivot.spring_length, spring_length, delta * 8.0), minn, maxx)
@@ -60,6 +62,8 @@ func _process(delta: float) -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if in_menu:
+		return
 	if Input.is_action_just_pressed("grab"):
 		if not try_grab():
 			try_interact()
@@ -96,9 +100,12 @@ func _physics_process(delta: float) -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion and Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
-		pivot_speed.y += -event.relative.x * mouse_sensitivity.x
-		pivot_speed.x += -event.relative.y * mouse_sensitivity.y
+	if event.is_action_pressed("pause"):
+		pause_unpause()
+	if not in_menu:
+		if event is InputEventMouseMotion and Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
+			pivot_speed.y += -event.relative.x * mouse_sensitivity.x
+			pivot_speed.x += -event.relative.y * mouse_sensitivity.y
 
 
 func try_grab() -> bool:
@@ -169,6 +176,8 @@ func _on_pet_pressed() -> void:
 
 
 func movearound(delta:float) -> void:
+	if in_menu:
+		return
 	var dist := Input.get_axis("closer", "further")
 	dist *= delta
 	dist *= 6.0
@@ -192,3 +201,30 @@ func _on_timer_timeout() -> void:
 		$AudioStreamPlayer.play()
 	else:
 		$GPUParticles2D/Sprite2D.hide()
+
+
+func pause_unpause() -> void:
+	in_menu = !in_menu
+	Input.set_custom_mouse_cursor(HAND_POINT, 0, HAND_OFFSET)
+	if in_menu:
+		spring_length = 2.0
+		$"../MarginContainer".hide()
+		InfoHud.hide()
+		$"../CenterContainer".show()
+	else:
+		spring_length = 12.0
+		$"../MarginContainer".show()
+		InfoHud.show()
+		$"../CenterContainer".hide()
+
+
+func _on_mastvol_value_changed(value: float) -> void:
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), linear_to_db(value))
+
+
+func _on_musvol_value_changed(value: float) -> void:
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), linear_to_db(value))
+
+
+func _on_sfxvol_value_changed(value: float) -> void:
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Sfx"), linear_to_db(value))

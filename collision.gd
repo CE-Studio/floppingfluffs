@@ -28,7 +28,7 @@ func _ready() -> void:
 
 
 func bonksound(_b:Node) -> void:
-	if linear_velocity.length() > 10:
+	if linear_velocity.length() > 0.8:
 		bonk.play()
 
 
