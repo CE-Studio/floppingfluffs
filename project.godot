@@ -14,13 +14,13 @@ config/name="Floppin' Fluffs"
 run/main_scene="uid://cby4bemgbl7fu"
 config/features=PackedStringArray("4.4", "Forward Plus")
 run/max_fps=60
-config/icon="res://textures/icon.svg"
+config/icon="uid://doa24r1vk04qc"
 
 [autoload]
 
-Winner="*res://winner.tscn"
 DebugMenu="*res://ui/debug_menu.tscn"
 InfoHud="*res://parts/infohud.tscn"
+Winner="*res://winner.tscn"
 
 [display]
 
