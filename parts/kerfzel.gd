@@ -161,8 +161,8 @@ func _recur_mat(n:Node) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if happi > 10:
-		happi -= 10
+	if happi > 5:
+		happi -= 5
 		var a = GEM.instantiate()
 		ToyLayer.instance.add_child(a)
 		a.global_position = global_position + Vector3(0, 10, 0)
