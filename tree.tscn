@@ -81,7 +81,7 @@ shader_parameter/color_gradient = ExtResource("3_6vbnm")
 shader_parameter/fresnel_gradient = ExtResource("4_bcqui")
 shader_parameter/alpha_texture = ExtResource("2_ind6k")
 shader_parameter/alpha_threshold = 0.84
-shader_parameter/color = Color(0.262107, 0.498731, 2.88785e-07, 1)
+shader_parameter/color = Color(0.317647, 0.627451, 0.239216, 1)
 shader_parameter/offsetScale = 5.0001
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_44ud8"]
