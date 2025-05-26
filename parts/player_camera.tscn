@@ -1,13 +1,16 @@
-[gd_scene load_steps=56 format=4 uid="uid://db3jswprqpd1k"]
+[gd_scene load_steps=59 format=4 uid="uid://db3jswprqpd1k"]
 
 [ext_resource type="Script" uid="uid://bpne6m8huvrr1" path="res://player_camera.gd" id="1_agiyq"]
 [ext_resource type="Script" uid="uid://cteo1um7bghwy" path="res://linedraw.gd" id="2_1l5io"]
 [ext_resource type="Texture2D" uid="uid://dswrhwiv25jhu" path="res://textures/heart.png" id="3_273u0"]
 [ext_resource type="Script" uid="uid://iqbnh1at37yk" path="res://addons/scene_texture/SceneTexture.gd" id="4_002bh"]
 [ext_resource type="PackedScene" uid="uid://77ksf384fi03" path="res://spawnables/burger.tscn" id="4_08crb"]
+[ext_resource type="Texture2D" uid="uid://cxk2hc75ot6l0" path="res://ui/resize_c_diagonal.svg" id="4_odxcd"]
 [ext_resource type="AudioStream" uid="uid://dly2xtwiopxt1" path="res://sound/grabrandom.tres" id="4_u4h8j"]
 [ext_resource type="Script" uid="uid://m8wpbii442n3" path="res://shop.gd" id="4_wpqy0"]
+[ext_resource type="Texture2D" uid="uid://03lrvnkihj7k" path="res://ui/keyboard_e.svg" id="5_ho4lo"]
 [ext_resource type="Script" uid="uid://cshbsat8vvqf7" path="res://shopitem.gd" id="5_r335p"]
+[ext_resource type="Texture2D" uid="uid://bxqoux8vxau6v" path="res://ui/keyboard_q.svg" id="6_37rmd"]
 [ext_resource type="World3D" uid="uid://c6twxr8sgmaty" path="res://worl.tres" id="6_b8g8k"]
 [ext_resource type="PackedScene" uid="uid://8crx2lo78cwm" path="res://spawnables/BeachBall.tscn" id="7_3f0rb"]
 [ext_resource type="PackedScene" uid="uid://diyvpcrf4m382" path="res://spawnables/soulshpere.tscn" id="8_qrrlm"]
@@ -517,6 +520,69 @@ texture = ExtResource("3_273u0")
 lifetime = 2.0
 one_shot = true
 process_material = SubResource("ParticleProcessMaterial_wpqy0")
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayerCamera/GPUParticles2D"]
+position = Vector2(35, 35)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("4_odxcd")
+
+[node name="Sprite2D2" type="Sprite2D" parent="PlayerCamera/GPUParticles2D/Sprite2D"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(25, -26)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_ho4lo")
+
+[node name="Sprite2D3" type="Sprite2D" parent="PlayerCamera/GPUParticles2D/Sprite2D"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(29, -26)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_ho4lo")
+
+[node name="Sprite2D4" type="Sprite2D" parent="PlayerCamera/GPUParticles2D/Sprite2D"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(25, -30)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_ho4lo")
+
+[node name="Sprite2D5" type="Sprite2D" parent="PlayerCamera/GPUParticles2D/Sprite2D"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(29, -30)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_ho4lo")
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayerCamera/GPUParticles2D/Sprite2D"]
+position = Vector2(27, -28)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_ho4lo")
+
+[node name="Sprite2D6" type="Sprite2D" parent="PlayerCamera/GPUParticles2D/Sprite2D"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(-29, 29)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_37rmd")
+
+[node name="Sprite2D7" type="Sprite2D" parent="PlayerCamera/GPUParticles2D/Sprite2D"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(-25, 29)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_37rmd")
+
+[node name="Sprite2D8" type="Sprite2D" parent="PlayerCamera/GPUParticles2D/Sprite2D"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(-29, 25)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_37rmd")
+
+[node name="Sprite2D9" type="Sprite2D" parent="PlayerCamera/GPUParticles2D/Sprite2D"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(-25, 25)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_37rmd")
+
+[node name="Sprite2D10" type="Sprite2D" parent="PlayerCamera/GPUParticles2D/Sprite2D"]
+position = Vector2(-27, 27)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_37rmd")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="PlayerCamera"]
 stream = ExtResource("4_u4h8j")
