@@ -5,6 +5,7 @@ extends RigidBody3D
 @export var tname := "Toy..?"
 @export_multiline var tdesc := "What... What is this???"
 
+@export var is_cube: bool = false;
 
 @onready var bonk:AudioStreamPlayer3D = AudioStreamPlayer3D.new()
 
@@ -25,7 +26,9 @@ func _ready() -> void:
 	contact_monitor = true
 	max_contacts_reported = 1
 	body_entered.connect(bonksound)
-
+	if is_cube:
+		Winner.activate()
+	
 
 func bonksound(_b:Node) -> void:
 	if linear_velocity.length() > 0.8:
