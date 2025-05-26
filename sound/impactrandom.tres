@@ -1,0 +1,8 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=2 format=3 uid="uid://dtq3ndh5snh7i"]
+
+[ext_resource type="AudioStream" uid="uid://cu2kwwkl1r6la" path="res://sound/IMPACET.ogg" id="1_wd10x"]
+
+[resource]
+random_pitch = 2.04
+streams_count = 1
+stream_0/stream = ExtResource("1_wd10x")
