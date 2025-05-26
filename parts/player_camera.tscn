@@ -742,6 +742,11 @@ max_value = 1.0
 step = 0.0
 value = 1.0
 
+[node name="CheckBox" type="CheckBox" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+button_pressed = true
+text = "High Detail"
+
 [node name="Control2" type="Control" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
@@ -760,3 +765,4 @@ By CE-Studio and Lasagna Bones, with a few UI textures from Kenney.nl"
 [connection signal="value_changed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/mastvol" to="PlayerCamera" method="_on_mastvol_value_changed"]
 [connection signal="value_changed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/musvol" to="PlayerCamera" method="_on_musvol_value_changed"]
 [connection signal="value_changed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/sfxvol" to="PlayerCamera" method="_on_sfxvol_value_changed"]
+[connection signal="toggled" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/CheckBox" to="PlayerCamera" method="_on_check_box_toggled"]

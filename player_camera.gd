@@ -231,3 +231,7 @@ func _on_musvol_value_changed(value: float) -> void:
 
 func _on_sfxvol_value_changed(value: float) -> void:
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Sfx"), linear_to_db(value))
+
+
+func _on_check_box_toggled(toggled_on: bool) -> void:
+	$"../../MultiMeshInstance3D" .visible = toggled_on

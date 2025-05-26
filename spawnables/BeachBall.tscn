@@ -17,7 +17,7 @@ physics_material_override = SubResource("PhysicsMaterial_dsjja")
 gravity_scale = 0.3
 script = ExtResource("1_dsjja")
 tname = "Beachball"
-tdesc = "Do NOT pin the kerfs 
+tdesc = "Do NOT use it to pin the kerfs 
 against the ground!!!!!
 "
 
