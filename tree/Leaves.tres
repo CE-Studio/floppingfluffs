@@ -1,0 +1,16 @@
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://blbfmhj5mytse"]
+
+[ext_resource type="Shader" uid="uid://de40d2ehjd7ht" path="res://tree/Leaved.gdshader" id="1_tain5"]
+[ext_resource type="Texture2D" uid="uid://b3712vimw0t20" path="res://tree/Untitled_Artwork.png" id="2_h3oah"]
+[ext_resource type="Texture2D" uid="uid://c6u2p55td7whb" path="res://tree/ColorGradient.tres" id="3_4fkxd"]
+[ext_resource type="Texture2D" uid="uid://bf5e661awve2d" path="res://tree/FresnelGradient.tres" id="4_gmr6a"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_tain5")
+shader_parameter/color_gradient = ExtResource("3_4fkxd")
+shader_parameter/fresnel_gradient = ExtResource("4_gmr6a")
+shader_parameter/alpha_texture = ExtResource("2_h3oah")
+shader_parameter/alpha_threshold = 0.84
+shader_parameter/color = Color(0.262107, 0.498731, 2.88785e-07, 1)
+shader_parameter/offsetScale = 10.0

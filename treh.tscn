@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://xoeaygpl4eyq"]
+
+[ext_resource type="PackedScene" uid="uid://cqi4qj5uv65c5" path="res://tree/treh.blend" id="1_sot6a"]
+[ext_resource type="Material" uid="uid://blbfmhj5mytse" path="res://tree/Leaves.tres" id="2_jons6"]
+[ext_resource type="Material" uid="uid://dtljkq2xj0fyi" path="res://tree/Wood.tres" id="2_rmk4y"]
+
+[node name="treh" instance=ExtResource("1_sot6a")]
+
+[node name="Cube" parent="." index="0"]
+material_override = ExtResource("2_rmk4y")
+
+[node name="Cube_002" parent="." index="1"]
+surface_material_override/0 = ExtResource("2_jons6")
