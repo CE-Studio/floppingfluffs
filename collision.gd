@@ -28,7 +28,8 @@ func _ready() -> void:
 
 
 func bonksound(_b:Node) -> void:
-	bonk.play()
+	if linear_velocity.length() > 10:
+		bonk.play()
 
 
 func _integrate_forces(state:PhysicsDirectBodyState3D) -> void:

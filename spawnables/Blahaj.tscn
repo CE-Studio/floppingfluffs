@@ -15,7 +15,6 @@ tdesc = "Kerf says Trans Rights! But is also in support of their wrongs >:3"
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.0871558, -0.996195, 0, 0.996195, -0.0871558, 0, 0.101651, -0.261138)
 shape = SubResource("CapsuleShape3D_0sq4u")
-disabled = true
 
 [node name="blahajs" parent="." instance=ExtResource("2_26niv")]
 transform = Transform3D(1.978, 0, 0, 0, 1.978, 0, 0, 0, 1.978, 0, 0, 0)
