@@ -826,7 +826,6 @@ tdesc = "The OG Brainrot device! Now with 3.4x more ads!"
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00136721, 0.198943, -0.178467)
 shape = SubResource("BoxShape3D_w0yej")
-disabled = true
 
 [node name="KerfTV" type="Node3D" parent="."]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, -0.693846)
