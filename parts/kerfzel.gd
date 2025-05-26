@@ -13,6 +13,7 @@ const FurPattern = [
 
 
 const GEM:PackedScene = preload("res://parts/gem.tscn")
+@onready var happi_particle: GPUParticles3D = $Happi
 
 
 const SAVE_BASE = {
@@ -245,13 +246,15 @@ func _on_timer_2_timeout() -> void:
 
 func _on_body_entered(body: Node) -> void:
 	if body.is_in_group(&"toys"):
-		happi += 0.5
+		happi += 0.6
 		if body is RigidBody3D:
 			var push := transform.basis * Vector3.FORWARD
 			push.y += 1
 			body.apply_central_impulse(push * 3.0)
+			happi_particle.emitting = true
 	if body is Kerfzel:
 		_on_timer_timeout()
+		happi_particle.emitting = true
 		happi += 1
 
 
@@ -264,6 +267,7 @@ func _process(delta: float) -> void:
 
 func pet() -> void:
 	PlayerCam.instance.hearts.emitting = true
+	happi_particle.emitting = true
 	petting = 3
 
 
