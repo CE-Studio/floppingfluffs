@@ -135,7 +135,6 @@ func try_interact() -> void:
 	var result = space_state.intersect_ray(query)
 	if result:
 		var parent_decoration = result["collider"].get_parent_node_3d()
-		print(parent_decoration)
 		if parent_decoration and parent_decoration is StaticDecoration:
 			InfoHud.tracking = result["collider"]
 

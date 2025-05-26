@@ -13,7 +13,6 @@ var placed: bool = false
 @export var rigid_bodies: Array[RigidBody3D]
 @export var rot_dir: Vector3
 func set_speed(speed: float):
-	print("im changin the speed")
 	rigid_body_3d.constant_torque = rot_dir * speed * 10
 	rigid_body_3d.angular_damp = 30
 	await get_tree().create_timer(.3)
@@ -92,7 +91,3 @@ func set_static_body_enabled(body: StaticBody3D, enabled: bool) -> void:
 		body.collision_layer = 0
 		body.collision_mask = 0
 	
-
-
-func _on_static_body_visibility_changed() -> void:
-	print("aaa?")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://bln06bbdxxay"]
+[gd_scene load_steps=12 format=4 uid="uid://bln06bbdxxay"]
 
 [ext_resource type="Shader" uid="uid://de40d2ehjd7ht" path="res://tree/Leaved.gdshader" id="1_44ud8"]
 [ext_resource type="Material" uid="uid://dtljkq2xj0fyi" path="res://tree/Wood.tres" id="2_gvmkm"]
@@ -84,6 +84,10 @@ shader_parameter/alpha_threshold = 0.84
 shader_parameter/color = Color(0.262107, 0.498731, 2.88785e-07, 1)
 shader_parameter/offsetScale = 5.0001
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_44ud8"]
+radius = 0.908609
+height = 6.47642
+
 [node name="SmallTree" type="Node3D"]
 
 [node name="Tree" type="MeshInstance3D" parent="."]
@@ -91,3 +95,8 @@ mesh = SubResource("ArrayMesh_vtvjo")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_bgygo")
 surface_material_override/1 = ExtResource("2_gvmkm")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." groups=["toys"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("CapsuleShape3D_44ud8")

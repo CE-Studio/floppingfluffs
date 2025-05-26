@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://d3kfin5wcmfaw"]
+
+[ext_resource type="Script" uid="uid://dai5dki4hcmoi" path="res://collision.gd" id="1_qkov3"]
+[ext_resource type="Texture2D" uid="uid://ckwariosdro83" path="res://textures/loggggggggggggggggggggggggggggggggggg.png" id="2_gvff4"]
+[ext_resource type="ArrayMesh" uid="uid://dlh31na1pj3p" path="res://models/l0g.obj" id="3_voyin"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5dx0p"]
+radius = 0.242852
+height = 1.0721
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i88cd"]
+albedo_texture = ExtResource("2_gvff4")
+
+[node name="RigidBody3D" type="RigidBody3D" groups=["toys"]]
+collision_layer = 3
+script = ExtResource("1_qkov3")
+tname = "Log"
+tdesc = "Finally some good fricking food.
+A kerfzel's natural diet."
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_5dx0p")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+layers = 5
+material_override = SubResource("StandardMaterial3D_i88cd")
+mesh = ExtResource("3_voyin")
