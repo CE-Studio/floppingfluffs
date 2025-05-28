@@ -1,8 +1,8 @@
 [gd_scene load_steps=21 format=4 uid="uid://cby4bemgbl7fu"]
 
+[ext_resource type="PackedScene" uid="uid://cq0rrx8o5xkts" path="res://enviro/world_environment.tscn" id="1_868s8"]
 [ext_resource type="Shader" uid="uid://2byvdmrtgpge" path="res://parts/field.gdshader" id="1_let24"]
 [ext_resource type="ArrayMesh" uid="uid://bpr67efy6kuvg" path="res://models/grassblade.obj" id="1_mxcdc"]
-[ext_resource type="Environment" uid="uid://cu513xdqydqtb" path="res://enviro/enviro.tres" id="1_pqw6g"]
 [ext_resource type="PackedScene" uid="uid://db3jswprqpd1k" path="res://parts/player_camera.tscn" id="4_iyrfa"]
 [ext_resource type="Script" uid="uid://cs4dnt5283av3" path="res://parts/kerflayer.gd" id="5_i8eao"]
 [ext_resource type="Script" uid="uid://tih0bm2uoj02" path="res://parts/toylayer.gd" id="6_orqye"]
@@ -72,8 +72,7 @@ data = PackedVector3Array(-0.8438, -0.0238, 0.8438, -0.8125, -0.0242, 0.8125, -0
 [node name="Node3D" type="Node3D"]
 transform = Transform3D(1.205, 0, 0, 0, 1.205, 0, 0, 0, 1.205, 0, 0, 0)
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = ExtResource("1_pqw6g")
+[node name="WorldEnvironment" parent="." instance=ExtResource("1_868s8")]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.379222, -0.924764, -0.0316589, -0.0869938, -0.0696951, 0.993768, -0.921207, -0.374105, -0.106879, -4.225, 6.525, 0)
