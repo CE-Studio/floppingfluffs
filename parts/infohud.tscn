@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://2xo5sb8imvrt"]
 
 [ext_resource type="Script" uid="uid://cn3fitxt5y3mr" path="res://parts/infohud.gd" id="1_5k7ct"]
-[ext_resource type="Environment" uid="uid://cu513xdqydqtb" path="res://enviro.tres" id="2_fbhah"]
+[ext_resource type="Environment" uid="uid://cu513xdqydqtb" path="res://enviro/enviro.tres" id="2_fbhah"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_5k7ct"]
 viewport_path = NodePath("Infohud")

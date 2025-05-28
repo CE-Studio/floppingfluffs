@@ -1,0 +1,6 @@
+[gd_resource type="Sky" load_steps=2 format=3 uid="uid://b1dlo2vfmm8ex"]
+
+[ext_resource type="Material" uid="uid://28uq1lx2vusd" path="res://enviro/world_shader.tres" id="1_n2xer"]
+
+[resource]
+sky_material = ExtResource("1_n2xer")

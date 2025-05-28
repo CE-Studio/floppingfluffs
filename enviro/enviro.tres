@@ -1,6 +1,6 @@
 [gd_resource type="Environment" load_steps=7 format=3 uid="uid://cu513xdqydqtb"]
 
-[ext_resource type="Shader" uid="uid://xe27wgri8mbt" path="res://parts/sky.gdshader" id="1_vuwpi"]
+[ext_resource type="Shader" uid="uid://xe27wgri8mbt" path="res://enviro/sky.gdshader" id="1_dgxqx"]
 
 [sub_resource type="Gradient" id="Gradient_pqw6g"]
 offsets = PackedFloat32Array(0.292453, 1)
@@ -19,7 +19,7 @@ color_ramp = SubResource("Gradient_pqw6g")
 noise = SubResource("FastNoiseLite_bmttb")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bmttb"]
-shader = ExtResource("1_vuwpi")
+shader = ExtResource("1_dgxqx")
 shader_parameter/sky_color = Color(0.117547, 0.519571, 0.785248, 1)
 shader_parameter/clouds = SubResource("NoiseTexture3D_3cspu")
 

@@ -2,7 +2,7 @@
 
 [ext_resource type="Shader" uid="uid://2byvdmrtgpge" path="res://parts/field.gdshader" id="1_let24"]
 [ext_resource type="ArrayMesh" uid="uid://bpr67efy6kuvg" path="res://models/grassblade.obj" id="1_mxcdc"]
-[ext_resource type="Environment" uid="uid://cu513xdqydqtb" path="res://enviro.tres" id="1_pqw6g"]
+[ext_resource type="Environment" uid="uid://cu513xdqydqtb" path="res://enviro/enviro.tres" id="1_pqw6g"]
 [ext_resource type="PackedScene" uid="uid://db3jswprqpd1k" path="res://parts/player_camera.tscn" id="4_iyrfa"]
 [ext_resource type="Script" uid="uid://cs4dnt5283av3" path="res://parts/kerflayer.gd" id="5_i8eao"]
 [ext_resource type="Script" uid="uid://tih0bm2uoj02" path="res://parts/toylayer.gd" id="6_orqye"]
